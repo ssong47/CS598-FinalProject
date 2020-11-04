@@ -1,0 +1,54 @@
+###### USEFUL GIT COMMANDS ######
+
+# To upload all the most recent changes so that you are working with the most recent files. 
+git pull 
+
+
+
+# To add any files that you created to your updates. "add ." and "add -A" will add all the files 
+git add 
+
+git add . 
+
+git add -A 
+
+
+
+# To get status of your current updates 
+git status
+
+
+
+# To commit (meaning to compile your updates locally). If you commit without -m, you can put in multiple lines of description if you need it. You'll enter into different message space when you do this. After you put your multi line description, hit <ESC> and then type ";wq"
+
+git commit -m "(insert description of your changes)"
+
+git commit (Enter multi-line description) (<ESC>;wq)
+
+
+# To push (meaning to send your updates to the cloud. This will be the last step for making changes) 
+git push
+
+
+
+# If you commit without -m, you can 
+<ESC>;wq
+
+###### GIT WORKFLOW ######
+1) git pull (To get most recent files)
+2) git add 
+3) git commit -m
+4) git push 
+
+Note* you should pull frequently (multiple times a day). Also you should make your pushes more frequent (not too many changes at once)
+
+
+
+
+###### PULL REQUEST, BRANCHING, MERGING, AND TEAM WORKFLOW ######
+git branch
+
+git branch (new branch)
+
+git checkout (branch you want to work on)
+
