@@ -46,10 +46,19 @@ Note* you should pull frequently (multiple times a day). Also you should make yo
 
 
 ###### PULL REQUEST, BRANCHING, MERGING, AND TEAM WORKFLOW ######
+# To view all the available branches 
 git branch
 
+
+# To create new branch
 git branch (new branch)
 
+
+# To move to a branch
 git checkout (branch you want to work on)
 
-git merge
+# To try to merge the branch changes to main branch (or can be any other branch)
+git merge main 
+
+# To push your branch changes to the main branch (or any other branch)
+git push --set-upstream origin main
