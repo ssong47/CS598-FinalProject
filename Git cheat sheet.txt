@@ -1,0 +1,75 @@
+###### USEFUL GIT COMMANDS ######
+
+# To upload all the most recent changes so that you are working with the most recent files. 
+git pull 
+
+
+
+# To add any files that you created to your updates. "add ." and "add -A" will add all the files 
+git add 
+
+git add . 
+
+git add -A 
+
+
+
+# To get status of your current updates 
+git status
+
+
+
+# To commit (meaning to records changes to the local repository). If you commit without -m, you can put in multiple lines of description if you need it. You'll enter into different message space when you do this. After you put your multi line description, hit <ESC> and then type ";wq"
+
+git commit -m "(insert description of your changes)"
+
+git commit (Enter multi-line description) (<ESC>;wq)
+
+
+# To push (meaning to send your updates to the cloud / updates remote refs along with associated objects. This will be the last step for making changes) 
+git push
+
+
+
+# If you commit without -m, you can 
+<ESC>;wq
+
+###### GIT WORKFLOW ######
+1) git pull (To get most recent files)
+2) git add 
+3) git commit -m
+4) git push 
+
+Note* you should pull frequently (multiple times a day). Also you should make your pushes more frequent (not too many changes at once)
+
+
+
+
+###### PULL REQUEST, BRANCHING, MERGING, AND TEAM WORKFLOW ######
+# To view all the available branches 
+git branch
+
+
+# To create new branch
+git branch (new branch)
+
+
+# To move to a branch
+git checkout (branch you want to work on)
+
+# To try to merge the branch changes to main branch (or can be any other branch)
+git merge main 
+
+# To push your branch changes to the main branch 
+git push --set-upstream origin (name of branch you are working on)
+
+
+# Typical workflow
+1) git branch = to create branch
+2) git checkout (my branch) = to move to that branch
+3) Make changes to the branch
+4) git commit -m () 
+5) git push 
+6) git checkout main 
+7) git merge (my branch)
+8) git push 
