@@ -52,3 +52,4 @@ git branch (new branch)
 
 git checkout (branch you want to work on)
 
+git merge
