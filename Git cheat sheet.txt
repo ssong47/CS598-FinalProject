@@ -19,14 +19,14 @@ git status
 
 
 
-# To commit (meaning to compile your updates locally). If you commit without -m, you can put in multiple lines of description if you need it. You'll enter into different message space when you do this. After you put your multi line description, hit <ESC> and then type ";wq"
+# To commit (meaning to records changes to the local repository). If you commit without -m, you can put in multiple lines of description if you need it. You'll enter into different message space when you do this. After you put your multi line description, hit <ESC> and then type ";wq"
 
 git commit -m "(insert description of your changes)"
 
 git commit (Enter multi-line description) (<ESC>;wq)
 
 
-# To push (meaning to send your updates to the cloud. This will be the last step for making changes) 
+# To push (meaning to send your updates to the cloud / updates remote refs along with associated objects. This will be the last step for making changes) 
 git push
 
 
