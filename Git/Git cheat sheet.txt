@@ -64,3 +64,12 @@ git merge main
 git push --set-upstream origin (name of branch you are working on)
 
 
+# Typical workflow
+1) git branch = to create branch
+2) git checkout (my branch) = to move to that branch
+3) Make changes to the branch
+4) git commit -m () 
+5) git push 
+6) git checkout main 
+7) git merge (my branch)
+8) git push 
