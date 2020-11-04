@@ -60,5 +60,7 @@ git checkout (branch you want to work on)
 # To try to merge the branch changes to main branch (or can be any other branch)
 git merge main 
 
-# To push your branch changes to the main branch (or any other branch)
-git push --set-upstream origin main
+# To push your branch changes to the main branch 
+git push --set-upstream origin (name of branch you are working on)
+
+
