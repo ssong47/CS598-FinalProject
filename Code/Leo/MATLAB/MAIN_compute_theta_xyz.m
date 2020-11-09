@@ -1,8 +1,7 @@
 %% Load Data 
 % Go to proper path
-cd 'C:\Users\77bis\Box\Toyota Mobility Project Engineering\Force Sensing Seat\Preliminary_Test\'
-addpath(genpath("C:\Users\77bis\Box\Toyota Mobility Project Engineering\Force Sensing Seat\Preliminary_Test\"));
-addpath(genpath("C:\Users\77bis\Box\Toyota Mobility Project Engineering\Force Sensing Seat\Processing MATLAB Code\"));
+cd 'C:\Users\77bis\Desktop\CS598-FinalProject\Code\Leo\MATLAB'
+addpath(genpath("C:\Users\77bis\Box\CS598 - Final Project\Preliminary Data V3\Test_Subject_Leo"));
 clc; clear; close all;
 
 
