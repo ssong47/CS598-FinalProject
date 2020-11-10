@@ -1,26 +1,25 @@
 %% Load Data 
 % Go to proper path
-cd 'C:\Users\77bis\Box\Toyota Mobility Project Engineering\Force Sensing Seat\Preliminary_Test\'
-addpath(genpath("C:\Users\77bis\Box\Toyota Mobility Project Engineering\Force Sensing Seat\Preliminary_Test\"));
-addpath(genpath("C:\Users\77bis\Box\Toyota Mobility Project Engineering\Force Sensing Seat\Processing MATLAB Code\"));
+cd 'C:\Users\77bis\Desktop\CS598-FinalProject\Code\Leo\MATLAB'
+addpath(genpath("C:\Users\77bis\Box\CS598 - Final Project\"));
 clc; clear; close all;
 
 
 % Training Data
-fdss = load('leo_test6_10_29_2020_fdss_final_data.mat');
+fdss = load('fcss_processed_leo_test12_11_09_2020.mat');
 fdss_data = cell2mat(fdss.fdss_output(2:end,:));
 
-qtm = load('leo_test6_10_29_2020_qtm_final_data.mat');
+qtm = load('qtm_processed_leo_test12_11_09_2020.mat');
 qtm_data = cell2mat(qtm.qtm_output(2:end,:));
 
 % Validation Data
-val_fdss = load('leo_test7_10_29_2020_fdss_final_data.mat');
+val_fdss = load('fcss_processed_leo_test11_11_08_2020.mat');
 val_fdss_data = cell2mat(val_fdss.fdss_output(2:end,:));
 
-val_qtm = load('leo_test7_10_29_2020_qtm_final_data.mat');
+val_qtm = load('qtm_processed_leo_test11_11_08_2020.mat');
 val_qtm_data = cell2mat(val_qtm.qtm_output(2:end,:));
 
-
+theta_type = 'theta_z';
 
 
 %% Preprocess Data
@@ -28,7 +27,7 @@ val_qtm_data = cell2mat(val_qtm.qtm_output(2:end,:));
 [N, D] = size(fdss_data);
 i_start = 1;
 i_end = N;
-fdss_fs = 25;  cutoff_freq = 1;  filter_order = 4; theta_type = 'theta_x';
+fdss_fs = 25;  cutoff_freq = 1;  filter_order = 4;
 [X, Y, data_idx, fdss_post_data, qtm_data_zone] = pre_process_fdss_data...
                                 (fdss_data, qtm_data, fdss_fs, cutoff_freq, filter_order, theta_type, i_start, i_end);
 

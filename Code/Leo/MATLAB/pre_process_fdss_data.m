@@ -16,9 +16,9 @@ function [X, Y, data_idx_all, fdss_post_data_zone, qtm_data_zone] = pre_process_
 
     % Compute Mx, My 
     d1 = 0.19; d2 = 0.08; d3 = 0.19; % distances in meters
-    [Mx, My] = compute_moments(fdss_post_data_zone, d1, d2, d3);
+    [Mx, My, Mz] = compute_moments(fdss_post_data_zone, d1, d2, d3);
     
-    delta_f = compute_diff_dsensor(fdss_post_data_zone);
+%     delta_f = compute_diff_dsensor(fdss_post_data_zone);
     
     % Define X and Y for regression
     if strcmp(theta_type, 'theta_x') == 1
@@ -28,7 +28,7 @@ function [X, Y, data_idx_all, fdss_post_data_zone, qtm_data_zone] = pre_process_
         X = My;
         Y = qtm_data(i_zone,2);
     elseif strcmp(theta_type, 'theta_z') == 1
-        X = delta_f;
+        X = Mz;
         Y = qtm_data(i_zone,1);
     end
 end
