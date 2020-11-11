@@ -7,11 +7,11 @@ save_status = 1;
 
 
 %% Load Qualisys (QTM) Data
-n_trial = 12;
-date = '11_09_2020';
+n_trial = 13;
+date = '11_11_2020';
 
-i_start = 1%110; %Leo1-447, Leo2- 182, Leo 3- 132
-i_end = -1%1396; %Leo1-2764, Leo2- 1910,Leo 3- 1627
+i_start = 232;%110; %Leo1-447, Leo2- 182, Leo 3- 132
+i_end = 1820;%1396; %Leo1-2764, Leo2- 1910,Leo 3- 1627
 
 qtm_filename = strcat('qtm_leo_test', num2str(n_trial), '_', date ,'.mat');
 fdss_filename = strcat('fcss_leo_load_test', num2str(n_trial), '.csv');
@@ -19,7 +19,7 @@ color_vid_filename = strcat('fcss_leo_color_test', num2str(n_trial), '.avi');
 depth_vid_filename = strcat('fcss_leo_depth_test', num2str(n_trial), '.avi');
 
 
-save_folder = strcat('C:\Users\77bis\Box\CS598 - Final Project\Preliminary Data v3\Test_Subject_Leo\test', num2str(n_trial),'\');
+save_folder = strcat('C:\Users\77bis\Box\CS598 - Final Project\Preliminary Data v4\Test_Subject_Leo\test', num2str(n_trial),'\');
 
 color_vid_save_filename = strcat(save_folder, 'color_processed_leo_test', num2str(n_trial), '.avi');
 depth_vid_save_filename = strcat(save_folder, 'depth_processed_leo_test', num2str(n_trial), '.avi');
@@ -34,14 +34,14 @@ qtm_mat_save_file = strcat(save_folder,'qtm_processed_leo_test', num2str(n_trial
 load(qtm_filename);
 
 
-qtm_marker_label = qtm_leo_test12_11_09_2020.Trajectories.Labeled.Labels;
-qtm_marker_data = qtm_leo_test12_11_09_2020.Trajectories.Labeled.Data;
+qtm_marker_label = qtm_leo_test13_11_11_2020.Trajectories.Labeled.Labels;
+qtm_marker_data = qtm_leo_test13_11_11_2020.Trajectories.Labeled.Data;
 
 
 n_labels = length(qtm_marker_label); 
 n_data_qtm = length(qtm_marker_data(1,1,:));
 
-qtm_fs = 1/25;
+qtm_fs = 1/30;
 qtm_time = linspace(0, (n_data_qtm - 1) * qtm_fs, n_data_qtm);
 
 sign_vec = -1;
@@ -211,7 +211,7 @@ fid = fopen(fdss_filename,'r');
 raw_data={};    % all the collected raw data string from serial monitor
 test_start_line = fgetl(fid);    
 line_counter = 1;
-fdss_fs = 1/25;
+fdss_fs = 1/30;
 
 %Find the lines where calibration and test data starts
 while ischar(test_start_line)       % Start reading from raw text file 
@@ -297,14 +297,14 @@ linkaxes([ax1, ax2, ax3], 'x');
 
 
 %% Truncate Videos to proper starting and ending time 
-vid_start_time = (fdss_fs * (fdss_start));
-vid_end_time = (fdss_fs * (fdss_end));
 vid = VideoReader(color_vid_filename);
-
-color_new_frames = extract_frames(color_vid_filename, fdss_start, fdss_end);
+vid_start = fdss_start + i_start; 
+vid_end = i_end + fdss_start; 
+color_new_frames = extract_frames(color_vid_filename, vid_start, vid_end);
 save_video(color_vid_save_filename, color_new_frames)
 
-depth_new_frames = extract_frames(depth_vid_filename, vid_start_time, vid_end_time);
+depth_vid = VideoReader(depth_vid_filename);
+depth_new_frames = extract_frames(depth_vid_filename, vid_start, vid_end);
 save_video(depth_vid_save_filename, depth_new_frames)
 
 
@@ -331,7 +331,10 @@ if save_status == 1
     save(fdss_mat_save_file,'fdss_output');
     save(qtm_mat_save_file, 'qtm_output');
 end
-% 
+
+
+
+%
 % figure(7)
 % plot(plot_i, qtm_final_data(:,1))
 % hold on;

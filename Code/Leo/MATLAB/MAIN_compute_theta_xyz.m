@@ -6,20 +6,25 @@ clc; clear; close all;
 
 
 % Training Data
-fdss = load('fcss_processed_leo_test12_11_09_2020.mat');
+n_trial = 13;
+date = '11_11_2020';
+fdss = load(strcat('fcss_processed_leo_test',num2str(n_trial),'_',date,'.mat'));
 fdss_data = cell2mat(fdss.fdss_output(2:end,:));
 
-qtm = load('qtm_processed_leo_test12_11_09_2020.mat');
+qtm = load(strcat('qtm_processed_leo_test',num2str(n_trial),'_',date,'.mat'));
 qtm_data = cell2mat(qtm.qtm_output(2:end,:));
 
 % Validation Data
-val_fdss = load('fcss_processed_leo_test11_11_08_2020.mat');
+val_n_trial = 13; 
+val_date = '11_11_2020';
+val_fdss = load(strcat('fcss_processed_leo_test',num2str(val_n_trial),'_',val_date,'.mat'));
 val_fdss_data = cell2mat(val_fdss.fdss_output(2:end,:));
 
-val_qtm = load('qtm_processed_leo_test11_11_08_2020.mat');
+
+val_qtm = load(strcat('qtm_processed_leo_test',num2str(val_n_trial),'_',val_date,'.mat'));
 val_qtm_data = cell2mat(val_qtm.qtm_output(2:end,:));
 
-theta_type = 'theta_z';
+theta_type = 'theta_x';
 
 
 %% Preprocess Data
