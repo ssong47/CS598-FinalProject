@@ -3,15 +3,15 @@ addpath(genpath("C:\Users\77bis\Desktop\CS598-FinalProject\"));
 addpath(genpath("C:\Users\77bis\Box\CS598 - Final Project\"));
 
 clc; clear; close all;
-save_status = 1;
+save_status = 0;
 
 
 %% Load Qualisys (QTM) Data
-n_trial = 13;
+n_trial = 18;
 date = '11_11_2020';
 
-i_start = 232;%110; %Leo1-447, Leo2- 182, Leo 3- 132
-i_end = 1820;%1396; %Leo1-2764, Leo2- 1910,Leo 3- 1627
+i_start = 1;%110; %Leo1-447, Leo2- 182, Leo 3- 132
+i_end = -1;%1396; %Leo1-2764, Leo2- 1910,Leo 3- 1627
 
 qtm_filename = strcat('qtm_leo_test', num2str(n_trial), '_', date ,'.mat');
 fdss_filename = strcat('fcss_leo_load_test', num2str(n_trial), '.csv');
@@ -34,8 +34,8 @@ qtm_mat_save_file = strcat(save_folder,'qtm_processed_leo_test', num2str(n_trial
 load(qtm_filename);
 
 
-qtm_marker_label = qtm_leo_test13_11_11_2020.Trajectories.Labeled.Labels;
-qtm_marker_data = qtm_leo_test13_11_11_2020.Trajectories.Labeled.Data;
+qtm_marker_label = qtm_leo_test18_11_11_2020.Trajectories.Labeled.Labels;
+qtm_marker_data = qtm_leo_test18_11_11_2020.Trajectories.Labeled.Data;
 
 
 n_labels = length(qtm_marker_label); 
@@ -222,9 +222,16 @@ end
 fclose(fid);
 
 %Extracting Data from Raw Data
-raw_full_data = raw_data(1:end-2);
+raw_full_data = raw_data(1:end-5);
 str_full_data = raw_full_data(~cellfun('isempty',raw_full_data)); % remove empty data strings
 full_data  = regexp(str_full_data , ',', 'split');
+count = 0;
+for i=1:length(full_data)
+   if length(full_data{i}) ~= 7  
+      full_data{i} = full_data{i-1};
+   end
+end
+
 fdss_data = cellfun(@str2num,vertcat(full_data{:}));
 fdss_time_sync = fdss_data(:,1);
 
@@ -247,12 +254,14 @@ fdss_final_data_temp = fdss_data(fdss_start:fdss_end, 2:end);
 qtm_total_data(isnan(qtm_total_data)) = 0;
 qtm_final_data_temp = resample(qtm_total_data, n_data_fdss, n_data_qtm);
 
-
+%%
 %Truncate final data to exclude 
 N = length(fdss_final_data_temp);
+i_end = -1;
 if i_end == -1
    i_end = N; 
 end
+
 fdss_final_data = fdss_final_data_temp(i_start:i_end,:);
 qtm_final_data = qtm_final_data_temp(i_start:i_end,:);
 
@@ -297,11 +306,12 @@ linkaxes([ax1, ax2, ax3], 'x');
 
 
 %% Truncate Videos to proper starting and ending time 
-vid = VideoReader(color_vid_filename);
-vid_start = fdss_start + i_start; 
+% vid = VideoReader(color_vid_filename);
+vid_start = fdss_start + i_start - 21; 
 vid_end = i_end + fdss_start; 
-color_new_frames = extract_frames(color_vid_filename, vid_start, vid_end);
-save_video(color_vid_save_filename, color_new_frames)
+
+% color_new_frames = extract_frames(color_vid_filename, vid_start, vid_end);
+% save_video(color_vid_save_filename, color_new_frames)
 
 depth_vid = VideoReader(depth_vid_filename);
 depth_new_frames = extract_frames(depth_vid_filename, vid_start, vid_end);
@@ -331,28 +341,6 @@ if save_status == 1
     save(fdss_mat_save_file,'fdss_output');
     save(qtm_mat_save_file, 'qtm_output');
 end
-
-
-
-%
-% figure(7)
-% plot(plot_i, qtm_final_data(:,1))
-% hold on;
-% plot(plot_i, qtm_final_data(:,2))
-% plot(plot_i, qtm_final_data(:,3))
-% legend('twist angle', 'lean fb angle', 'lean lr angle')
-% ylabel('angle (deg)');
-% xlabel('data index');
-% xlim([0 max(plot_i)]);
-% 
-% figure(9)
-% plot(qtm_time, qtm_total_data(:,1))
-% hold on;
-% plot(qtm_time, qtm_total_data(:,2))
-% plot(qtm_time, qtm_total_data(:,3))
-% legend('twist angle', 'lean fb angle', 'lean lr angle')
-% ylabel('angle (deg)');
-% xlabel('time (s)');
 
 
 
