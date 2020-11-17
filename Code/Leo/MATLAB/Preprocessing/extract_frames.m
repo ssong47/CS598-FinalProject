@@ -5,6 +5,7 @@ function new_frames = extract_frames(vid_filename, vid_start_frame, vid_end_fram
     % Extract the necessary frames
     new_frames = read(vid,[vid_start_frame, vid_end_frame]);
 
+    
    
 
 end

@@ -6,7 +6,7 @@ clc; clear; close all;
 
 
 % Training Data
-n_trial = 13;
+n_trial = 14;
 date = '11_11_2020';
 fdss = load(strcat('fcss_processed_leo_test',num2str(n_trial),'_',date,'.mat'));
 fdss_data = cell2mat(fdss.fdss_output(2:end,:));
@@ -15,8 +15,8 @@ qtm = load(strcat('qtm_processed_leo_test',num2str(n_trial),'_',date,'.mat'));
 qtm_data = cell2mat(qtm.qtm_output(2:end,:));
 
 % Validation Data
-val_n_trial = 18; 
-val_date = '11_11_2020';
+val_n_trial = 24; 
+val_date = '11_15_2020';
 val_fdss = load(strcat('fcss_processed_leo_test',num2str(val_n_trial),'_',val_date,'.mat'));
 val_fdss_data = cell2mat(val_fdss.fdss_output(2:end,:));
 

@@ -3,15 +3,15 @@ addpath(genpath("C:\Users\77bis\Desktop\CS598-FinalProject\"));
 addpath(genpath("C:\Users\77bis\Box\CS598 - Final Project\"));
 
 clc; clear; close all;
-save_status = 0;
-
+save_status = 1;
+save_video_status = 1;
 
 %% Load Qualisys (QTM) Data
-n_trial = 18;
-date = '11_11_2020';
+n_trial = 24;
+date = '11_15_2020';
 
-i_start = 1;%110; %Leo1-447, Leo2- 182, Leo 3- 132
-i_end = -1;%1396; %Leo1-2764, Leo2- 1910,Leo 3- 1627
+i_start = 450;%110; %Leo1-447, Leo2- 182, Leo 3- 132
+i_end = 13200;%1396; %Leo1-2764, Leo2- 1910,Leo 3- 1627
 
 qtm_filename = strcat('qtm_leo_test', num2str(n_trial), '_', date ,'.mat');
 fdss_filename = strcat('fcss_leo_load_test', num2str(n_trial), '.csv');
@@ -34,8 +34,8 @@ qtm_mat_save_file = strcat(save_folder,'qtm_processed_leo_test', num2str(n_trial
 load(qtm_filename);
 
 
-qtm_marker_label = qtm_leo_test18_11_11_2020.Trajectories.Labeled.Labels;
-qtm_marker_data = qtm_leo_test18_11_11_2020.Trajectories.Labeled.Data;
+qtm_marker_label = qtm_leo_test24_11_15_2020.Trajectories.Labeled.Labels;
+qtm_marker_data = qtm_leo_test24_11_15_2020.Trajectories.Labeled.Data;
 
 
 n_labels = length(qtm_marker_label); 
@@ -250,14 +250,15 @@ for i = 2:7
 end
 
 %Create processed fdss and qualisys data with time stamps and synced start/end time
-fdss_final_data_temp = fdss_data(fdss_start:fdss_end, 2:end);
 qtm_total_data(isnan(qtm_total_data)) = 0;
-qtm_final_data_temp = resample(qtm_total_data, n_data_fdss, n_data_qtm);
+% qtm_final_data_temp = resample(qtm_total_data, n_data_fdss, n_data_qtm);
+min_two = min(n_data_fdss, n_data_qtm);
+qtm_final_data_temp = qtm_total_data(1:min_two, :);
+fdss_final_data_temp = fdss_data(fdss_start:(fdss_start + min_two -1), 2:end);
 
 %%
 %Truncate final data to exclude 
 N = length(fdss_final_data_temp);
-i_end = -1;
 if i_end == -1
    i_end = N; 
 end
@@ -305,18 +306,6 @@ xlim([0 max(plot_i)]);
 linkaxes([ax1, ax2, ax3], 'x');
 
 
-%% Truncate Videos to proper starting and ending time 
-% vid = VideoReader(color_vid_filename);
-vid_start = fdss_start + i_start - 21; 
-vid_end = i_end + fdss_start; 
-
-% color_new_frames = extract_frames(color_vid_filename, vid_start, vid_end);
-% save_video(color_vid_save_filename, color_new_frames)
-
-depth_vid = VideoReader(depth_vid_filename);
-depth_new_frames = extract_frames(depth_vid_filename, vid_start, vid_end);
-save_video(depth_vid_save_filename, depth_new_frames)
-
 
 %% Saving processed Qualisys data and FDSS data 
 if save_status == 1
@@ -343,4 +332,16 @@ if save_status == 1
 end
 
 
+%% Saving Video
+if save_video_status == 1
+    depth_video = VideoReader(depth_vid_filename);
+    extracted_depth_video = extract_frames(depth_vid_filename, fdss_start + i_start, fdss_start + i_end);
 
+    gray =  convert_gray(extracted_depth_video);
+    
+    depth_new_video = VideoWriter(depth_vid_save_filename);
+    
+    open(depth_new_video)
+    writeVideo(depth_new_video, extracted_depth_video);
+    close(depth_new_video)
+end
