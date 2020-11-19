@@ -1,14 +1,14 @@
 ### SVR Results for Estimating theta_z
 
 |Data Input| Kernel | C |Metric (RMSE) |
-|:|:|:|:|
+|:-|:-|:-|:-|
 |M_x, thetahat_z and, log(distance sensor)| Radial Basis Function|100|12.71|
 |force sensors and log(distance sensor)| Radial Basis Function|100|11.79|
 
 ### Nnet Regression Results for Estimating theta_z
 
 |Data Input| Number of Layers |Nodes per Layer |Patience |Metric (RMSE) | Epochs |Time |
-|:|:|:|:|:|:|:|
+|:-|:-|:-|:-|:-|:-|:-|
 |M_x, thetahat_z and, log(distance sensor) |4|200|1000|9.80|10899|40min|
 |force sensors and log(distance sensor) |4|200|1000|6.60|14919|1hr|
 |vec(160x120 frame) and fcss |3|50|10|4.61|180|3min|
