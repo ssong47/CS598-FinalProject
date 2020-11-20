@@ -24,6 +24,7 @@
 |vec(160x120 frame) and fcss |4|100|100|3.07|1213|40min |V4/test24|
 |vec(160x120 frame) and fcss |4|200|10|3.17|126|20min|V4/test24|
 |vec(160x120 frame) and fcss |4|200|100|3.09|1015|1hr|V4/test24|
+|vec(160x120 frame)|4|100|10|3.38|206|10min|V4/test24|
 |vec(160x120 frame)|4|100|10|3.47|206|10min|V5/test24|
 |vec(160x120 frame)|3|100|10|3.57|206|6min|V5/test24|
 |vec(160x120 frame)|3|50|10|4.07|256|5min|V5/test24|
