@@ -36,5 +36,5 @@
 |Data Input| Number of Layers |Patience |Metric (RMSE) | Epochs |Time | Data|
 |:-|:-|:-|:-|:-|:-|:-|
 |160x120 -> 80x40| 2 convolutional layers, 2 sequential layers| 10 loss| 5.98 | 260| ?? min | V5/test24|
-|160x120 -> 80x40| 2 convolutional layers, 2 sequential layers (flat + 128)| 50 val_loss | 7.11| 89| 30 min | V5/test24 + V5/test25|
-|160x120 -> 80x40| 2 convolutional layers, 2 sequential layers (flat + 200)| 50 val_loss | 6.84| 89| 80 min | V5/test24 + V5/test25|
+|160x120 -> 80x40| 2 convolutional layers, 2 sequential layers (flat + 128 Dense)| 50 val_loss | 7.11| 89| 30 min | V5/test24 + V5/test25|
+|160x120 -> 80x40| 2 convolutional layers, 2 sequential layers (flat + 200 Dense), Dropout| 50 val_loss | 6.84| 89| 80 min | V5/test24 + V5/test25|
