@@ -31,3 +31,9 @@
 |vec(160x120 frame)|3|200|10|3.51|144|6min|V5/test24|
 |vec(160x120 frame)|3|200|100|3.79|1067|54min|V5/test24|
 |vec(160x120 frame)|4|200|100|3.57|824|40min|V5/test24|
+
+#### Implementation of Convolutional Neural Network
+|Data Input| Number of Layers |Patience |Metric (RMSE) | Epochs |Time | Data|
+|:-|:-|:-|:-|:-|:-|:-|
+|160x120 -> 80x40| 2 convolutional layers, 2 sequential layers| 10 loss| 5.98 | 260| ?? min | V5/test24|
+|160x120 -> 80x40| 2 convolutional layers, 2 sequential layers| 50 val_loss | ??| ??| ?? min | V5/test24 + V5/test25|
