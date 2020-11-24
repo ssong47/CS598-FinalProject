@@ -38,3 +38,6 @@
 |160x120 -> 80x40| 2 convolutional layers, 2 sequential layers| 10 loss| 5.98 | 260| ?? min | V5/test24|
 |160x120 -> 80x40| 2 convolutional layers, 2 sequential layers (flat + 128 Dense)| 50 val_loss | 7.11| 89| 30 min | V5/test24 + V5/test25|
 |160x120 -> 80x40| 2 convolutional layers, 2 sequential layers (flat + 200 Dense), Dropout| 50 val_loss | 6.84| 89| 80 min | V5/test24 + V5/test25|
+|160x120 -> 80x40| 3 convolutional layers (f=64, k=3x3,mp:[1,2,3]), 2 sequential layers (flat + 200 Dense), Dropout| 50 val_loss mse | 5.31| 198| 30 min | V5/test24 + V5/test25|
+|160x120 -> 80x40| 3 convolutional layers (f=64, k=3x3,mp:[1,2,3]), 2 sequential layers (flat + 200 Dense), Dropout| 50 val_loss mae | 5.21| 372| 56 min | V5/test24 + V5/test25|
+|160x120 -> 80x40| 3 convolutional layers (f=64, k=3x3,mp:[5,1,1]), 2 sequential layers (flat + 200 Dense), Dropout| 50 val_loss mae | ?| ?| ? min | V5/test24 + V5/test25|
