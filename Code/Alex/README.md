@@ -57,4 +57,5 @@
 |160x120->80x60| 4 convolutional layers (f=[16,32,64,96. same], k=3x3,avgp:[2,2,2,2]), 2 sequential layers (flat + 128 Dense), Dropout at 128 Dense (0.2)| 50 val_loss mae | 5.77| 556 | 37 min | V5/test24 + V5/test25 + V5/test30 + V5/test31|
 |160x120->80x60| 4 convolutional layers (f=[16,32,64,96. same], k=3x3,avgp:[2,2,2,2]), 2 sequential layers (flat + 128 Dense), Dropout at 128 Dense (0.2)| 50 val_loss mae | 3.28| 296 | 40 min | V5/test24 + V5/test30 + V5/test31 + V5/test32 + V5/test33 + V5/test35|
 |160x120->80x60| 4 convolutional layers (f=[8,16,32,64. same], k=3x3,avgp:[2,2,2,2]), 2 sequential layers (flat + 128 Dense), Dropout at 128 Dense (0.2)| 50 val_loss mae | 3.32| 458 | 46 min | V5/test24 + V5/test30 + V5/test31 + V5/test32 + V5/test33 + V5/test35|
+|160x120->80x60| 4 convolutional layers (f=[64,8,16,32. same], k=3x3,avgp:[1,2,2,2]), 2 sequential layers (flat + 128 Dense), Dropout at 128 Dense (0.2)| 50 val_loss mae | 3.50| 389 | 1hr 50 min | V5/test24 + V5/test30 + V5/test31 + V5/test32 + V5/test33 + V5/test35|
 
