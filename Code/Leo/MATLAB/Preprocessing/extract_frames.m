@@ -1,11 +1,6 @@
-function new_frames = extract_frames(vid_filename, vid_start_frame, vid_end_frame)
-    % Obtain object handle for color video
-    vid = VideoReader(vid_filename);
-
+function new_frames = extract_frames(vid)
     % Extract the necessary frames
-    new_frames = read(vid,[vid_start_frame, vid_end_frame]);
+    new_frames = read(vid,[1, vid.NumFrames]);
 
-    
-   
 
 end

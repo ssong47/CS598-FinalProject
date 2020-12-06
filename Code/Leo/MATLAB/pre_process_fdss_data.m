@@ -12,7 +12,7 @@ function [X, Y, data_idx_all, fdss_post_data_zone, qtm_data_zone] = pre_process_
     qtm_data_zone = qtm_data(i_zone,:);
     
     % Define data index (for plotting purposes)
-    data_idx_all = linspace(i_start_all, i_end_all, i_end_all - i_start_all + 1);
+    data_idx_all = linspace(i_start_all, i_end_all/fdss_fs, i_end_all - i_start_all + 1);
 
     % Compute Mx, My 
     d1 = 0.19; d2 = 0.08; d3 = 0.19; % distances in meters
@@ -30,5 +30,8 @@ function [X, Y, data_idx_all, fdss_post_data_zone, qtm_data_zone] = pre_process_
     elseif strcmp(theta_type, 'theta_z') == 1
         X = Mz;
         Y = qtm_data(i_zone,1);
+    elseif strcmp(theta_type, 'all') == 1
+        X = [My Mx];
+        Y = qtm_data(i_zone, 2:3);
     end
 end
