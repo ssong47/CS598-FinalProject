@@ -5,14 +5,14 @@ addpath(genpath("C:\Users\77bis\Box\CS598 - Final Project\"));
 clc; clear; close all;
 save_status = -1;
 save_video_status = -1;
-ml_status = 1;
+ml_status = -1;
 
 %% Load Qualisys (QTM) Data
-n_trial = 35;
-date = '11_25_2020';
+n_trial = 49;
+date = '12_15_2020';
 
-i_start = 1;%110; %Leo1-447, Leo2- 182, Leo 3- 132
-i_end = -1;%1396; %Leo1-2764, Leo2- 1910,Leo 3- 1627
+i_start = 784;%110; %Leo1-447, Leo2- 182, Leo 3- 132
+i_end = 8512;%1396; %Leo1-2764, Leo2- 1910,Leo 3- 1627
 subject = 'leo';
 
 qtm_filename = strcat('qtm_',subject,'_test', num2str(n_trial), '_', date ,'.mat');
@@ -21,7 +21,7 @@ color_vid_filename = strcat('fcss_',subject,'_color_test', num2str(n_trial), '.a
 depth_vid_filename = strcat('fcss_',subject,'_depth_test', num2str(n_trial), '.avi');
 
 
-save_folder = strcat('C:\Users\77bis\Box\CS598 - Final Project\Preliminary Data V5\Test_Subject_',subject,'\test', num2str(n_trial),'\');
+save_folder = strcat('C:\Users\77bis\Box\CS598 - Final Project\Preliminary Data V5 Incline\Test_Subject_',subject,'\test', num2str(n_trial),'\');
 
 color_vid_save_filename = strcat(save_folder, 'color_processed_',subject,'_test', num2str(n_trial), '.avi');
 depth_vid_save_filename = strcat(save_folder, 'depth_processed_',subject,'_test', num2str(n_trial), '.avi');
@@ -40,8 +40,8 @@ end
 load(qtm_filename);
 
 
-qtm_marker_label = qtm_leo_test35_11_25_2020.Trajectories.Labeled.Labels;
-qtm_marker_data = qtm_leo_test35_11_25_2020.Trajectories.Labeled.Data;
+qtm_marker_label = qtm_leo_test49_12_15_2020.Trajectories.Labeled.Labels;
+qtm_marker_data = qtm_leo_test49_12_15_2020.Trajectories.Labeled.Data;
 
 
 n_labels = length(qtm_marker_label); 
@@ -212,6 +212,13 @@ qtm_total_data = [qtm_angle_twist, qtm_angle_leanfb, qtm_angle_leanlr];
 
 % plot_qtm_data()
 
+%%
+% figure(1)
+% plot(qtm_angle_leanfb)
+% hold on 
+% plot(fdss_data(:,2))
+% legend('qtm','fdss')
+
 %% Load FDSS Data
 fid = fopen(fdss_filename,'r');
 raw_data={};    % all the collected raw data string from serial monitor
@@ -242,7 +249,7 @@ fdss_data = cellfun(@str2num,vertcat(full_data{:}));
 fdss_time_sync = fdss_data(:,1);
 
 %Obtain starting and ending index synced with Qualisys
-[fdss_start, fdss_end] = fdss_find_start_end(fdss_time_sync);
+[fdss_start, fdss_end] = fdss_find_start_end(fdss_time_sync, n_data_qtm);
 n_data_fdss = fdss_end - fdss_start + 1;
 
 
@@ -299,31 +306,32 @@ xlabel('data index');
 ylabel('force (kg)');
 xlim([0 max(plot_i)]);
 
-
-ax3 = subplot(3,1,3);
-plot(plot_i, qtm_final_data(:,1))
-hold on;
-plot(plot_i, qtm_final_data(:,2))
-plot(plot_i, qtm_final_data(:,3))
-plot(plot_i, [ml_data(:,3); 0])
-legend('twist angle', 'lean fb angle', 'lean lr angle')
-ylabel('angle (deg)');
-xlabel('data index');
-xlim([0 max(plot_i)]);
-linkaxes([ax1, ax2, ax3], 'x');
-% 
 % 
 % ax3 = subplot(3,1,3);
 % plot(plot_i, qtm_final_data(:,1))
 % hold on;
 % plot(plot_i, qtm_final_data(:,2))
 % plot(plot_i, qtm_final_data(:,3))
+% plot(plot_i, [ml_data(:,3); 0])
 % legend('twist angle', 'lean fb angle', 'lean lr angle')
 % ylabel('angle (deg)');
 % xlabel('data index');
 % xlim([0 max(plot_i)]);
-% ylim([-40 40]);
- 
+% linkaxes([ax1, ax2, ax3], 'x');
+% 
+% 
+ax3 = subplot(3,1,3);
+plot(plot_i, qtm_final_data(:,1))
+hold on;
+plot(plot_i, qtm_final_data(:,2))
+plot(plot_i, qtm_final_data(:,3))
+legend('twist angle', 'lean fb angle', 'lean lr angle')
+ylabel('angle (deg)');
+xlabel('data index');
+xlim([0 max(plot_i)]);
+ylim([-40 40]);
+linkaxes([ax1, ax2, ax3], 'x');
+
 
 %% Saving processed Qualisys data and FDSS data 
 if save_status == 1
@@ -351,14 +359,14 @@ end
 
 
 %% Process Video
-i_offset = -15;
-[depth_obj, depth_frames, depth_mov] = process_video(depth_vid_filename, fdss_start, i_start, i_end,i_offset, 'extract');
+i_offset = -30;
+[depth_obj, depth_frames, depth_mov] = process_video(depth_vid_filename, fdss_start, i_start, i_end, i_offset, 'extract');
 vid_fs = 1/fdss_fs;
 
 %% Verify fcss + video + qtm data
 theta_type = 'all_raw';
-i_time = [3 , 9];
-save_raw_vid = 1; 
+i_time = [0.1 , 20];
+save_raw_vid = -1; 
 save_raw_vid_path = 'sample.avi';
 verify_video(depth_frames, depth_mov, qtm_final_data, fdss_final_data, vid_fs, theta_type, i_time, save_raw_vid, save_raw_vid_path)
 

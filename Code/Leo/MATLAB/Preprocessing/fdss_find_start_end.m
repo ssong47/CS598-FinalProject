@@ -1,7 +1,9 @@
-function [i_start, i_end] = fdss_find_start_end(time_sync)
+function [i_start, i_end] = fdss_find_start_end(time_sync, n_data_qtm)
     flag = 0;
     i_start_count = 0;
     i_end_count = 0;
+    i_start = 0;
+    i_end = 0;
     for i = 1:length(time_sync)
        sync_val = time_sync(i);
        sync_thresh = 20;
@@ -27,9 +29,17 @@ function [i_start, i_end] = fdss_find_start_end(time_sync)
            end
            
        else
-          i_end_count = 0; 
+          i_end_count = 0;
        end
         
+    end
+    
+    if i_start == 0
+        i_start = 1;
+    end
+    
+    if i_end == 0
+        i_end = n_data_qtm;
     end
     
 
