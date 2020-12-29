@@ -1,19 +1,19 @@
 cd 'C:\Users\77bis\Desktop\CS598-FinalProject\Code\Leo\MATLAB\Preprocessing\'
 addpath(genpath("C:\Users\77bis\Desktop\CS598-FinalProject\"));
-addpath(genpath("C:\Users\77bis\Box\CS598 - Final Project\"));
+addpath(genpath("C:\Users\77bis\Box\CS598 - Final Project\Preliminary Data V5"));
 
 clc; clear; close all;
-save_status = -1;
+save_status = 1;
 save_video_status = -1;
 ml_status = -1;
 
 %% Load Qualisys (QTM) Data
-n_trial = 54;
-date = '12_20_2020';
+n_trial = 1;
+date = '12_2_2020';
 
-i_start = 900;%110; %Leo1-447, Leo2- 182, Leo 3- 132
-i_end = 12060;%1396; %Leo1-2764, Leo2- 1910,Leo 3- 1627
-subject = 'leo';
+i_start = 1;%110; %Leo1-447, Leo2- 182, Leo 3- 132
+i_end = -1;%1396; %Leo1-2764, Leo2- 1910,Leo 3- 1627
+subject = 'yc';
 
 qtm_filename = strcat('qtm_',subject,'_test', num2str(n_trial), '_', date ,'.mat');
 fdss_filename = strcat('fcss_',subject,'_load_test', num2str(n_trial), '.csv');
@@ -21,7 +21,7 @@ color_vid_filename = strcat('fcss_',subject,'_color_test', num2str(n_trial), '.a
 depth_vid_filename = strcat('fcss_',subject,'_depth_test', num2str(n_trial), '.avi');
 
 
-save_folder = strcat('C:\Users\77bis\Box\CS598 - Final Project\Preliminary Data V5 Dynamic Incline\Test_Subject_',subject,'\test', num2str(n_trial),'\');
+save_folder = strcat('C:\Users\77bis\Box\CS598 - Final Project\Preliminary Data V5\Test_Subject_',subject,'\test', num2str(n_trial),'\');
 
 color_vid_save_filename = strcat(save_folder, 'color_processed_',subject,'_test', num2str(n_trial), '.avi');
 depth_vid_save_filename = strcat(save_folder, 'depth_processed_',subject,'_test', num2str(n_trial), '.avi');
@@ -42,8 +42,8 @@ end
 load(qtm_filename);
 
 
-qtm_marker_label = qtm_leo_test54_12_20_2020.Trajectories.Labeled.Labels;
-qtm_marker_data = qtm_leo_test54_12_20_2020.Trajectories.Labeled.Data;
+qtm_marker_label = qtm_yc_test_1_12_02_2020.Trajectories.Labeled.Labels;
+qtm_marker_data = qtm_yc_test_1_12_02_2020.Trajectories.Labeled.Data;
 
 
 n_labels = length(qtm_marker_label); 
@@ -262,6 +262,7 @@ fdss_time = linspace(0, (n_data_fdss-1) * fdss_fs, n_data_fdss);
 
 n_fsens = 6;
 f_sens = zeros(n_data_fdss, n_fsens);
+
 for i = 2:7
    f_sens(:,i-1) = fdss_data(fdss_start:fdss_end,i);
 end
@@ -359,25 +360,27 @@ if save_status == 1
     
     % Saving text file
     writecell(fdss_output, fdss_txt_save_file)
-    writecell(seat_output, seat_txt_save_file)
     writecell(qtm_output, qtm_txt_save_file)
+    writecell(seat_output, seat_txt_save_file)
+
     
     
     % Saving mat file
     save(fdss_mat_save_file,'fdss_output');
-    save(seat_mat_save_file,'seat_output');
     save(qtm_mat_save_file, 'qtm_output');
+    save(seat_mat_save_file,'seat_output');
+
 end
 
 
 %% Process Video
-i_offset = -75;
+i_offset = -55;
 [depth_obj, depth_frames, depth_mov] = process_video(depth_vid_filename, fdss_start, i_start, i_end, i_offset, 'extract');
 vid_fs = 1/fdss_fs;
 
 %% Verify fcss + video + qtm data
 theta_type = 'all_raw';
-i_time = [0.1 , 20];
+i_time = [48, 48+10];
 save_raw_vid = -1; 
 save_raw_vid_path = 'sample.avi';
 verify_video(depth_frames, depth_mov, qtm_final_data, fdss_final_data, vid_fs, theta_type, i_time, save_raw_vid, save_raw_vid_path)
@@ -391,8 +394,6 @@ if ml_status == 1
     save_raw_vid_path = strcat(save_folder, 'all_data_',subject,'_test', num2str(n_trial), '.avi');
     verify_ml(depth_frames, depth_mov, qtm_final_data, fdss_final_data, vid_fs, theta_type, i_time, save_raw_vid, save_raw_vid_path, ml_data)
 end
-
-
 
 %% Save Video
 if save_video_status == 1
