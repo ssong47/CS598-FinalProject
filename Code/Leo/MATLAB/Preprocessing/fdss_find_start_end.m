@@ -21,7 +21,7 @@ function [i_start, i_end] = fdss_find_start_end(time_sync, n_data_qtm)
        end
        
        
-       if (sync_val < sync_thresh) && (flag == 1) && (i > (i_start + 100))
+       if (sync_val < sync_thresh) && (flag == 1) && (i > (i_start + 7200))
            i_end_count = i_end_count + 1;
            if i_end_count > 5
                i_end = i - 5; 

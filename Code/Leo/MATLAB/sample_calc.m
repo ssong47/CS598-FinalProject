@@ -85,27 +85,31 @@ fx = fx1 + fx2;
 
 figure()
 yyaxis left
-plot(Mz)
+plot(Mx)
 yyaxis right
-plot(qtm_data(:,1))
+plot(qtm_data(:,3))
 
 % fh = m * g / sind(11.5 + );
 % theta_yy = zeros(length(fx),1);
 % for i=1:length(fx)
 %     theta_yy(i) = acotd( fx(i) * cosd(11.5) / (m*g - fx(i) * sind(11.5)));
 % end
-
+figure()
+plot(My)
+hold on
+plot(Myy)
+legend('My','Myy')
 theta_yy = 90 - (real(acosd(-My ./ (l * m * g))) - seat_angle_fb);
 theta_xx = 90 - (real(acosd(-Mx ./ (l * m * g))) - seat_angle_lr);
 % 
-% figure(1)
-% plot(theta_yy)
-% hold on
-% plot(qtm_data(:,2))
-% legend('pred','truth')
-% 
-% avg_error = abs(theta_yy - qtm_data(:,2));
-% disp(mean(avg_error));
+figure(1)
+plot(theta_yy)
+hold on
+plot(qtm_data(:,2))
+legend('pred','truth')
+
+avg_error = abs(theta_yy - qtm_data(:,2));
+disp(mean(avg_error));
 
 figure(2)
 plot(theta_xx)

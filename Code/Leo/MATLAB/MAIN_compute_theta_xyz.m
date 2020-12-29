@@ -62,6 +62,7 @@ for subject = {'cz', 'yc', 'leo'}
        val_residuals = [val_residuals; val_residual];
    end
 end
+
 disp('Validation Residuals are: ')
 disp(val_residuals)
 disp(mean(val_residuals))

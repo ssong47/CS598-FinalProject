@@ -8,11 +8,11 @@ save_video_status = -1;
 ml_status = -1;
 
 %% Load Qualisys (QTM) Data
-n_trial = 49;
-date = '12_15_2020';
+n_trial = 54;
+date = '12_20_2020';
 
-i_start = 784;%110; %Leo1-447, Leo2- 182, Leo 3- 132
-i_end = 8512;%1396; %Leo1-2764, Leo2- 1910,Leo 3- 1627
+i_start = 900;%110; %Leo1-447, Leo2- 182, Leo 3- 132
+i_end = 12060;%1396; %Leo1-2764, Leo2- 1910,Leo 3- 1627
 subject = 'leo';
 
 qtm_filename = strcat('qtm_',subject,'_test', num2str(n_trial), '_', date ,'.mat');
@@ -21,14 +21,16 @@ color_vid_filename = strcat('fcss_',subject,'_color_test', num2str(n_trial), '.a
 depth_vid_filename = strcat('fcss_',subject,'_depth_test', num2str(n_trial), '.avi');
 
 
-save_folder = strcat('C:\Users\77bis\Box\CS598 - Final Project\Preliminary Data V5 Incline\Test_Subject_',subject,'\test', num2str(n_trial),'\');
+save_folder = strcat('C:\Users\77bis\Box\CS598 - Final Project\Preliminary Data V5 Dynamic Incline\Test_Subject_',subject,'\test', num2str(n_trial),'\');
 
 color_vid_save_filename = strcat(save_folder, 'color_processed_',subject,'_test', num2str(n_trial), '.avi');
 depth_vid_save_filename = strcat(save_folder, 'depth_processed_',subject,'_test', num2str(n_trial), '.avi');
 fdss_txt_save_file = strcat(save_folder,'fcss_processed_',subject,'_test', num2str(n_trial), '_', date ,'.txt');
+seat_txt_save_file = strcat(save_folder,'seat_processed_',subject,'_test', num2str(n_trial), '_', date ,'.txt');
 qtm_txt_save_file = strcat(save_folder,'qtm_processed_',subject,'_test', num2str(n_trial), '_', date ,'.txt');
 
 fdss_mat_save_file = strcat(save_folder,'fcss_processed_',subject,'_test', num2str(n_trial), '_', date ,'.mat');
+seat_mat_save_file = strcat(save_folder,'seat_processed_',subject,'_test', num2str(n_trial), '_', date ,'.mat');
 qtm_mat_save_file = strcat(save_folder,'qtm_processed_',subject,'_test', num2str(n_trial), '_', date ,'.mat');
 
 
@@ -40,8 +42,8 @@ end
 load(qtm_filename);
 
 
-qtm_marker_label = qtm_leo_test49_12_15_2020.Trajectories.Labeled.Labels;
-qtm_marker_data = qtm_leo_test49_12_15_2020.Trajectories.Labeled.Data;
+qtm_marker_label = qtm_leo_test54_12_20_2020.Trajectories.Labeled.Labels;
+qtm_marker_data = qtm_leo_test54_12_20_2020.Trajectories.Labeled.Data;
 
 
 n_labels = length(qtm_marker_label); 
@@ -67,6 +69,8 @@ end
 seat_data = {};
 seat_plane = {};
 i_c = 1;
+
+
 for i = 4:7
     for j=1:n_data_qtm
        seat_data{i_c}(j,:) = qtm_marker_data(i, 1:3, j); 
@@ -84,6 +88,10 @@ end
 seat_center = [(seat_data{1}(:,1) + seat_data{3}(:,1))/2,...
                (seat_data{1}(:,2) + seat_data{3}(:,2))/2,...
                (seat_data{1}(:,3) + seat_data{3}(:,3))/2 ];
+
+%% Compute Seat Angle
+show_plot = -1;
+[seat_theta_x, seat_theta_y, avg_seat_theta_x, avg_seat_theta_y] = compute_seat_angle(origin, seat_data, show_plot);
 
 %% Define Backrest Plane
 backrest_data = {};
@@ -107,9 +115,6 @@ end
 backrest_center = [(backrest_data{1}(:,1) + backrest_data{3}(:,1))/2,...
                (backrest_data{1}(:,2) + backrest_data{3}(:,2))/2,...
                (backrest_data{1}(:,3) + backrest_data{3}(:,3))/2 ];
-
-
-
 
 %% Define Trunk Plane (Shoulders + Clav or C7 or T10)
 trunk_data = {};
@@ -141,7 +146,6 @@ for i = 1:n_data_qtm
     tcenter_z_vec(i,:) = (trunk_center(i,:) - seat_center(i,:))/ norm(trunk_center(i,:) - seat_center(i,:));
     tcenter_y_vec(i,:) = (trunk_data{1}(i,:) - trunk_data{2}(i,:))/ norm(trunk_data{1}(i,:) - trunk_data{2}(i,:));
 end
-
 
 %% Compute Angles in 3D (projected angles)
 ref_x = zeros(n_data_qtm,3);
@@ -278,6 +282,7 @@ end
 
 fdss_final_data = fdss_final_data_temp(i_start:i_end,:);
 qtm_final_data = qtm_final_data_temp(i_start:i_end,:);
+seat_final_data = [seat_theta_x(i_start:i_end, :), seat_theta_y(i_start:i_end, :)];
 
 %% Plotting preliminary figures
 plot_i = linspace(0, (i_end - i_start), i_end - i_start+1);
@@ -343,6 +348,10 @@ if save_status == 1
                    'Fy (kg)'};
     fdss_output = [fdss_header; num2cell(fdss_final_data)];
     
+    seat_header = {'thetaX (deg)',...
+                   'thetaY (deg)'};
+               
+    seat_output = [seat_header; num2cell(seat_final_data)];
    
     qtm_header = {'Torso Twist Angle (deg)','Lean Forward/Backwards Angle (deg)', 'Lean Left/Right Angle (deg)'};
     qtm_output = [qtm_header; num2cell(qtm_final_data)];
@@ -350,16 +359,19 @@ if save_status == 1
     
     % Saving text file
     writecell(fdss_output, fdss_txt_save_file)
+    writecell(seat_output, seat_txt_save_file)
     writecell(qtm_output, qtm_txt_save_file)
+    
     
     % Saving mat file
     save(fdss_mat_save_file,'fdss_output');
+    save(seat_mat_save_file,'seat_output');
     save(qtm_mat_save_file, 'qtm_output');
 end
 
 
 %% Process Video
-i_offset = -30;
+i_offset = -75;
 [depth_obj, depth_frames, depth_mov] = process_video(depth_vid_filename, fdss_start, i_start, i_end, i_offset, 'extract');
 vid_fs = 1/fdss_fs;
 
