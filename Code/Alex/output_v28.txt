@@ -1,0 +1,2358 @@
+(77849, 60, 80, 3)
+(77849, 60, 80, 3)
+(77849, 6)
+(77849, 1)
+Model: "model"
+__________________________________________________________________________________________________
+Layer (type)                    Output Shape         Param #     Connected to                     
+==================================================================================================
+input_1 (InputLayer)            [(None, 60, 80, 3)]  0                                            
+__________________________________________________________________________________________________
+conv2d (Conv2D)                 (None, 60, 80, 8)    216         input_1[0][0]                    
+__________________________________________________________________________________________________
+batch_normalization (BatchNorma (None, 60, 80, 8)    32          conv2d[0][0]                     
+__________________________________________________________________________________________________
+activation (Activation)         (None, 60, 80, 8)    0           batch_normalization[0][0]        
+__________________________________________________________________________________________________
+conv2d_1 (Conv2D)               (None, 60, 80, 8)    576         activation[0][0]                 
+__________________________________________________________________________________________________
+batch_normalization_1 (BatchNor (None, 60, 80, 8)    32          conv2d_1[0][0]                   
+__________________________________________________________________________________________________
+activation_1 (Activation)       (None, 60, 80, 8)    0           batch_normalization_1[0][0]      
+__________________________________________________________________________________________________
+average_pooling2d (AveragePooli (None, 30, 40, 8)    0           activation_1[0][0]               
+__________________________________________________________________________________________________
+conv2d_2 (Conv2D)               (None, 30, 40, 16)   1152        average_pooling2d[0][0]          
+__________________________________________________________________________________________________
+batch_normalization_2 (BatchNor (None, 30, 40, 16)   64          conv2d_2[0][0]                   
+__________________________________________________________________________________________________
+activation_3 (Activation)       (None, 30, 40, 16)   0           batch_normalization_2[0][0]      
+__________________________________________________________________________________________________
+conv2d_3 (Conv2D)               (None, 30, 40, 16)   2304        activation_3[0][0]               
+__________________________________________________________________________________________________
+batch_normalization_3 (BatchNor (None, 30, 40, 16)   64          conv2d_3[0][0]                   
+__________________________________________________________________________________________________
+activation_4 (Activation)       (None, 30, 40, 16)   0           batch_normalization_3[0][0]      
+__________________________________________________________________________________________________
+average_pooling2d_1 (AveragePoo (None, 15, 20, 16)   0           activation_4[0][0]               
+__________________________________________________________________________________________________
+conv2d_4 (Conv2D)               (None, 15, 20, 32)   4608        average_pooling2d_1[0][0]        
+__________________________________________________________________________________________________
+batch_normalization_4 (BatchNor (None, 15, 20, 32)   128         conv2d_4[0][0]                   
+__________________________________________________________________________________________________
+activation_6 (Activation)       (None, 15, 20, 32)   0           batch_normalization_4[0][0]      
+__________________________________________________________________________________________________
+conv2d_5 (Conv2D)               (None, 15, 20, 32)   9216        activation_6[0][0]               
+__________________________________________________________________________________________________
+batch_normalization_5 (BatchNor (None, 15, 20, 32)   128         conv2d_5[0][0]                   
+__________________________________________________________________________________________________
+activation_7 (Activation)       (None, 15, 20, 32)   0           batch_normalization_5[0][0]      
+__________________________________________________________________________________________________
+average_pooling2d_2 (AveragePoo (None, 7, 10, 32)    0           activation_7[0][0]               
+__________________________________________________________________________________________________
+conv2d_6 (Conv2D)               (None, 7, 10, 64)    18432       average_pooling2d_2[0][0]        
+__________________________________________________________________________________________________
+batch_normalization_6 (BatchNor (None, 7, 10, 64)    256         conv2d_6[0][0]                   
+__________________________________________________________________________________________________
+activation_8 (Activation)       (None, 7, 10, 64)    0           batch_normalization_6[0][0]      
+__________________________________________________________________________________________________
+conv2d_7 (Conv2D)               (None, 7, 10, 64)    36864       activation_8[0][0]               
+__________________________________________________________________________________________________
+batch_normalization_7 (BatchNor (None, 7, 10, 64)    256         conv2d_7[0][0]                   
+__________________________________________________________________________________________________
+activation_9 (Activation)       (None, 7, 10, 64)    0           batch_normalization_7[0][0]      
+__________________________________________________________________________________________________
+input_2 (InputLayer)            [(None, 6)]          0                                            
+__________________________________________________________________________________________________
+average_pooling2d_3 (AveragePoo (None, 3, 5, 64)     0           activation_9[0][0]               
+__________________________________________________________________________________________________
+dense (Dense)                   (None, 100)          700         input_2[0][0]                    
+__________________________________________________________________________________________________
+flatten (Flatten)               (None, 960)          0           average_pooling2d_3[0][0]        
+__________________________________________________________________________________________________
+activation_2 (Activation)       (None, 100)          0           dense[0][0]                      
+__________________________________________________________________________________________________
+dense_2 (Dense)                 (None, 100)          96100       flatten[0][0]                    
+__________________________________________________________________________________________________
+dense_1 (Dense)                 (None, 100)          10100       activation_2[0][0]               
+__________________________________________________________________________________________________
+activation_10 (Activation)      (None, 100)          0           dense_2[0][0]                    
+__________________________________________________________________________________________________
+activation_5 (Activation)       (None, 100)          0           dense_1[0][0]                    
+__________________________________________________________________________________________________
+concatenate (Concatenate)       (None, 200)          0           activation_10[0][0]              
+                                                                 activation_5[0][0]               
+__________________________________________________________________________________________________
+dense_3 (Dense)                 (None, 128)          25728       concatenate[0][0]                
+__________________________________________________________________________________________________
+activation_11 (Activation)      (None, 128)          0           dense_3[0][0]                    
+__________________________________________________________________________________________________
+dense_4 (Dense)                 (None, 1)            129         activation_11[0][0]              
+__________________________________________________________________________________________________
+thetaz_out (Activation)         (None, 1)            0           dense_4[0][0]                    
+==================================================================================================
+Total params: 207,085
+Trainable params: 206,605
+Non-trainable params: 480
+__________________________________________________________________________________________________
+2.2.0
+Epoch 0 Time:  21:19:40
+Mean absolute error at    0 is: 4.17
+Epoch 1 Time:  21:20:58
+Mean absolute error at    1 is: 3.90
+Epoch 2 Time:  21:22:14
+Mean absolute error at    2 is: 3.08
+Epoch 3 Time:  21:23:31
+Mean absolute error at    3 is: 3.08
+Epoch 4 Time:  21:24:48
+Mean absolute error at    4 is: 2.59
+Epoch 5 Time:  21:26:04
+Mean absolute error at    5 is: 2.67
+Epoch 6 Time:  21:27:20
+Mean absolute error at    6 is: 2.54
+Epoch 7 Time:  21:28:36
+Mean absolute error at    7 is: 2.64
+Epoch 8 Time:  21:29:53
+Mean absolute error at    8 is: 3.08
+Epoch 9 Time:  21:31:09
+Mean absolute error at    9 is: 2.33
+Epoch 10 Time:  21:32:25
+Mean absolute error at   10 is: 2.00
+Epoch 11 Time:  21:33:42
+Mean absolute error at   11 is: 3.36
+Epoch 12 Time:  21:34:58
+Mean absolute error at   12 is: 2.16
+Epoch 13 Time:  21:36:15
+Mean absolute error at   13 is: 2.11
+Epoch 14 Time:  21:37:32
+Mean absolute error at   14 is: 2.73
+Epoch 15 Time:  21:38:48
+Mean absolute error at   15 is: 2.01
+Epoch 16 Time:  21:40:05
+Mean absolute error at   16 is: 1.99
+Epoch 17 Time:  21:41:22
+Mean absolute error at   17 is: 2.21
+Epoch 18 Time:  21:42:39
+Mean absolute error at   18 is: 1.83
+Epoch 19 Time:  21:43:55
+Mean absolute error at   19 is: 1.73
+Epoch 20 Time:  21:45:11
+Mean absolute error at   20 is: 1.95
+Epoch 21 Time:  21:46:27
+Mean absolute error at   21 is: 1.75
+Epoch 22 Time:  21:47:44
+Mean absolute error at   22 is: 1.65
+Epoch 23 Time:  21:49:01
+Mean absolute error at   23 is: 1.68
+Epoch 24 Time:  21:50:18
+Mean absolute error at   24 is: 1.81
+Epoch 25 Time:  21:51:35
+Mean absolute error at   25 is: 2.03
+Epoch 26 Time:  21:52:51
+Mean absolute error at   26 is: 1.50
+Epoch 27 Time:  21:54:08
+Mean absolute error at   27 is: 2.28
+Epoch 28 Time:  21:55:24
+Mean absolute error at   28 is: 1.57
+Epoch 29 Time:  21:56:40
+Mean absolute error at   29 is: 1.64
+Epoch 30 Time:  21:57:57
+Mean absolute error at   30 is: 1.55
+Epoch 31 Time:  21:59:13
+Mean absolute error at   31 is: 1.48
+Epoch 32 Time:  22:00:30
+Mean absolute error at   32 is: 1.53
+Epoch 33 Time:  22:01:47
+Mean absolute error at   33 is: 1.55
+Epoch 34 Time:  22:03:03
+Mean absolute error at   34 is: 1.54
+Epoch 35 Time:  22:04:20
+Mean absolute error at   35 is: 1.45
+Epoch 36 Time:  22:05:36
+Mean absolute error at   36 is: 1.54
+Epoch 37 Time:  22:06:52
+Mean absolute error at   37 is: 1.52
+Epoch 38 Time:  22:08:08
+Mean absolute error at   38 is: 1.45
+Epoch 39 Time:  22:09:25
+Mean absolute error at   39 is: 1.56
+Epoch 40 Time:  22:10:42
+Mean absolute error at   40 is: 1.50
+Epoch 41 Time:  22:11:58
+Mean absolute error at   41 is: 1.40
+Epoch 42 Time:  22:13:14
+Mean absolute error at   42 is: 1.45
+Epoch 43 Time:  22:14:31
+Mean absolute error at   43 is: 1.42
+Epoch 44 Time:  22:15:47
+Mean absolute error at   44 is: 1.51
+Epoch 45 Time:  22:17:03
+Mean absolute error at   45 is: 1.35
+Epoch 46 Time:  22:18:19
+Mean absolute error at   46 is: 1.40
+Epoch 47 Time:  22:19:35
+Mean absolute error at   47 is: 1.33
+Epoch 48 Time:  22:20:52
+Mean absolute error at   48 is: 1.34
+Epoch 49 Time:  22:22:07
+Mean absolute error at   49 is: 1.41
+Epoch 50 Time:  22:23:23
+Mean absolute error at   50 is: 1.48
+Epoch 51 Time:  22:24:39
+Mean absolute error at   51 is: 1.33
+Epoch 52 Time:  22:25:55
+Mean absolute error at   52 is: 1.33
+Epoch 53 Time:  22:27:11
+Mean absolute error at   53 is: 1.34
+Epoch 54 Time:  22:28:26
+Mean absolute error at   54 is: 1.47
+Epoch 55 Time:  22:29:41
+Mean absolute error at   55 is: 1.26
+Epoch 56 Time:  22:30:57
+Mean absolute error at   56 is: 1.28
+Epoch 57 Time:  22:32:13
+Mean absolute error at   57 is: 1.33
+Epoch 58 Time:  22:33:29
+Mean absolute error at   58 is: 1.34
+Epoch 59 Time:  22:34:44
+Mean absolute error at   59 is: 1.26
+Epoch 60 Time:  22:36:01
+Mean absolute error at   60 is: 1.33
+Epoch 61 Time:  22:37:17
+Mean absolute error at   61 is: 1.25
+Epoch 62 Time:  22:38:32
+Mean absolute error at   62 is: 1.38
+Epoch 63 Time:  22:39:48
+Mean absolute error at   63 is: 1.37
+Epoch 64 Time:  22:41:05
+Mean absolute error at   64 is: 1.31
+Epoch 65 Time:  22:42:20
+Mean absolute error at   65 is: 1.24
+Epoch 66 Time:  22:43:36
+Mean absolute error at   66 is: 1.32
+Epoch 67 Time:  22:44:51
+Mean absolute error at   67 is: 1.27
+Epoch 68 Time:  22:46:08
+Mean absolute error at   68 is: 1.24
+Epoch 69 Time:  22:47:23
+Mean absolute error at   69 is: 1.25
+Epoch 70 Time:  22:48:39
+Mean absolute error at   70 is: 1.26
+Epoch 71 Time:  22:49:55
+Mean absolute error at   71 is: 1.19
+Epoch 72 Time:  22:51:11
+Mean absolute error at   72 is: 1.27
+Epoch 73 Time:  22:52:26
+Mean absolute error at   73 is: 1.25
+Epoch 74 Time:  22:53:42
+Mean absolute error at   74 is: 1.23
+Epoch 75 Time:  22:54:58
+Mean absolute error at   75 is: 1.20
+Epoch 76 Time:  22:56:14
+Mean absolute error at   76 is: 1.19
+Epoch 77 Time:  22:57:29
+Mean absolute error at   77 is: 1.21
+Epoch 78 Time:  22:58:45
+Mean absolute error at   78 is: 1.19
+Epoch 79 Time:  23:00:01
+Mean absolute error at   79 is: 1.32
+Epoch 80 Time:  23:01:16
+Mean absolute error at   80 is: 1.18
+Epoch 81 Time:  23:02:32
+Mean absolute error at   81 is: 1.17
+Epoch 82 Time:  23:03:48
+Mean absolute error at   82 is: 1.20
+Epoch 83 Time:  23:05:04
+Mean absolute error at   83 is: 1.21
+Epoch 84 Time:  23:06:20
+Mean absolute error at   84 is: 1.26
+Epoch 85 Time:  23:07:36
+Mean absolute error at   85 is: 1.17
+Epoch 86 Time:  23:08:52
+Mean absolute error at   86 is: 1.18
+Epoch 87 Time:  23:10:09
+Mean absolute error at   87 is: 1.24
+Epoch 88 Time:  23:11:24
+Mean absolute error at   88 is: 1.14
+Epoch 89 Time:  23:12:40
+Mean absolute error at   89 is: 1.22
+Epoch 90 Time:  23:13:56
+Mean absolute error at   90 is: 1.14
+Epoch 91 Time:  23:15:12
+Mean absolute error at   91 is: 1.27
+Epoch 92 Time:  23:16:28
+Mean absolute error at   92 is: 1.18
+Epoch 93 Time:  23:17:44
+Mean absolute error at   93 is: 1.15
+Epoch 94 Time:  23:19:01
+Mean absolute error at   94 is: 1.16
+Epoch 95 Time:  23:20:18
+Mean absolute error at   95 is: 1.20
+Epoch 96 Time:  23:21:34
+Mean absolute error at   96 is: 1.16
+Epoch 97 Time:  23:22:50
+Mean absolute error at   97 is: 1.15
+Epoch 98 Time:  23:24:06
+Mean absolute error at   98 is: 1.13
+Epoch 99 Time:  23:25:21
+Mean absolute error at   99 is: 1.15
+Epoch 100 Time:  23:26:38
+Mean absolute error at  100 is: 1.17
+Epoch 101 Time:  23:27:54
+Mean absolute error at  101 is: 1.15
+Epoch 102 Time:  23:29:10
+Mean absolute error at  102 is: 1.21
+Epoch 103 Time:  23:30:26
+Mean absolute error at  103 is: 1.16
+Epoch 104 Time:  23:31:41
+Mean absolute error at  104 is: 1.13
+Epoch 105 Time:  23:32:58
+Mean absolute error at  105 is: 1.15
+Epoch 106 Time:  23:34:13
+Mean absolute error at  106 is: 1.10
+Epoch 107 Time:  23:35:29
+Mean absolute error at  107 is: 1.12
+Epoch 108 Time:  23:36:45
+Mean absolute error at  108 is: 1.15
+Epoch 109 Time:  23:38:01
+Mean absolute error at  109 is: 1.13
+Epoch 110 Time:  23:39:16
+Mean absolute error at  110 is: 1.14
+Epoch 111 Time:  23:40:32
+Mean absolute error at  111 is: 1.17
+Epoch 112 Time:  23:41:48
+Mean absolute error at  112 is: 1.16
+Epoch 113 Time:  23:43:04
+Mean absolute error at  113 is: 1.18
+Epoch 114 Time:  23:44:20
+Mean absolute error at  114 is: 1.13
+Epoch 115 Time:  23:45:37
+Mean absolute error at  115 is: 1.12
+Epoch 116 Time:  23:46:52
+Mean absolute error at  116 is: 1.08
+Epoch 117 Time:  23:48:09
+Mean absolute error at  117 is: 1.10
+Epoch 118 Time:  23:49:24
+Mean absolute error at  118 is: 1.12
+Epoch 119 Time:  23:50:40
+Mean absolute error at  119 is: 1.14
+Epoch 120 Time:  23:51:56
+Mean absolute error at  120 is: 1.10
+Epoch 121 Time:  23:53:12
+Mean absolute error at  121 is: 1.14
+Epoch 122 Time:  23:54:29
+Mean absolute error at  122 is: 1.18
+Epoch 123 Time:  23:55:45
+Mean absolute error at  123 is: 1.12
+Epoch 124 Time:  23:57:01
+Mean absolute error at  124 is: 1.12
+Epoch 125 Time:  23:58:18
+Mean absolute error at  125 is: 1.10
+Epoch 126 Time:  23:59:34
+Mean absolute error at  126 is: 1.18
+Epoch 127 Time:  00:00:49
+Mean absolute error at  127 is: 1.13
+Epoch 128 Time:  00:02:05
+Mean absolute error at  128 is: 1.14
+Epoch 129 Time:  00:03:21
+Mean absolute error at  129 is: 1.11
+Epoch 130 Time:  00:04:37
+Mean absolute error at  130 is: 1.10
+Epoch 131 Time:  00:05:53
+Mean absolute error at  131 is: 1.13
+Epoch 132 Time:  00:07:09
+Mean absolute error at  132 is: 1.09
+Epoch 133 Time:  00:08:25
+Mean absolute error at  133 is: 1.09
+Epoch 134 Time:  00:09:41
+Mean absolute error at  134 is: 1.10
+Epoch 135 Time:  00:10:57
+Mean absolute error at  135 is: 1.07
+Epoch 136 Time:  00:12:13
+Mean absolute error at  136 is: 1.16
+Epoch 137 Time:  00:13:30
+Mean absolute error at  137 is: 1.09
+Epoch 138 Time:  00:14:46
+Mean absolute error at  138 is: 1.07
+Epoch 139 Time:  00:16:02
+Mean absolute error at  139 is: 1.11
+Epoch 140 Time:  00:17:18
+Mean absolute error at  140 is: 1.07
+Epoch 141 Time:  00:18:34
+Mean absolute error at  141 is: 1.13
+Epoch 142 Time:  00:19:50
+Mean absolute error at  142 is: 1.07
+Epoch 143 Time:  00:21:06
+Mean absolute error at  143 is: 1.16
+Epoch 144 Time:  00:22:22
+Mean absolute error at  144 is: 1.08
+Epoch 145 Time:  00:23:37
+Mean absolute error at  145 is: 1.08
+Epoch 146 Time:  00:24:53
+Mean absolute error at  146 is: 1.09
+Epoch 147 Time:  00:26:09
+Mean absolute error at  147 is: 1.07
+Epoch 148 Time:  00:27:25
+Mean absolute error at  148 is: 1.07
+Epoch 149 Time:  00:28:40
+Mean absolute error at  149 is: 1.10
+Epoch 150 Time:  00:29:56
+Mean absolute error at  150 is: 1.09
+Epoch 151 Time:  00:31:12
+Mean absolute error at  151 is: 1.06
+Epoch 152 Time:  00:32:28
+Mean absolute error at  152 is: 1.10
+Epoch 153 Time:  00:33:43
+Mean absolute error at  153 is: 1.11
+Epoch 154 Time:  00:34:59
+Mean absolute error at  154 is: 1.15
+Epoch 155 Time:  00:36:14
+Mean absolute error at  155 is: 1.12
+Epoch 156 Time:  00:37:30
+Mean absolute error at  156 is: 1.13
+Epoch 157 Time:  00:38:46
+Mean absolute error at  157 is: 1.09
+Epoch 158 Time:  00:40:02
+Mean absolute error at  158 is: 1.08
+Epoch 159 Time:  00:41:18
+Mean absolute error at  159 is: 1.08
+Epoch 160 Time:  00:42:34
+Mean absolute error at  160 is: 1.06
+Epoch 161 Time:  00:43:51
+Mean absolute error at  161 is: 1.07
+Epoch 162 Time:  00:45:06
+Mean absolute error at  162 is: 1.08
+Epoch 163 Time:  00:46:23
+Mean absolute error at  163 is: 1.08
+Epoch 164 Time:  00:47:39
+Mean absolute error at  164 is: 1.12
+Epoch 165 Time:  00:48:55
+Mean absolute error at  165 is: 1.07
+Epoch 166 Time:  00:50:12
+Mean absolute error at  166 is: 1.06
+Epoch 167 Time:  00:51:28
+Mean absolute error at  167 is: 1.09
+Epoch 168 Time:  00:52:44
+Mean absolute error at  168 is: 1.05
+Epoch 169 Time:  00:53:59
+Mean absolute error at  169 is: 1.07
+Epoch 170 Time:  00:55:15
+Mean absolute error at  170 is: 1.14
+Epoch 171 Time:  00:56:31
+Mean absolute error at  171 is: 1.08
+Epoch 172 Time:  00:57:47
+Mean absolute error at  172 is: 1.07
+Epoch 173 Time:  00:59:03
+Mean absolute error at  173 is: 1.05
+Epoch 174 Time:  01:00:20
+Mean absolute error at  174 is: 1.08
+Epoch 175 Time:  01:01:35
+Mean absolute error at  175 is: 1.08
+Epoch 176 Time:  01:02:51
+Mean absolute error at  176 is: 1.07
+Epoch 177 Time:  01:04:07
+Mean absolute error at  177 is: 1.06
+Epoch 178 Time:  01:05:22
+Mean absolute error at  178 is: 1.07
+Epoch 179 Time:  01:06:38
+Mean absolute error at  179 is: 1.10
+Epoch 180 Time:  01:07:54
+Mean absolute error at  180 is: 1.06
+Epoch 181 Time:  01:09:10
+Mean absolute error at  181 is: 1.07
+Epoch 182 Time:  01:10:25
+Mean absolute error at  182 is: 1.07
+Epoch 183 Time:  01:11:41
+Mean absolute error at  183 is: 1.05
+Epoch 184 Time:  01:12:57
+Mean absolute error at  184 is: 1.05
+Epoch 185 Time:  01:14:13
+Mean absolute error at  185 is: 1.04
+Epoch 186 Time:  01:15:29
+Mean absolute error at  186 is: 1.12
+Epoch 187 Time:  01:16:45
+Mean absolute error at  187 is: 1.06
+Epoch 188 Time:  01:18:01
+Mean absolute error at  188 is: 1.08
+Epoch 189 Time:  01:19:16
+Mean absolute error at  189 is: 1.07
+Epoch 190 Time:  01:20:33
+Mean absolute error at  190 is: 1.07
+Epoch 191 Time:  01:21:49
+Mean absolute error at  191 is: 1.08
+Epoch 192 Time:  01:23:04
+Mean absolute error at  192 is: 1.05
+Epoch 193 Time:  01:24:21
+Mean absolute error at  193 is: 1.06
+Epoch 194 Time:  01:25:36
+Mean absolute error at  194 is: 1.05
+Epoch 195 Time:  01:26:52
+Mean absolute error at  195 is: 1.10
+Epoch 196 Time:  01:28:08
+Mean absolute error at  196 is: 1.13
+Epoch 197 Time:  01:29:24
+Mean absolute error at  197 is: 1.09
+Epoch 198 Time:  01:30:40
+Mean absolute error at  198 is: 1.07
+Epoch 199 Time:  01:31:56
+Mean absolute error at  199 is: 1.07
+Epoch 200 Time:  01:33:11
+Mean absolute error at  200 is: 0.98
+Epoch 201 Time:  01:34:27
+Mean absolute error at  201 is: 0.97
+Epoch 202 Time:  01:35:43
+Mean absolute error at  202 is: 0.97
+Epoch 203 Time:  01:36:58
+Mean absolute error at  203 is: 0.97
+Epoch 204 Time:  01:38:14
+Mean absolute error at  204 is: 0.97
+Epoch 205 Time:  01:39:30
+Mean absolute error at  205 is: 0.97
+Epoch 206 Time:  01:40:46
+Mean absolute error at  206 is: 0.96
+Epoch 207 Time:  01:42:02
+Mean absolute error at  207 is: 0.96
+Epoch 208 Time:  01:43:18
+Mean absolute error at  208 is: 0.97
+Epoch 209 Time:  01:44:34
+Mean absolute error at  209 is: 0.96
+Epoch 210 Time:  01:45:49
+Mean absolute error at  210 is: 0.97
+Epoch 211 Time:  01:47:05
+Mean absolute error at  211 is: 0.97
+Epoch 212 Time:  01:48:21
+Mean absolute error at  212 is: 0.97
+Epoch 213 Time:  01:49:37
+Mean absolute error at  213 is: 0.97
+Epoch 214 Time:  01:50:53
+Mean absolute error at  214 is: 0.97
+Epoch 215 Time:  01:52:09
+Mean absolute error at  215 is: 0.96
+Epoch 216 Time:  01:53:24
+Mean absolute error at  216 is: 0.97
+Epoch 217 Time:  01:54:40
+Mean absolute error at  217 is: 0.97
+Epoch 218 Time:  01:55:56
+Mean absolute error at  218 is: 0.97
+Epoch 219 Time:  01:57:12
+Mean absolute error at  219 is: 0.97
+Epoch 220 Time:  01:58:27
+Mean absolute error at  220 is: 0.97
+Epoch 221 Time:  01:59:43
+Mean absolute error at  221 is: 0.97
+Epoch 222 Time:  02:00:59
+Mean absolute error at  222 is: 0.98
+Epoch 223 Time:  02:02:14
+Mean absolute error at  223 is: 0.97
+Epoch 224 Time:  02:03:30
+Mean absolute error at  224 is: 0.97
+Epoch 225 Time:  02:04:46
+Mean absolute error at  225 is: 0.96
+Epoch 226 Time:  02:06:02
+Mean absolute error at  226 is: 0.96
+Epoch 227 Time:  02:07:19
+Mean absolute error at  227 is: 0.96
+Epoch 228 Time:  02:08:35
+Mean absolute error at  228 is: 0.96
+Epoch 229 Time:  02:09:52
+Mean absolute error at  229 is: 0.96
+Epoch 230 Time:  02:11:09
+Mean absolute error at  230 is: 0.96
+Epoch 231 Time:  02:12:25
+Mean absolute error at  231 is: 0.96
+Epoch 232 Time:  02:13:41
+Mean absolute error at  232 is: 0.96
+Epoch 233 Time:  02:14:57
+Mean absolute error at  233 is: 0.96
+Epoch 234 Time:  02:16:13
+Mean absolute error at  234 is: 0.96
+Epoch 235 Time:  02:17:29
+Mean absolute error at  235 is: 0.96
+Epoch 236 Time:  02:18:46
+Mean absolute error at  236 is: 0.96
+Epoch 237 Time:  02:20:02
+Mean absolute error at  237 is: 0.96
+Epoch 238 Time:  02:21:19
+Mean absolute error at  238 is: 0.96
+Epoch 239 Time:  02:22:36
+Mean absolute error at  239 is: 0.96
+Epoch 240 Time:  02:23:53
+Mean absolute error at  240 is: 0.96
+Epoch 241 Time:  02:25:10
+Mean absolute error at  241 is: 0.96
+Epoch 242 Time:  02:26:26
+Mean absolute error at  242 is: 0.96
+Epoch 243 Time:  02:27:43
+Mean absolute error at  243 is: 0.96
+Epoch 244 Time:  02:29:00
+Mean absolute error at  244 is: 0.96
+Epoch 245 Time:  02:30:16
+Mean absolute error at  245 is: 0.96
+Epoch 246 Time:  02:31:32
+Mean absolute error at  246 is: 0.96
+Epoch 247 Time:  02:32:48
+Mean absolute error at  247 is: 0.96
+Epoch 248 Time:  02:34:04
+Mean absolute error at  248 is: 0.96
+Epoch 249 Time:  02:35:21
+Mean absolute error at  249 is: 0.96
+Epoch 250 Time:  02:36:38
+Mean absolute error at  250 is: 0.95
+Epoch 251 Time:  02:37:54
+Mean absolute error at  251 is: 0.95
+Epoch 252 Time:  02:39:11
+Mean absolute error at  252 is: 0.96
+Epoch 253 Time:  02:40:27
+Mean absolute error at  253 is: 0.96
+Epoch 254 Time:  02:41:43
+Mean absolute error at  254 is: 0.95
+Epoch 255 Time:  02:42:59
+Mean absolute error at  255 is: 0.96
+Epoch 256 Time:  02:44:15
+Mean absolute error at  256 is: 0.96
+Epoch 257 Time:  02:45:31
+Mean absolute error at  257 is: 0.95
+Epoch 258 Time:  02:46:48
+Mean absolute error at  258 is: 0.96
+Epoch 259 Time:  02:48:04
+Mean absolute error at  259 is: 0.96
+Epoch 260 Time:  02:49:20
+Mean absolute error at  260 is: 0.96
+Epoch 261 Time:  02:50:37
+Mean absolute error at  261 is: 0.96
+Epoch 262 Time:  02:51:53
+Mean absolute error at  262 is: 0.95
+Epoch 263 Time:  02:53:10
+Mean absolute error at  263 is: 0.96
+Epoch 264 Time:  02:54:26
+Mean absolute error at  264 is: 0.96
+Epoch 265 Time:  02:55:42
+Mean absolute error at  265 is: 0.96
+Epoch 266 Time:  02:56:58
+Mean absolute error at  266 is: 0.96
+Epoch 267 Time:  02:58:15
+Mean absolute error at  267 is: 0.96
+Epoch 268 Time:  02:59:31
+Mean absolute error at  268 is: 0.96
+Epoch 269 Time:  03:00:46
+Mean absolute error at  269 is: 0.96
+Epoch 270 Time:  03:02:02
+Mean absolute error at  270 is: 0.96
+Epoch 271 Time:  03:03:18
+Mean absolute error at  271 is: 0.96
+Epoch 272 Time:  03:04:34
+Mean absolute error at  272 is: 0.96
+Epoch 273 Time:  03:05:50
+Mean absolute error at  273 is: 0.96
+Epoch 274 Time:  03:07:06
+Mean absolute error at  274 is: 0.96
+Epoch 275 Time:  03:08:23
+Mean absolute error at  275 is: 0.96
+Epoch 276 Time:  03:09:39
+Mean absolute error at  276 is: 0.96
+Epoch 277 Time:  03:10:54
+Mean absolute error at  277 is: 0.96
+Epoch 278 Time:  03:12:11
+Mean absolute error at  278 is: 0.96
+Epoch 279 Time:  03:13:26
+Mean absolute error at  279 is: 0.96
+Epoch 280 Time:  03:14:42
+Mean absolute error at  280 is: 0.96
+Epoch 281 Time:  03:15:58
+Mean absolute error at  281 is: 0.96
+Epoch 282 Time:  03:17:14
+Mean absolute error at  282 is: 0.96
+Epoch 283 Time:  03:18:30
+Mean absolute error at  283 is: 0.96
+Epoch 284 Time:  03:19:46
+Mean absolute error at  284 is: 0.96
+Epoch 285 Time:  03:21:03
+Mean absolute error at  285 is: 0.96
+Epoch 286 Time:  03:22:19
+Mean absolute error at  286 is: 0.96
+Epoch 287 Time:  03:23:35
+Mean absolute error at  287 is: 0.96
+Epoch 288 Time:  03:24:51
+Mean absolute error at  288 is: 0.96
+Epoch 289 Time:  03:26:08
+Mean absolute error at  289 is: 0.96
+Epoch 290 Time:  03:27:24
+Mean absolute error at  290 is: 0.96
+Epoch 291 Time:  03:28:40
+Mean absolute error at  291 is: 0.95
+Epoch 292 Time:  03:29:56
+Mean absolute error at  292 is: 0.96
+Epoch 293 Time:  03:31:12
+Mean absolute error at  293 is: 0.95
+Epoch 294 Time:  03:32:29
+Mean absolute error at  294 is: 0.96
+Epoch 295 Time:  03:33:45
+Mean absolute error at  295 is: 0.96
+Epoch 296 Time:  03:35:02
+Mean absolute error at  296 is: 0.96
+Epoch 297 Time:  03:36:18
+Mean absolute error at  297 is: 0.96
+Epoch 298 Time:  03:37:34
+Mean absolute error at  298 is: 0.96
+Epoch 299 Time:  03:38:51
+Mean absolute error at  299 is: 0.96
+Epoch 300 Time:  03:40:06
+Mean absolute error at  300 is: 1.07
+Epoch 301 Time:  03:41:23
+Mean absolute error at  301 is: 1.04
+Epoch 302 Time:  03:42:38
+Mean absolute error at  302 is: 1.04
+Epoch 303 Time:  03:43:54
+Mean absolute error at  303 is: 1.08
+Epoch 304 Time:  03:45:10
+Mean absolute error at  304 is: 1.05
+Epoch 305 Time:  03:46:27
+Mean absolute error at  305 is: 1.04
+Epoch 306 Time:  03:47:42
+Mean absolute error at  306 is: 1.08
+Epoch 307 Time:  03:48:59
+Mean absolute error at  307 is: 1.04
+Epoch 308 Time:  03:50:15
+Mean absolute error at  308 is: 1.05
+Epoch 309 Time:  03:51:31
+Mean absolute error at  309 is: 1.05
+Epoch 310 Time:  03:52:48
+Mean absolute error at  310 is: 1.03
+Epoch 311 Time:  03:54:04
+Mean absolute error at  311 is: 1.04
+Epoch 312 Time:  03:55:20
+Mean absolute error at  312 is: 1.04
+Epoch 313 Time:  03:56:37
+Mean absolute error at  313 is: 1.05
+Epoch 314 Time:  03:57:53
+Mean absolute error at  314 is: 1.05
+Epoch 315 Time:  03:59:09
+Mean absolute error at  315 is: 1.06
+Epoch 316 Time:  04:00:25
+Mean absolute error at  316 is: 1.04
+Epoch 317 Time:  04:01:41
+Mean absolute error at  317 is: 1.04
+Epoch 318 Time:  04:02:57
+Mean absolute error at  318 is: 1.04
+Epoch 319 Time:  04:04:13
+Mean absolute error at  319 is: 1.08
+Epoch 320 Time:  04:05:30
+Mean absolute error at  320 is: 1.05
+Epoch 321 Time:  04:06:47
+Mean absolute error at  321 is: 1.03
+Epoch 322 Time:  04:08:03
+Mean absolute error at  322 is: 1.07
+Epoch 323 Time:  04:09:19
+Mean absolute error at  323 is: 1.09
+Epoch 324 Time:  04:10:36
+Mean absolute error at  324 is: 1.09
+Epoch 325 Time:  04:11:52
+Mean absolute error at  325 is: 1.09
+Epoch 326 Time:  04:13:07
+Mean absolute error at  326 is: 1.03
+Epoch 327 Time:  04:14:23
+Mean absolute error at  327 is: 1.07
+Epoch 328 Time:  04:15:40
+Mean absolute error at  328 is: 1.08
+Epoch 329 Time:  04:16:56
+Mean absolute error at  329 is: 1.05
+Epoch 330 Time:  04:18:13
+Mean absolute error at  330 is: 1.06
+Epoch 331 Time:  04:19:29
+Mean absolute error at  331 is: 1.07
+Epoch 332 Time:  04:20:45
+Mean absolute error at  332 is: 1.04
+Epoch 333 Time:  04:22:01
+Mean absolute error at  333 is: 1.03
+Epoch 334 Time:  04:23:18
+Mean absolute error at  334 is: 1.05
+Epoch 335 Time:  04:24:34
+Mean absolute error at  335 is: 1.06
+Epoch 336 Time:  04:25:50
+Mean absolute error at  336 is: 1.02
+Epoch 337 Time:  04:27:07
+Mean absolute error at  337 is: 1.10
+Epoch 338 Time:  04:28:23
+Mean absolute error at  338 is: 1.06
+Epoch 339 Time:  04:29:39
+Mean absolute error at  339 is: 1.02
+Epoch 340 Time:  04:30:56
+Mean absolute error at  340 is: 1.08
+Epoch 341 Time:  04:32:13
+Mean absolute error at  341 is: 1.04
+Epoch 342 Time:  04:33:30
+Mean absolute error at  342 is: 1.07
+Epoch 343 Time:  04:34:46
+Mean absolute error at  343 is: 1.01
+Epoch 344 Time:  04:36:02
+Mean absolute error at  344 is: 1.06
+Epoch 345 Time:  04:37:18
+Mean absolute error at  345 is: 1.04
+Epoch 346 Time:  04:38:34
+Mean absolute error at  346 is: 1.11
+Epoch 347 Time:  04:39:50
+Mean absolute error at  347 is: 1.05
+Epoch 348 Time:  04:41:06
+Mean absolute error at  348 is: 1.09
+Epoch 349 Time:  04:42:22
+Mean absolute error at  349 is: 1.02
+Epoch 350 Time:  04:43:39
+Mean absolute error at  350 is: 1.07
+Epoch 351 Time:  04:44:55
+Mean absolute error at  351 is: 1.03
+Epoch 352 Time:  04:46:11
+Mean absolute error at  352 is: 1.05
+Epoch 353 Time:  04:47:27
+Mean absolute error at  353 is: 1.04
+Epoch 354 Time:  04:48:43
+Mean absolute error at  354 is: 1.02
+Epoch 355 Time:  04:49:59
+Mean absolute error at  355 is: 1.07
+Epoch 356 Time:  04:51:15
+Mean absolute error at  356 is: 1.02
+Epoch 357 Time:  04:52:31
+Mean absolute error at  357 is: 1.03
+Epoch 358 Time:  04:53:47
+Mean absolute error at  358 is: 1.03
+Epoch 359 Time:  04:55:03
+Mean absolute error at  359 is: 1.05
+Epoch 360 Time:  04:56:19
+Mean absolute error at  360 is: 1.04
+Epoch 361 Time:  04:57:35
+Mean absolute error at  361 is: 1.03
+Epoch 362 Time:  04:58:51
+Mean absolute error at  362 is: 1.04
+Epoch 363 Time:  05:00:07
+Mean absolute error at  363 is: 1.02
+Epoch 364 Time:  05:01:23
+Mean absolute error at  364 is: 1.08
+Epoch 365 Time:  05:02:39
+Mean absolute error at  365 is: 1.02
+Epoch 366 Time:  05:03:55
+Mean absolute error at  366 is: 1.05
+Epoch 367 Time:  05:05:12
+Mean absolute error at  367 is: 1.02
+Epoch 368 Time:  05:06:28
+Mean absolute error at  368 is: 1.02
+Epoch 369 Time:  05:07:44
+Mean absolute error at  369 is: 1.04
+Epoch 370 Time:  05:09:00
+Mean absolute error at  370 is: 1.06
+Epoch 371 Time:  05:10:15
+Mean absolute error at  371 is: 1.04
+Epoch 372 Time:  05:11:31
+Mean absolute error at  372 is: 1.05
+Epoch 373 Time:  05:12:47
+Mean absolute error at  373 is: 1.05
+Epoch 374 Time:  05:14:04
+Mean absolute error at  374 is: 1.06
+Epoch 375 Time:  05:15:20
+Mean absolute error at  375 is: 1.03
+Epoch 376 Time:  05:16:36
+Mean absolute error at  376 is: 1.08
+Epoch 377 Time:  05:17:52
+Mean absolute error at  377 is: 1.05
+Epoch 378 Time:  05:19:09
+Mean absolute error at  378 is: 1.05
+Epoch 379 Time:  05:20:26
+Mean absolute error at  379 is: 1.04
+Epoch 380 Time:  05:21:42
+Mean absolute error at  380 is: 1.02
+Epoch 381 Time:  05:22:58
+Mean absolute error at  381 is: 1.03
+Epoch 382 Time:  05:24:14
+Mean absolute error at  382 is: 1.04
+Epoch 383 Time:  05:25:30
+Mean absolute error at  383 is: 1.03
+Epoch 384 Time:  05:26:46
+Mean absolute error at  384 is: 1.06
+Epoch 385 Time:  05:28:02
+Mean absolute error at  385 is: 1.06
+Epoch 386 Time:  05:29:19
+Mean absolute error at  386 is: 1.02
+Epoch 387 Time:  05:30:35
+Mean absolute error at  387 is: 1.03
+Epoch 388 Time:  05:31:51
+Mean absolute error at  388 is: 1.06
+Epoch 389 Time:  05:33:07
+Mean absolute error at  389 is: 1.06
+Epoch 390 Time:  05:34:24
+Mean absolute error at  390 is: 1.04
+Epoch 391 Time:  05:35:40
+Mean absolute error at  391 is: 1.05
+Epoch 392 Time:  05:36:57
+Mean absolute error at  392 is: 1.02
+Epoch 393 Time:  05:38:13
+Mean absolute error at  393 is: 1.05
+Epoch 394 Time:  05:39:29
+Mean absolute error at  394 is: 1.02
+Epoch 395 Time:  05:40:45
+Mean absolute error at  395 is: 1.04
+Epoch 396 Time:  05:42:02
+Mean absolute error at  396 is: 1.05
+Epoch 397 Time:  05:43:17
+Mean absolute error at  397 is: 1.05
+Epoch 398 Time:  05:44:33
+Mean absolute error at  398 is: 1.01
+Epoch 399 Time:  05:45:50
+Mean absolute error at  399 is: 1.06
+Epoch 400 Time:  05:47:07
+Mean absolute error at  400 is: 1.05
+Epoch 401 Time:  05:48:24
+Mean absolute error at  401 is: 1.02
+Epoch 402 Time:  05:49:40
+Mean absolute error at  402 is: 1.02
+Epoch 403 Time:  05:50:55
+Mean absolute error at  403 is: 1.03
+Epoch 404 Time:  05:52:11
+Mean absolute error at  404 is: 1.03
+Epoch 405 Time:  05:53:27
+Mean absolute error at  405 is: 1.07
+Epoch 406 Time:  05:54:42
+Mean absolute error at  406 is: 1.04
+Epoch 407 Time:  05:55:58
+Mean absolute error at  407 is: 1.02
+Epoch 408 Time:  05:57:14
+Mean absolute error at  408 is: 1.02
+Epoch 409 Time:  05:58:30
+Mean absolute error at  409 is: 1.03
+Epoch 410 Time:  05:59:46
+Mean absolute error at  410 is: 1.03
+Epoch 411 Time:  06:01:02
+Mean absolute error at  411 is: 1.02
+Epoch 412 Time:  06:02:19
+Mean absolute error at  412 is: 1.02
+Epoch 413 Time:  06:03:35
+Mean absolute error at  413 is: 1.04
+Epoch 414 Time:  06:04:52
+Mean absolute error at  414 is: 1.07
+Epoch 415 Time:  06:06:08
+Mean absolute error at  415 is: 1.05
+Epoch 416 Time:  06:07:25
+Mean absolute error at  416 is: 1.03
+Epoch 417 Time:  06:08:41
+Mean absolute error at  417 is: 1.03
+Epoch 418 Time:  06:09:57
+Mean absolute error at  418 is: 1.04
+Epoch 419 Time:  06:11:13
+Mean absolute error at  419 is: 1.02
+Epoch 420 Time:  06:12:29
+Mean absolute error at  420 is: 1.04
+Epoch 421 Time:  06:13:45
+Mean absolute error at  421 is: 1.03
+Epoch 422 Time:  06:15:01
+Mean absolute error at  422 is: 1.03
+Epoch 423 Time:  06:16:17
+Mean absolute error at  423 is: 1.03
+Epoch 424 Time:  06:17:34
+Mean absolute error at  424 is: 1.05
+Epoch 425 Time:  06:18:50
+Mean absolute error at  425 is: 1.02
+Epoch 426 Time:  06:20:05
+Mean absolute error at  426 is: 1.04
+Epoch 427 Time:  06:21:21
+Mean absolute error at  427 is: 1.02
+Epoch 428 Time:  06:22:37
+Mean absolute error at  428 is: 1.01
+Epoch 429 Time:  06:23:53
+Mean absolute error at  429 is: 1.00
+Epoch 430 Time:  06:25:09
+Mean absolute error at  430 is: 1.03
+Epoch 431 Time:  06:26:26
+Mean absolute error at  431 is: 1.04
+Epoch 432 Time:  06:27:43
+Mean absolute error at  432 is: 1.06
+Epoch 433 Time:  06:28:58
+Mean absolute error at  433 is: 1.01
+Epoch 434 Time:  06:30:13
+Mean absolute error at  434 is: 1.03
+Epoch 435 Time:  06:31:29
+Mean absolute error at  435 is: 1.04
+Epoch 436 Time:  06:32:45
+Mean absolute error at  436 is: 1.02
+Epoch 437 Time:  06:34:01
+Mean absolute error at  437 is: 1.03
+Epoch 438 Time:  06:35:17
+Mean absolute error at  438 is: 1.05
+Epoch 439 Time:  06:36:33
+Mean absolute error at  439 is: 1.02
+Epoch 440 Time:  06:37:49
+Mean absolute error at  440 is: 1.01
+Epoch 441 Time:  06:39:05
+Mean absolute error at  441 is: 1.03
+Epoch 442 Time:  06:40:22
+Mean absolute error at  442 is: 1.05
+Epoch 443 Time:  06:41:38
+Mean absolute error at  443 is: 1.02
+Epoch 444 Time:  06:42:54
+Mean absolute error at  444 is: 1.01
+Epoch 445 Time:  06:44:10
+Mean absolute error at  445 is: 1.08
+Epoch 446 Time:  06:45:27
+Mean absolute error at  446 is: 1.03
+Epoch 447 Time:  06:46:42
+Mean absolute error at  447 is: 1.00
+Epoch 448 Time:  06:47:58
+Mean absolute error at  448 is: 1.02
+Epoch 449 Time:  06:49:14
+Mean absolute error at  449 is: 1.01
+Epoch 450 Time:  06:50:31
+Mean absolute error at  450 is: 1.01
+Epoch 451 Time:  06:51:47
+Mean absolute error at  451 is: 1.02
+Epoch 452 Time:  06:53:02
+Mean absolute error at  452 is: 1.01
+Epoch 453 Time:  06:54:18
+Mean absolute error at  453 is: 1.01
+Epoch 454 Time:  06:55:34
+Mean absolute error at  454 is: 1.02
+Epoch 455 Time:  06:56:50
+Mean absolute error at  455 is: 1.02
+Epoch 456 Time:  06:58:06
+Mean absolute error at  456 is: 1.02
+Epoch 457 Time:  06:59:22
+Mean absolute error at  457 is: 1.02
+Epoch 458 Time:  07:00:38
+Mean absolute error at  458 is: 1.01
+Epoch 459 Time:  07:01:55
+Mean absolute error at  459 is: 1.00
+Epoch 460 Time:  07:03:11
+Mean absolute error at  460 is: 1.05
+Epoch 461 Time:  07:04:27
+Mean absolute error at  461 is: 1.03
+Epoch 462 Time:  07:05:44
+Mean absolute error at  462 is: 1.02
+Epoch 463 Time:  07:07:01
+Mean absolute error at  463 is: 1.04
+Epoch 464 Time:  07:08:17
+Mean absolute error at  464 is: 1.01
+Epoch 465 Time:  07:09:33
+Mean absolute error at  465 is: 1.06
+Epoch 466 Time:  07:10:49
+Mean absolute error at  466 is: 1.02
+Epoch 467 Time:  07:12:05
+Mean absolute error at  467 is: 1.03
+Epoch 468 Time:  07:13:20
+Mean absolute error at  468 is: 1.02
+Epoch 469 Time:  07:14:36
+Mean absolute error at  469 is: 1.01
+Epoch 470 Time:  07:15:52
+Mean absolute error at  470 is: 1.02
+Epoch 471 Time:  07:17:08
+Mean absolute error at  471 is: 1.04
+Epoch 472 Time:  07:18:24
+Mean absolute error at  472 is: 1.02
+Epoch 473 Time:  07:19:41
+Mean absolute error at  473 is: 1.02
+Epoch 474 Time:  07:20:57
+Mean absolute error at  474 is: 1.01
+Epoch 475 Time:  07:22:13
+Mean absolute error at  475 is: 1.03
+Epoch 476 Time:  07:23:29
+Mean absolute error at  476 is: 1.03
+Epoch 477 Time:  07:24:45
+Mean absolute error at  477 is: 1.01
+Epoch 478 Time:  07:26:01
+Mean absolute error at  478 is: 1.04
+Epoch 479 Time:  07:27:17
+Mean absolute error at  479 is: 1.00
+Epoch 480 Time:  07:28:33
+Mean absolute error at  480 is: 1.01
+Epoch 481 Time:  07:29:49
+Mean absolute error at  481 is: 1.05
+Epoch 482 Time:  07:31:05
+Mean absolute error at  482 is: 1.02
+Epoch 483 Time:  07:32:21
+Mean absolute error at  483 is: 1.03
+Epoch 484 Time:  07:33:38
+Mean absolute error at  484 is: 1.01
+Epoch 485 Time:  07:34:54
+Mean absolute error at  485 is: 1.02
+Epoch 486 Time:  07:36:12
+Mean absolute error at  486 is: 1.01
+Epoch 487 Time:  07:37:27
+Mean absolute error at  487 is: 1.03
+Epoch 488 Time:  07:38:43
+Mean absolute error at  488 is: 1.01
+Epoch 489 Time:  07:39:59
+Mean absolute error at  489 is: 1.03
+Epoch 490 Time:  07:41:15
+Mean absolute error at  490 is: 1.01
+Epoch 491 Time:  07:42:30
+Mean absolute error at  491 is: 1.02
+Epoch 492 Time:  07:43:46
+Mean absolute error at  492 is: 1.05
+Epoch 493 Time:  07:45:02
+Mean absolute error at  493 is: 1.01
+Epoch 494 Time:  07:46:18
+Mean absolute error at  494 is: 1.01
+Epoch 495 Time:  07:47:35
+Mean absolute error at  495 is: 1.02
+Epoch 496 Time:  07:48:52
+Mean absolute error at  496 is: 1.02
+Epoch 497 Time:  07:50:08
+Mean absolute error at  497 is: 1.02
+Epoch 498 Time:  07:51:24
+Mean absolute error at  498 is: 1.02
+Epoch 499 Time:  07:52:40
+Mean absolute error at  499 is: 1.02
+Epoch 500 Time:  07:53:56
+Mean absolute error at  500 is: 0.96
+Epoch 501 Time:  07:55:12
+Mean absolute error at  501 is: 0.96
+Epoch 502 Time:  07:56:27
+Mean absolute error at  502 is: 0.96
+Epoch 503 Time:  07:57:43
+Mean absolute error at  503 is: 0.96
+Epoch 504 Time:  07:58:59
+Mean absolute error at  504 is: 0.96
+Epoch 505 Time:  08:00:15
+Mean absolute error at  505 is: 0.96
+Epoch 506 Time:  08:01:32
+Mean absolute error at  506 is: 0.96
+Epoch 507 Time:  08:02:48
+Mean absolute error at  507 is: 0.96
+Epoch 508 Time:  08:04:04
+Mean absolute error at  508 is: 0.96
+Epoch 509 Time:  08:05:21
+Mean absolute error at  509 is: 0.96
+Epoch 510 Time:  08:06:37
+Mean absolute error at  510 is: 0.96
+Epoch 511 Time:  08:07:52
+Mean absolute error at  511 is: 0.97
+Epoch 512 Time:  08:09:08
+Mean absolute error at  512 is: 0.96
+Epoch 513 Time:  08:10:24
+Mean absolute error at  513 is: 0.96
+Epoch 514 Time:  08:11:41
+Mean absolute error at  514 is: 0.96
+Epoch 515 Time:  08:12:57
+Mean absolute error at  515 is: 0.96
+Epoch 516 Time:  08:14:13
+Mean absolute error at  516 is: 0.97
+Epoch 517 Time:  08:15:30
+Mean absolute error at  517 is: 0.97
+Epoch 518 Time:  08:16:46
+Mean absolute error at  518 is: 0.98
+Epoch 519 Time:  08:18:02
+Mean absolute error at  519 is: 0.97
+Epoch 520 Time:  08:19:19
+Mean absolute error at  520 is: 0.96
+Epoch 521 Time:  08:20:34
+Mean absolute error at  521 is: 0.97
+Epoch 522 Time:  08:21:51
+Mean absolute error at  522 is: 0.97
+Epoch 523 Time:  08:23:08
+Mean absolute error at  523 is: 0.97
+Epoch 524 Time:  08:24:25
+Mean absolute error at  524 is: 0.96
+Epoch 525 Time:  08:25:41
+Mean absolute error at  525 is: 0.96
+Epoch 526 Time:  08:26:57
+Mean absolute error at  526 is: 0.96
+Epoch 527 Time:  08:28:13
+Mean absolute error at  527 is: 0.96
+Epoch 528 Time:  08:29:30
+Mean absolute error at  528 is: 0.96
+Epoch 529 Time:  08:30:45
+Mean absolute error at  529 is: 0.96
+Epoch 530 Time:  08:32:01
+Mean absolute error at  530 is: 0.96
+Epoch 531 Time:  08:33:17
+Mean absolute error at  531 is: 0.96
+Epoch 532 Time:  08:34:32
+Mean absolute error at  532 is: 0.96
+Epoch 533 Time:  08:35:48
+Mean absolute error at  533 is: 0.96
+Epoch 534 Time:  08:37:05
+Mean absolute error at  534 is: 0.96
+Epoch 535 Time:  08:38:22
+Mean absolute error at  535 is: 0.96
+Epoch 536 Time:  08:39:38
+Mean absolute error at  536 is: 0.96
+Epoch 537 Time:  08:40:54
+Mean absolute error at  537 is: 0.96
+Epoch 538 Time:  08:42:10
+Mean absolute error at  538 is: 0.96
+Epoch 539 Time:  08:43:27
+Mean absolute error at  539 is: 0.96
+Epoch 540 Time:  08:44:43
+Mean absolute error at  540 is: 0.96
+Epoch 541 Time:  08:45:59
+Mean absolute error at  541 is: 0.96
+Epoch 542 Time:  08:47:15
+Mean absolute error at  542 is: 0.96
+Epoch 543 Time:  08:48:32
+Mean absolute error at  543 is: 0.96
+Epoch 544 Time:  08:49:47
+Mean absolute error at  544 is: 0.96
+Epoch 545 Time:  08:51:03
+Mean absolute error at  545 is: 0.96
+Epoch 546 Time:  08:52:19
+Mean absolute error at  546 is: 0.96
+Epoch 547 Time:  08:53:35
+Mean absolute error at  547 is: 0.96
+Epoch 548 Time:  08:54:52
+Mean absolute error at  548 is: 0.96
+Epoch 549 Time:  08:56:08
+Mean absolute error at  549 is: 0.96
+Epoch 550 Time:  08:57:25
+Mean absolute error at  550 is: 0.96
+Epoch 551 Time:  08:58:41
+Mean absolute error at  551 is: 0.96
+Epoch 552 Time:  08:59:58
+Mean absolute error at  552 is: 0.96
+Epoch 553 Time:  09:01:15
+Mean absolute error at  553 is: 0.96
+Epoch 554 Time:  09:02:31
+Mean absolute error at  554 is: 0.96
+Epoch 555 Time:  09:03:47
+Mean absolute error at  555 is: 0.96
+Epoch 556 Time:  09:05:03
+Mean absolute error at  556 is: 0.96
+Epoch 557 Time:  09:06:19
+Mean absolute error at  557 is: 0.96
+Epoch 558 Time:  09:07:35
+Mean absolute error at  558 is: 0.96
+Epoch 559 Time:  09:08:52
+Mean absolute error at  559 is: 0.96
+Epoch 560 Time:  09:10:08
+Mean absolute error at  560 is: 0.96
+Epoch 561 Time:  09:11:24
+Mean absolute error at  561 is: 0.96
+Epoch 562 Time:  09:12:41
+Mean absolute error at  562 is: 0.96
+Epoch 563 Time:  09:13:57
+Mean absolute error at  563 is: 0.96
+Epoch 564 Time:  09:15:13
+Mean absolute error at  564 is: 0.96
+Epoch 565 Time:  09:16:29
+Mean absolute error at  565 is: 0.96
+Epoch 566 Time:  09:17:45
+Mean absolute error at  566 is: 0.96
+Epoch 567 Time:  09:19:02
+Mean absolute error at  567 is: 0.96
+Epoch 568 Time:  09:20:18
+Mean absolute error at  568 is: 0.96
+Epoch 569 Time:  09:21:34
+Mean absolute error at  569 is: 0.96
+Epoch 570 Time:  09:22:50
+Mean absolute error at  570 is: 0.96
+Epoch 571 Time:  09:24:06
+Mean absolute error at  571 is: 0.96
+Epoch 572 Time:  09:25:22
+Mean absolute error at  572 is: 0.96
+Epoch 573 Time:  09:26:38
+Mean absolute error at  573 is: 0.96
+Epoch 574 Time:  09:27:54
+Mean absolute error at  574 is: 0.96
+Epoch 575 Time:  09:29:10
+Mean absolute error at  575 is: 0.96
+Epoch 576 Time:  09:30:27
+Mean absolute error at  576 is: 0.96
+Epoch 577 Time:  09:31:43
+Mean absolute error at  577 is: 0.96
+Epoch 578 Time:  09:32:59
+Mean absolute error at  578 is: 0.96
+Epoch 579 Time:  09:34:15
+Mean absolute error at  579 is: 0.96
+Epoch 580 Time:  09:35:31
+Mean absolute error at  580 is: 0.96
+Epoch 581 Time:  09:36:47
+Mean absolute error at  581 is: 0.96
+Epoch 582 Time:  09:38:03
+Mean absolute error at  582 is: 0.96
+Epoch 583 Time:  09:39:19
+Mean absolute error at  583 is: 0.96
+Epoch 584 Time:  09:40:35
+Mean absolute error at  584 is: 0.96
+Epoch 585 Time:  09:41:51
+Mean absolute error at  585 is: 0.96
+Epoch 586 Time:  09:43:07
+Mean absolute error at  586 is: 0.96
+Epoch 587 Time:  09:44:23
+Mean absolute error at  587 is: 0.96
+Epoch 588 Time:  09:45:39
+Mean absolute error at  588 is: 0.96
+Epoch 589 Time:  09:46:54
+Mean absolute error at  589 is: 0.96
+Epoch 590 Time:  09:48:10
+Mean absolute error at  590 is: 0.96
+Epoch 591 Time:  09:49:27
+Mean absolute error at  591 is: 0.96
+Epoch 592 Time:  09:50:42
+Mean absolute error at  592 is: 0.96
+Epoch 593 Time:  09:51:58
+Mean absolute error at  593 is: 0.96
+Epoch 594 Time:  09:53:14
+Mean absolute error at  594 is: 0.96
+Epoch 595 Time:  09:54:31
+Mean absolute error at  595 is: 0.96
+Epoch 596 Time:  09:55:48
+Mean absolute error at  596 is: 0.96
+Epoch 597 Time:  09:57:04
+Mean absolute error at  597 is: 0.96
+Epoch 598 Time:  09:58:20
+Mean absolute error at  598 is: 0.96
+Epoch 599 Time:  09:59:36
+Mean absolute error at  599 is: 0.96
+Epoch 600 Time:  10:00:52
+Mean absolute error at  600 is: 1.02
+Epoch 601 Time:  10:02:08
+Mean absolute error at  601 is: 1.03
+Epoch 602 Time:  10:03:24
+Mean absolute error at  602 is: 1.00
+Epoch 603 Time:  10:04:41
+Mean absolute error at  603 is: 1.01
+Epoch 604 Time:  10:05:57
+Mean absolute error at  604 is: 1.01
+Epoch 605 Time:  10:07:13
+Mean absolute error at  605 is: 1.01
+Epoch 606 Time:  10:08:30
+Mean absolute error at  606 is: 1.09
+Epoch 607 Time:  10:09:46
+Mean absolute error at  607 is: 1.01
+Epoch 608 Time:  10:11:02
+Mean absolute error at  608 is: 1.01
+Epoch 609 Time:  10:12:19
+Mean absolute error at  609 is: 1.01
+Epoch 610 Time:  10:13:34
+Mean absolute error at  610 is: 1.03
+Epoch 611 Time:  10:14:51
+Mean absolute error at  611 is: 1.01
+Epoch 612 Time:  10:16:08
+Mean absolute error at  612 is: 1.03
+Epoch 613 Time:  10:17:24
+Mean absolute error at  613 is: 1.02
+Epoch 614 Time:  10:18:40
+Mean absolute error at  614 is: 1.02
+Epoch 615 Time:  10:19:57
+Mean absolute error at  615 is: 1.01
+Epoch 616 Time:  10:21:13
+Mean absolute error at  616 is: 1.01
+Epoch 617 Time:  10:22:29
+Mean absolute error at  617 is: 1.01
+Epoch 618 Time:  10:23:45
+Mean absolute error at  618 is: 1.01
+Epoch 619 Time:  10:25:01
+Mean absolute error at  619 is: 1.02
+Epoch 620 Time:  10:26:18
+Mean absolute error at  620 is: 1.01
+Epoch 621 Time:  10:27:34
+Mean absolute error at  621 is: 1.01
+Epoch 622 Time:  10:28:50
+Mean absolute error at  622 is: 1.03
+Epoch 623 Time:  10:30:06
+Mean absolute error at  623 is: 1.01
+Epoch 624 Time:  10:31:22
+Mean absolute error at  624 is: 1.02
+Epoch 625 Time:  10:32:37
+Mean absolute error at  625 is: 1.02
+Epoch 626 Time:  10:33:53
+Mean absolute error at  626 is: 1.01
+Epoch 627 Time:  10:35:09
+Mean absolute error at  627 is: 1.01
+Epoch 628 Time:  10:36:25
+Mean absolute error at  628 is: 1.03
+Epoch 629 Time:  10:37:41
+Mean absolute error at  629 is: 1.02
+Epoch 630 Time:  10:38:57
+Mean absolute error at  630 is: 1.00
+Epoch 631 Time:  10:40:12
+Mean absolute error at  631 is: 1.01
+Epoch 632 Time:  10:41:28
+Mean absolute error at  632 is: 1.01
+Epoch 633 Time:  10:42:44
+Mean absolute error at  633 is: 1.01
+Epoch 634 Time:  10:44:00
+Mean absolute error at  634 is: 1.02
+Epoch 635 Time:  10:45:16
+Mean absolute error at  635 is: 1.02
+Epoch 636 Time:  10:46:32
+Mean absolute error at  636 is: 1.02
+Epoch 637 Time:  10:47:48
+Mean absolute error at  637 is: 1.02
+Epoch 638 Time:  10:49:04
+Mean absolute error at  638 is: 1.02
+Epoch 639 Time:  10:50:21
+Mean absolute error at  639 is: 1.01
+Epoch 640 Time:  10:51:37
+Mean absolute error at  640 is: 1.05
+Epoch 641 Time:  10:52:53
+Mean absolute error at  641 is: 1.01
+Epoch 642 Time:  10:54:09
+Mean absolute error at  642 is: 1.01
+Epoch 643 Time:  10:55:25
+Mean absolute error at  643 is: 1.03
+Epoch 644 Time:  10:56:41
+Mean absolute error at  644 is: 1.04
+Epoch 645 Time:  10:57:57
+Mean absolute error at  645 is: 1.01
+Epoch 646 Time:  10:59:13
+Mean absolute error at  646 is: 1.01
+Epoch 647 Time:  11:00:29
+Mean absolute error at  647 is: 1.02
+Epoch 648 Time:  11:01:45
+Mean absolute error at  648 is: 1.01
+Epoch 649 Time:  11:03:01
+Mean absolute error at  649 is: 1.01
+Epoch 650 Time:  11:04:18
+Mean absolute error at  650 is: 1.02
+Epoch 651 Time:  11:05:33
+Mean absolute error at  651 is: 1.06
+Epoch 652 Time:  11:06:49
+Mean absolute error at  652 is: 1.02
+Epoch 653 Time:  11:08:06
+Mean absolute error at  653 is: 1.02
+Epoch 654 Time:  11:09:22
+Mean absolute error at  654 is: 1.01
+Epoch 655 Time:  11:10:39
+Mean absolute error at  655 is: 1.01
+Epoch 656 Time:  11:11:55
+Mean absolute error at  656 is: 1.05
+Epoch 657 Time:  11:13:12
+Mean absolute error at  657 is: 1.00
+Epoch 658 Time:  11:14:28
+Mean absolute error at  658 is: 1.02
+Epoch 659 Time:  11:15:45
+Mean absolute error at  659 is: 1.05
+Epoch 660 Time:  11:17:02
+Mean absolute error at  660 is: 1.01
+Epoch 661 Time:  11:18:18
+Mean absolute error at  661 is: 1.01
+Epoch 662 Time:  11:19:35
+Mean absolute error at  662 is: 1.01
+Epoch 663 Time:  11:20:51
+Mean absolute error at  663 is: 1.01
+Epoch 664 Time:  11:22:07
+Mean absolute error at  664 is: 1.01
+Epoch 665 Time:  11:23:23
+Mean absolute error at  665 is: 1.02
+Epoch 666 Time:  11:24:40
+Mean absolute error at  666 is: 1.05
+Epoch 667 Time:  11:25:57
+Mean absolute error at  667 is: 1.02
+Epoch 668 Time:  11:27:14
+Mean absolute error at  668 is: 1.03
+Epoch 669 Time:  11:28:31
+Mean absolute error at  669 is: 1.04
+Epoch 670 Time:  11:29:48
+Mean absolute error at  670 is: 1.02
+Epoch 671 Time:  11:31:04
+Mean absolute error at  671 is: 1.04
+Epoch 672 Time:  11:32:20
+Mean absolute error at  672 is: 1.01
+Epoch 673 Time:  11:33:36
+Mean absolute error at  673 is: 1.01
+Epoch 674 Time:  11:34:52
+Mean absolute error at  674 is: 1.01
+Epoch 675 Time:  11:36:09
+Mean absolute error at  675 is: 1.03
+Epoch 676 Time:  11:37:25
+Mean absolute error at  676 is: 1.01
+Epoch 677 Time:  11:38:41
+Mean absolute error at  677 is: 1.01
+Epoch 678 Time:  11:39:58
+Mean absolute error at  678 is: 1.06
+Epoch 679 Time:  11:41:15
+Mean absolute error at  679 is: 1.00
+Epoch 680 Time:  11:42:31
+Mean absolute error at  680 is: 1.02
+Epoch 681 Time:  11:43:47
+Mean absolute error at  681 is: 1.01
+Epoch 682 Time:  11:45:04
+Mean absolute error at  682 is: 1.01
+Epoch 683 Time:  11:46:20
+Mean absolute error at  683 is: 1.01
+Epoch 684 Time:  11:47:36
+Mean absolute error at  684 is: 1.03
+Epoch 685 Time:  11:48:52
+Mean absolute error at  685 is: 1.02
+Epoch 686 Time:  11:50:08
+Mean absolute error at  686 is: 1.01
+Epoch 687 Time:  11:51:25
+Mean absolute error at  687 is: 1.00
+Epoch 688 Time:  11:52:41
+Mean absolute error at  688 is: 1.01
+Epoch 689 Time:  11:53:58
+Mean absolute error at  689 is: 1.02
+Epoch 690 Time:  11:55:14
+Mean absolute error at  690 is: 1.02
+Epoch 691 Time:  11:56:30
+Mean absolute error at  691 is: 1.01
+Epoch 692 Time:  11:57:47
+Mean absolute error at  692 is: 1.02
+Epoch 693 Time:  11:59:03
+Mean absolute error at  693 is: 1.02
+Epoch 694 Time:  12:00:20
+Mean absolute error at  694 is: 1.00
+Epoch 695 Time:  12:01:37
+Mean absolute error at  695 is: 1.01
+Epoch 696 Time:  12:02:53
+Mean absolute error at  696 is: 1.01
+Epoch 697 Time:  12:04:09
+Mean absolute error at  697 is: 1.00
+Epoch 698 Time:  12:05:25
+Mean absolute error at  698 is: 1.01
+Epoch 699 Time:  12:06:41
+Mean absolute error at  699 is: 1.02
+Epoch 700 Time:  12:07:57
+Mean absolute error at  700 is: 1.02
+Epoch 701 Time:  12:09:14
+Mean absolute error at  701 is: 1.00
+Epoch 702 Time:  12:10:30
+Mean absolute error at  702 is: 1.01
+Epoch 703 Time:  12:11:46
+Mean absolute error at  703 is: 1.01
+Epoch 704 Time:  12:13:02
+Mean absolute error at  704 is: 1.02
+Epoch 705 Time:  12:14:19
+Mean absolute error at  705 is: 1.03
+Epoch 706 Time:  12:15:35
+Mean absolute error at  706 is: 0.99
+Epoch 707 Time:  12:16:51
+Mean absolute error at  707 is: 1.01
+Epoch 708 Time:  12:18:07
+Mean absolute error at  708 is: 1.01
+Epoch 709 Time:  12:19:24
+Mean absolute error at  709 is: 1.01
+Epoch 710 Time:  12:20:40
+Mean absolute error at  710 is: 1.00
+Epoch 711 Time:  12:21:55
+Mean absolute error at  711 is: 1.03
+Epoch 712 Time:  12:23:12
+Mean absolute error at  712 is: 1.01
+Epoch 713 Time:  12:24:28
+Mean absolute error at  713 is: 1.00
+Epoch 714 Time:  12:25:44
+Mean absolute error at  714 is: 1.02
+Epoch 715 Time:  12:27:01
+Mean absolute error at  715 is: 1.01
+Epoch 716 Time:  12:28:17
+Mean absolute error at  716 is: 1.00
+Epoch 717 Time:  12:29:33
+Mean absolute error at  717 is: 1.00
+Epoch 718 Time:  12:30:49
+Mean absolute error at  718 is: 1.01
+Epoch 719 Time:  12:32:05
+Mean absolute error at  719 is: 1.02
+Epoch 720 Time:  12:33:22
+Mean absolute error at  720 is: 1.03
+Epoch 721 Time:  12:34:39
+Mean absolute error at  721 is: 1.01
+Epoch 722 Time:  12:35:56
+Mean absolute error at  722 is: 1.01
+Epoch 723 Time:  12:37:12
+Mean absolute error at  723 is: 1.01
+Epoch 724 Time:  12:38:29
+Mean absolute error at  724 is: 1.01
+Epoch 725 Time:  12:39:45
+Mean absolute error at  725 is: 1.01
+Epoch 726 Time:  12:41:01
+Mean absolute error at  726 is: 1.01
+Epoch 727 Time:  12:42:19
+Mean absolute error at  727 is: 1.01
+Epoch 728 Time:  12:43:35
+Mean absolute error at  728 is: 1.01
+Epoch 729 Time:  12:44:51
+Mean absolute error at  729 is: 1.01
+Epoch 730 Time:  12:46:08
+Mean absolute error at  730 is: 1.00
+Epoch 731 Time:  12:47:24
+Mean absolute error at  731 is: 1.02
+Epoch 732 Time:  12:48:41
+Mean absolute error at  732 is: 1.01
+Epoch 733 Time:  12:49:57
+Mean absolute error at  733 is: 1.00
+Epoch 734 Time:  12:51:13
+Mean absolute error at  734 is: 1.00
+Epoch 735 Time:  12:52:29
+Mean absolute error at  735 is: 1.02
+Epoch 736 Time:  12:53:45
+Mean absolute error at  736 is: 0.99
+Epoch 737 Time:  12:55:01
+Mean absolute error at  737 is: 1.00
+Epoch 738 Time:  12:56:17
+Mean absolute error at  738 is: 1.00
+Epoch 739 Time:  12:57:33
+Mean absolute error at  739 is: 1.00
+Epoch 740 Time:  12:58:49
+Mean absolute error at  740 is: 1.00
+Epoch 741 Time:  13:00:06
+Mean absolute error at  741 is: 1.00
+Epoch 742 Time:  13:01:23
+Mean absolute error at  742 is: 1.00
+Epoch 743 Time:  13:02:39
+Mean absolute error at  743 is: 1.00
+Epoch 744 Time:  13:03:56
+Mean absolute error at  744 is: 1.00
+Epoch 745 Time:  13:05:12
+Mean absolute error at  745 is: 1.01
+Epoch 746 Time:  13:06:29
+Mean absolute error at  746 is: 1.01
+Epoch 747 Time:  13:07:44
+Mean absolute error at  747 is: 1.01
+Epoch 748 Time:  13:09:00
+Mean absolute error at  748 is: 1.02
+Epoch 749 Time:  13:10:17
+Mean absolute error at  749 is: 1.01
+Epoch 750 Time:  13:11:33
+Mean absolute error at  750 is: 1.01
+Epoch 751 Time:  13:12:50
+Mean absolute error at  751 is: 1.01
+Epoch 752 Time:  13:14:06
+Mean absolute error at  752 is: 1.00
+Epoch 753 Time:  13:15:22
+Mean absolute error at  753 is: 1.00
+Epoch 754 Time:  13:16:39
+Mean absolute error at  754 is: 1.00
+Epoch 755 Time:  13:17:55
+Mean absolute error at  755 is: 1.00
+Epoch 756 Time:  13:19:11
+Mean absolute error at  756 is: 1.01
+Epoch 757 Time:  13:20:28
+Mean absolute error at  757 is: 1.01
+Epoch 758 Time:  13:21:44
+Mean absolute error at  758 is: 1.01
+Epoch 759 Time:  13:23:01
+Mean absolute error at  759 is: 1.02
+Epoch 760 Time:  13:24:17
+Mean absolute error at  760 is: 1.02
+Epoch 761 Time:  13:25:34
+Mean absolute error at  761 is: 1.00
+Epoch 762 Time:  13:26:50
+Mean absolute error at  762 is: 1.07
+Epoch 763 Time:  13:28:06
+Mean absolute error at  763 is: 1.02
+Epoch 764 Time:  13:29:22
+Mean absolute error at  764 is: 1.02
+Epoch 765 Time:  13:30:38
+Mean absolute error at  765 is: 1.01
+Epoch 766 Time:  13:31:54
+Mean absolute error at  766 is: 1.03
+Epoch 767 Time:  13:33:11
+Mean absolute error at  767 is: 1.05
+Epoch 768 Time:  13:34:28
+Mean absolute error at  768 is: 1.00
+Epoch 769 Time:  13:35:44
+Mean absolute error at  769 is: 1.01
+Epoch 770 Time:  13:37:00
+Mean absolute error at  770 is: 1.01
+Epoch 771 Time:  13:38:15
+Mean absolute error at  771 is: 1.00
+Epoch 772 Time:  13:39:31
+Mean absolute error at  772 is: 1.01
+Epoch 773 Time:  13:40:48
+Mean absolute error at  773 is: 1.01
+Epoch 774 Time:  13:42:03
+Mean absolute error at  774 is: 1.00
+Epoch 775 Time:  13:43:19
+Mean absolute error at  775 is: 1.03
+Epoch 776 Time:  13:44:35
+Mean absolute error at  776 is: 1.01
+Epoch 777 Time:  13:45:51
+Mean absolute error at  777 is: 1.00
+Epoch 778 Time:  13:47:08
+Mean absolute error at  778 is: 1.00
+Epoch 779 Time:  13:48:23
+Mean absolute error at  779 is: 1.00
+Epoch 780 Time:  13:49:39
+Mean absolute error at  780 is: 1.00
+Epoch 781 Time:  13:50:55
+Mean absolute error at  781 is: 1.01
+Epoch 782 Time:  13:52:12
+Mean absolute error at  782 is: 1.02
+Epoch 783 Time:  13:53:28
+Mean absolute error at  783 is: 1.01
+Epoch 784 Time:  13:54:44
+Mean absolute error at  784 is: 1.00
+Epoch 785 Time:  13:56:01
+Mean absolute error at  785 is: 1.04
+Epoch 786 Time:  13:57:17
+Mean absolute error at  786 is: 1.00
+Epoch 787 Time:  13:58:33
+Mean absolute error at  787 is: 1.00
+Epoch 788 Time:  13:59:49
+Mean absolute error at  788 is: 1.00
+Epoch 789 Time:  14:01:06
+Mean absolute error at  789 is: 1.01
+Epoch 790 Time:  14:02:23
+Mean absolute error at  790 is: 1.01
+Epoch 791 Time:  14:03:39
+Mean absolute error at  791 is: 1.01
+Epoch 792 Time:  14:04:56
+Mean absolute error at  792 is: 1.02
+Epoch 793 Time:  14:06:12
+Mean absolute error at  793 is: 1.02
+Epoch 794 Time:  14:07:28
+Mean absolute error at  794 is: 1.05
+Epoch 795 Time:  14:08:44
+Mean absolute error at  795 is: 1.02
+Epoch 796 Time:  14:10:00
+Mean absolute error at  796 is: 1.00
+Epoch 797 Time:  14:11:16
+Mean absolute error at  797 is: 1.06
+Epoch 798 Time:  14:12:33
+Mean absolute error at  798 is: 1.01
+Epoch 799 Time:  14:13:49
+Mean absolute error at  799 is: 1.01
+Epoch 800 Time:  14:15:05
+Mean absolute error at  800 is: 0.97
+Epoch 801 Time:  14:16:21
+Mean absolute error at  801 is: 0.97
+Epoch 802 Time:  14:17:36
+Mean absolute error at  802 is: 0.97
+Epoch 803 Time:  14:18:53
+Mean absolute error at  803 is: 0.97
+Epoch 804 Time:  14:20:10
+Mean absolute error at  804 is: 0.97
+Epoch 805 Time:  14:21:25
+Mean absolute error at  805 is: 0.97
+Epoch 806 Time:  14:22:42
+Mean absolute error at  806 is: 0.97
+Epoch 807 Time:  14:23:59
+Mean absolute error at  807 is: 0.97
+Epoch 808 Time:  14:25:15
+Mean absolute error at  808 is: 0.97
+Epoch 809 Time:  14:26:31
+Mean absolute error at  809 is: 0.97
+Epoch 810 Time:  14:27:47
+Mean absolute error at  810 is: 0.97
+Epoch 811 Time:  14:29:03
+Mean absolute error at  811 is: 0.97
+Epoch 812 Time:  14:30:19
+Mean absolute error at  812 is: 0.97
+Epoch 813 Time:  14:31:35
+Mean absolute error at  813 is: 0.97
+Epoch 814 Time:  14:32:52
+Mean absolute error at  814 is: 0.97
+Epoch 815 Time:  14:34:09
+Mean absolute error at  815 is: 0.97
+Epoch 816 Time:  14:35:25
+Mean absolute error at  816 is: 0.97
+Epoch 817 Time:  14:36:40
+Mean absolute error at  817 is: 0.97
+Epoch 818 Time:  14:37:56
+Mean absolute error at  818 is: 0.97
+Epoch 819 Time:  14:39:13
+Mean absolute error at  819 is: 0.97
+Epoch 820 Time:  14:40:30
+Mean absolute error at  820 is: 0.97
+Epoch 821 Time:  14:41:46
+Mean absolute error at  821 is: 0.97
+Epoch 822 Time:  14:43:02
+Mean absolute error at  822 is: 0.97
+Epoch 823 Time:  14:44:19
+Mean absolute error at  823 is: 0.97
+Epoch 824 Time:  14:45:36
+Mean absolute error at  824 is: 0.97
+Epoch 825 Time:  14:46:53
+Mean absolute error at  825 is: 0.97
+Epoch 826 Time:  14:48:09
+Mean absolute error at  826 is: 0.96
+Epoch 827 Time:  14:49:26
+Mean absolute error at  827 is: 0.97
+Epoch 828 Time:  14:50:42
+Mean absolute error at  828 is: 0.97
+Epoch 829 Time:  14:51:58
+Mean absolute error at  829 is: 0.97
+Epoch 830 Time:  14:53:14
+Mean absolute error at  830 is: 0.97
+Epoch 831 Time:  14:54:30
+Mean absolute error at  831 is: 0.96
+Epoch 832 Time:  14:55:46
+Mean absolute error at  832 is: 0.97
+Epoch 833 Time:  14:57:02
+Mean absolute error at  833 is: 0.96
+Epoch 834 Time:  14:58:19
+Mean absolute error at  834 is: 0.97
+Epoch 835 Time:  14:59:35
+Mean absolute error at  835 is: 0.97
+Epoch 836 Time:  15:00:50
+Mean absolute error at  836 is: 0.97
+Epoch 837 Time:  15:02:06
+Mean absolute error at  837 is: 0.96
+Epoch 838 Time:  15:03:23
+Mean absolute error at  838 is: 0.97
+Epoch 839 Time:  15:04:39
+Mean absolute error at  839 is: 0.96
+Epoch 840 Time:  15:05:55
+Mean absolute error at  840 is: 0.96
+Epoch 841 Time:  15:07:12
+Mean absolute error at  841 is: 0.96
+Epoch 842 Time:  15:08:28
+Mean absolute error at  842 is: 0.96
+Epoch 843 Time:  15:09:44
+Mean absolute error at  843 is: 0.96
+Epoch 844 Time:  15:11:01
+Mean absolute error at  844 is: 0.96
+Epoch 845 Time:  15:12:17
+Mean absolute error at  845 is: 0.97
+Epoch 846 Time:  15:13:34
+Mean absolute error at  846 is: 0.96
+Epoch 847 Time:  15:14:51
+Mean absolute error at  847 is: 0.97
+Epoch 848 Time:  15:16:07
+Mean absolute error at  848 is: 0.97
+Epoch 849 Time:  15:17:24
+Mean absolute error at  849 is: 0.96
+Epoch 850 Time:  15:18:40
+Mean absolute error at  850 is: 0.96
+Epoch 851 Time:  15:19:55
+Mean absolute error at  851 is: 0.96
+Epoch 852 Time:  15:21:11
+Mean absolute error at  852 is: 0.97
+Epoch 853 Time:  15:22:28
+Mean absolute error at  853 is: 0.96
+Epoch 854 Time:  15:23:44
+Mean absolute error at  854 is: 0.96
+Epoch 855 Time:  15:25:00
+Mean absolute error at  855 is: 0.96
+Epoch 856 Time:  15:26:17
+Mean absolute error at  856 is: 0.96
+Epoch 857 Time:  15:27:33
+Mean absolute error at  857 is: 0.96
+Epoch 858 Time:  15:28:50
+Mean absolute error at  858 is: 0.96
+Epoch 859 Time:  15:30:07
+Mean absolute error at  859 is: 0.96
+Epoch 860 Time:  15:31:23
+Mean absolute error at  860 is: 0.96
+Epoch 861 Time:  15:32:40
+Mean absolute error at  861 is: 0.96
+Epoch 862 Time:  15:33:57
+Mean absolute error at  862 is: 0.96
+Epoch 863 Time:  15:35:13
+Mean absolute error at  863 is: 0.96
+Epoch 864 Time:  15:36:29
+Mean absolute error at  864 is: 0.96
+Epoch 865 Time:  15:37:45
+Mean absolute error at  865 is: 0.96
+Epoch 866 Time:  15:39:01
+Mean absolute error at  866 is: 0.96
+Epoch 867 Time:  15:40:17
+Mean absolute error at  867 is: 0.96
+Epoch 868 Time:  15:41:34
+Mean absolute error at  868 is: 0.96
+Epoch 869 Time:  15:42:50
+Mean absolute error at  869 is: 0.96
+Epoch 870 Time:  15:44:06
+Mean absolute error at  870 is: 0.96
+Epoch 871 Time:  15:45:22
+Mean absolute error at  871 is: 0.96
+Epoch 872 Time:  15:46:38
+Mean absolute error at  872 is: 0.96
+Epoch 873 Time:  15:47:54
+Mean absolute error at  873 is: 0.96
+Epoch 874 Time:  15:49:10
+Mean absolute error at  874 is: 0.96
+Epoch 875 Time:  15:50:26
+Mean absolute error at  875 is: 0.96
+Epoch 876 Time:  15:51:42
+Mean absolute error at  876 is: 0.96
+Epoch 877 Time:  15:52:58
+Mean absolute error at  877 is: 0.96
+Epoch 878 Time:  15:54:14
+Mean absolute error at  878 is: 0.96
+Epoch 879 Time:  15:55:31
+Mean absolute error at  879 is: 0.96
+Epoch 880 Time:  15:56:48
+Mean absolute error at  880 is: 0.96
+Epoch 881 Time:  15:58:05
+Mean absolute error at  881 is: 0.96
+Epoch 882 Time:  15:59:21
+Mean absolute error at  882 is: 0.96
+Epoch 883 Time:  16:00:37
+Mean absolute error at  883 is: 0.96
+Epoch 884 Time:  16:01:53
+Mean absolute error at  884 is: 0.96
+Epoch 885 Time:  16:03:10
+Mean absolute error at  885 is: 0.96
+Epoch 886 Time:  16:04:25
+Mean absolute error at  886 is: 0.96
+Epoch 887 Time:  16:05:42
+Mean absolute error at  887 is: 0.96
+Epoch 888 Time:  16:06:58
+Mean absolute error at  888 is: 0.96
+Epoch 889 Time:  16:08:15
+Mean absolute error at  889 is: 0.96
+Epoch 890 Time:  16:09:31
+Mean absolute error at  890 is: 0.96
+Epoch 891 Time:  16:10:47
+Mean absolute error at  891 is: 0.96
+Epoch 892 Time:  16:12:04
+Mean absolute error at  892 is: 0.96
+Epoch 893 Time:  16:13:19
+Mean absolute error at  893 is: 0.96
+Epoch 894 Time:  16:14:36
+Mean absolute error at  894 is: 0.96
+Epoch 895 Time:  16:15:52
+Mean absolute error at  895 is: 0.96
+Epoch 896 Time:  16:17:08
+Mean absolute error at  896 is: 0.96
+Epoch 897 Time:  16:18:24
+Mean absolute error at  897 is: 0.96
+Epoch 898 Time:  16:19:40
+Mean absolute error at  898 is: 0.96
+Epoch 899 Time:  16:20:56
+Mean absolute error at  899 is: 0.96
+Epoch 900 Time:  16:22:13
+Mean absolute error at  900 is: 1.02
+Epoch 901 Time:  16:23:28
+Mean absolute error at  901 is: 1.00
+Epoch 902 Time:  16:24:45
+Mean absolute error at  902 is: 1.02
+Epoch 903 Time:  16:26:01
+Mean absolute error at  903 is: 1.03
+Epoch 904 Time:  16:27:18
+Mean absolute error at  904 is: 1.00
+Epoch 905 Time:  16:28:34
+Mean absolute error at  905 is: 1.02
+Epoch 906 Time:  16:29:50
+Mean absolute error at  906 is: 0.99
+Epoch 907 Time:  16:31:06
+Mean absolute error at  907 is: 1.02
+Epoch 908 Time:  16:32:22
+Mean absolute error at  908 is: 1.03
+Epoch 909 Time:  16:33:39
+Mean absolute error at  909 is: 1.02
+Epoch 910 Time:  16:34:55
+Mean absolute error at  910 is: 1.00
+Epoch 911 Time:  16:36:11
+Mean absolute error at  911 is: 1.00
+Epoch 912 Time:  16:37:27
+Mean absolute error at  912 is: 1.02
+Epoch 913 Time:  16:38:43
+Mean absolute error at  913 is: 1.02
+Epoch 914 Time:  16:39:59
+Mean absolute error at  914 is: 1.02
+Epoch 915 Time:  16:41:15
+Mean absolute error at  915 is: 1.00
+Epoch 916 Time:  16:42:31
+Mean absolute error at  916 is: 1.02
+Epoch 917 Time:  16:43:47
+Mean absolute error at  917 is: 1.00
+Epoch 918 Time:  16:45:03
+Mean absolute error at  918 is: 1.00
+Epoch 919 Time:  16:46:19
+Mean absolute error at  919 is: 1.00
+Epoch 920 Time:  16:47:35
+Mean absolute error at  920 is: 1.00
+Epoch 921 Time:  16:48:51
+Mean absolute error at  921 is: 1.00
+Epoch 922 Time:  16:50:08
+Mean absolute error at  922 is: 1.00
+Epoch 923 Time:  16:51:24
+Mean absolute error at  923 is: 1.01
+Epoch 924 Time:  16:52:39
+Mean absolute error at  924 is: 1.01
+Epoch 925 Time:  16:53:56
+Mean absolute error at  925 is: 1.01
+Epoch 926 Time:  16:55:12
+Mean absolute error at  926 is: 1.01
+Epoch 927 Time:  16:56:28
+Mean absolute error at  927 is: 1.00
+Epoch 928 Time:  16:57:44
+Mean absolute error at  928 is: 0.99
+Epoch 929 Time:  16:59:01
+Mean absolute error at  929 is: 1.00
+Epoch 930 Time:  17:00:18
+Mean absolute error at  930 is: 1.01
+Epoch 931 Time:  17:01:34
+Mean absolute error at  931 is: 1.00
+Epoch 932 Time:  17:02:50
+Mean absolute error at  932 is: 1.01
+Epoch 933 Time:  17:04:06
+Mean absolute error at  933 is: 1.01
+Epoch 934 Time:  17:05:23
+Mean absolute error at  934 is: 1.01
+Epoch 935 Time:  17:06:39
+Mean absolute error at  935 is: 1.02
+Epoch 936 Time:  17:07:55
+Mean absolute error at  936 is: 1.01
+Epoch 937 Time:  17:09:11
+Mean absolute error at  937 is: 0.99
+Epoch 938 Time:  17:10:28
+Mean absolute error at  938 is: 1.02
+Epoch 939 Time:  17:11:44
+Mean absolute error at  939 is: 1.01
+Epoch 940 Time:  17:12:59
+Mean absolute error at  940 is: 1.06
+Epoch 941 Time:  17:14:15
+Mean absolute error at  941 is: 1.04
+Epoch 942 Time:  17:15:31
+Mean absolute error at  942 is: 1.00
+Epoch 943 Time:  17:16:46
+Mean absolute error at  943 is: 1.01
+Epoch 944 Time:  17:18:02
+Mean absolute error at  944 is: 1.01
+Epoch 945 Time:  17:19:19
+Mean absolute error at  945 is: 1.01
+Epoch 946 Time:  17:20:34
+Mean absolute error at  946 is: 1.00
+Epoch 947 Time:  17:21:50
+Mean absolute error at  947 is: 1.01
+Epoch 948 Time:  17:23:06
+Mean absolute error at  948 is: 1.03
+Epoch 949 Time:  17:24:22
+Mean absolute error at  949 is: 1.00
+Epoch 950 Time:  17:25:38
+Mean absolute error at  950 is: 1.00
+Epoch 951 Time:  17:26:55
+Mean absolute error at  951 is: 1.00
+Epoch 952 Time:  17:28:11
+Mean absolute error at  952 is: 1.00
+Epoch 953 Time:  17:29:27
+Mean absolute error at  953 is: 1.01
+Epoch 954 Time:  17:30:44
+Mean absolute error at  954 is: 1.01
+Epoch 955 Time:  17:32:00
+Mean absolute error at  955 is: 1.00
+Epoch 956 Time:  17:33:18
+Mean absolute error at  956 is: 0.99
+Epoch 957 Time:  17:34:34
+Mean absolute error at  957 is: 1.00
+Epoch 958 Time:  17:35:50
+Mean absolute error at  958 is: 1.03
+Epoch 959 Time:  17:37:07
+Mean absolute error at  959 is: 1.01
+Epoch 960 Time:  17:38:23
+Mean absolute error at  960 is: 1.02
+Epoch 961 Time:  17:39:39
+Mean absolute error at  961 is: 0.99
+Epoch 962 Time:  17:40:55
+Mean absolute error at  962 is: 1.00
+Epoch 963 Time:  17:42:11
+Mean absolute error at  963 is: 1.00
+Epoch 964 Time:  17:43:27
+Mean absolute error at  964 is: 1.02
+Epoch 965 Time:  17:44:44
+Mean absolute error at  965 is: 1.00
+Epoch 966 Time:  17:46:00
+Mean absolute error at  966 is: 0.99
+Epoch 967 Time:  17:47:17
+Mean absolute error at  967 is: 1.00
+Epoch 968 Time:  17:48:34
+Mean absolute error at  968 is: 1.00
+Epoch 969 Time:  17:49:51
+Mean absolute error at  969 is: 1.01
+Epoch 970 Time:  17:51:07
+Mean absolute error at  970 is: 1.00
+Epoch 971 Time:  17:52:24
+Mean absolute error at  971 is: 1.00
+Epoch 972 Time:  17:53:40
+Mean absolute error at  972 is: 1.00
+Epoch 973 Time:  17:54:56
+Mean absolute error at  973 is: 1.02
+Epoch 974 Time:  17:56:12
+Mean absolute error at  974 is: 1.01
+Epoch 975 Time:  17:57:28
+Mean absolute error at  975 is: 1.01
+Epoch 976 Time:  17:58:44
+Mean absolute error at  976 is: 1.00
+Epoch 977 Time:  17:59:59
+Mean absolute error at  977 is: 1.00
+Epoch 978 Time:  18:01:15
+Mean absolute error at  978 is: 1.04
+Epoch 979 Time:  18:02:30
+Mean absolute error at  979 is: 1.01
+Epoch 980 Time:  18:03:47
+Mean absolute error at  980 is: 1.01
+Epoch 981 Time:  18:05:03
+Mean absolute error at  981 is: 1.01
+Epoch 982 Time:  18:06:20
+Mean absolute error at  982 is: 1.00
+Epoch 983 Time:  18:07:36
+Mean absolute error at  983 is: 1.00
+Epoch 984 Time:  18:08:53
+Mean absolute error at  984 is: 1.00
+Epoch 985 Time:  18:10:09
+Mean absolute error at  985 is: 1.00
+Epoch 986 Time:  18:11:26
+Mean absolute error at  986 is: 1.01
+Epoch 987 Time:  18:12:42
+Mean absolute error at  987 is: 1.00
+Epoch 988 Time:  18:13:58
+Mean absolute error at  988 is: 1.00
+Epoch 989 Time:  18:15:15
+Mean absolute error at  989 is: 1.01
+Epoch 990 Time:  18:16:31
+Mean absolute error at  990 is: 1.01
+Epoch 991 Time:  18:17:47
+Mean absolute error at  991 is: 1.01
+Epoch 992 Time:  18:19:03
+Mean absolute error at  992 is: 1.00
+Epoch 993 Time:  18:20:19
+Mean absolute error at  993 is: 1.00
+Epoch 994 Time:  18:21:35
+Mean absolute error at  994 is: 1.00
+Epoch 995 Time:  18:22:52
+Mean absolute error at  995 is: 1.02
+Epoch 996 Time:  18:24:08
+Mean absolute error at  996 is: 1.00
+Epoch 997 Time:  18:25:25
+Mean absolute error at  997 is: 1.01
+Epoch 998 Time:  18:26:41
+Mean absolute error at  998 is: 1.01
+Epoch 999 Time:  18:27:57
+Mean absolute error at  999 is: 1.01
+Epoch 1000 Time:  18:29:14
+Mean absolute error at 1000 is: 1.00
+Epoch 1001 Time:  18:30:30
+Mean absolute error at 1001 is: 1.01
+Epoch 1002 Time:  18:31:47
+Mean absolute error at 1002 is: 1.00
+Epoch 1003 Time:  18:33:03
+Mean absolute error at 1003 is: 1.00
+Epoch 1004 Time:  18:34:18
+Mean absolute error at 1004 is: 0.99
+Epoch 1005 Time:  18:35:35
+Mean absolute error at 1005 is: 1.02
+Epoch 1006 Time:  18:36:51
+Mean absolute error at 1006 is: 1.01
+Epoch 1007 Time:  18:38:08
+Mean absolute error at 1007 is: 1.01
+Epoch 1008 Time:  18:39:24
+Mean absolute error at 1008 is: 1.00
+Epoch 1009 Time:  18:40:40
+Mean absolute error at 1009 is: 1.00
+Epoch 1010 Time:  18:41:56
+Mean absolute error at 1010 is: 1.00
+Epoch 1011 Time:  18:43:13
+Mean absolute error at 1011 is: 1.00
+Epoch 1012 Time:  18:44:29
+Mean absolute error at 1012 is: 0.99
+Epoch 1013 Time:  18:45:45
+Mean absolute error at 1013 is: 1.00
+Epoch 1014 Time:  18:47:02
+Mean absolute error at 1014 is: 1.00
+Epoch 1015 Time:  18:48:18
+Mean absolute error at 1015 is: 1.00
+Epoch 1016 Time:  18:49:34
+Mean absolute error at 1016 is: 0.99
+Epoch 1017 Time:  18:50:51
+Mean absolute error at 1017 is: 1.00
+Epoch 1018 Time:  18:52:08
+Mean absolute error at 1018 is: 1.01
+Epoch 1019 Time:  18:53:24
+Mean absolute error at 1019 is: 1.00
+Epoch 1020 Time:  18:54:41
+Mean absolute error at 1020 is: 1.00
+Epoch 1021 Time:  18:55:58
+Mean absolute error at 1021 is: 1.01
+Epoch 1022 Time:  18:57:14
+Mean absolute error at 1022 is: 1.00
+Epoch 1023 Time:  18:58:31
+Mean absolute error at 1023 is: 1.00
+Epoch 1024 Time:  18:59:47
+Mean absolute error at 1024 is: 1.01
+Epoch 1025 Time:  19:01:03
+Mean absolute error at 1025 is: 1.01
+Epoch 1026 Time:  19:02:20
+Mean absolute error at 1026 is: 1.02
+Epoch 1027 Time:  19:03:36
+Mean absolute error at 1027 is: 1.00
+Epoch 1028 Time:  19:04:52
+Mean absolute error at 1028 is: 1.00
+Epoch 1029 Time:  19:06:08
+Mean absolute error at 1029 is: 1.01
+Epoch 1030 Time:  19:07:24
+Mean absolute error at 1030 is: 1.00
+Epoch 1031 Time:  19:08:40
+Mean absolute error at 1031 is: 1.00
+Epoch 1032 Time:  19:09:56
+Mean absolute error at 1032 is: 1.01
+Epoch 1033 Time:  19:11:12
+Mean absolute error at 1033 is: 1.01
+Epoch 1034 Time:  19:12:29
+Mean absolute error at 1034 is: 1.00
+Epoch 1035 Time:  19:13:45
+Mean absolute error at 1035 is: 1.00
+Epoch 1036 Time:  19:15:00
+Mean absolute error at 1036 is: 1.00
+Epoch 1037 Time:  19:16:17
+Mean absolute error at 1037 is: 1.02
+Epoch 1038 Time:  19:17:33
+Mean absolute error at 1038 is: 1.00
+Epoch 1039 Time:  19:18:50
+Mean absolute error at 1039 is: 1.00
+Epoch 1040 Time:  19:20:05
+Mean absolute error at 1040 is: 1.02
+Epoch 1041 Time:  19:21:22
+Mean absolute error at 1041 is: 1.02
+Epoch 1042 Time:  19:22:39
+Mean absolute error at 1042 is: 1.00
+Epoch 1043 Time:  19:23:55
+Mean absolute error at 1043 is: 1.00
+Epoch 1044 Time:  19:25:13
+Mean absolute error at 1044 is: 1.00
+Epoch 1045 Time:  19:26:29
+Mean absolute error at 1045 is: 1.00
+Epoch 1046 Time:  19:27:45
+Mean absolute error at 1046 is: 1.00
+Epoch 1047 Time:  19:29:02
+Mean absolute error at 1047 is: 1.02
+Epoch 1048 Time:  19:30:18
+Mean absolute error at 1048 is: 0.99
+Epoch 1049 Time:  19:31:36
+Mean absolute error at 1049 is: 1.00
+Epoch 1050 Time:  19:32:52
+Mean absolute error at 1050 is: 1.00
+Epoch 1051 Time:  19:34:08
+Mean absolute error at 1051 is: 1.03
+Epoch 1052 Time:  19:35:25
+Mean absolute error at 1052 is: 1.02
+Epoch 1053 Time:  19:36:41
+Mean absolute error at 1053 is: 1.00
+Epoch 1054 Time:  19:37:57
+Mean absolute error at 1054 is: 1.01
+Epoch 1055 Time:  19:39:14
+Mean absolute error at 1055 is: 1.01
+Epoch 1056 Time:  19:40:30
+Mean absolute error at 1056 is: 1.01
+Epoch 1057 Time:  19:41:47
+Mean absolute error at 1057 is: 1.01
+Epoch 1058 Time:  19:43:03
+Mean absolute error at 1058 is: 1.00
+Epoch 1059 Time:  19:44:19
+Mean absolute error at 1059 is: 1.01
+Epoch 1060 Time:  19:45:36
+Mean absolute error at 1060 is: 1.01
+Epoch 1061 Time:  19:46:52
+Mean absolute error at 1061 is: 1.01
+Epoch 1062 Time:  19:48:09
+Mean absolute error at 1062 is: 1.01
+Epoch 1063 Time:  19:49:25
+Mean absolute error at 1063 is: 1.00
+Epoch 1064 Time:  19:50:41
+Mean absolute error at 1064 is: 1.01
+Epoch 1065 Time:  19:51:58
+Mean absolute error at 1065 is: 1.01
+Epoch 1066 Time:  19:53:15
+Mean absolute error at 1066 is: 1.00
+Epoch 1067 Time:  19:54:32
+Mean absolute error at 1067 is: 1.01
+Epoch 1068 Time:  19:55:48
+Mean absolute error at 1068 is: 1.00
+Epoch 1069 Time:  19:57:03
+Mean absolute error at 1069 is: 1.03
+Epoch 1070 Time:  19:58:20
+Mean absolute error at 1070 is: 1.03
+Epoch 1071 Time:  19:59:37
+Mean absolute error at 1071 is: 0.99
+Epoch 1072 Time:  20:00:53
+Mean absolute error at 1072 is: 1.01
+Epoch 1073 Time:  20:02:09
+Mean absolute error at 1073 is: 1.00
+Epoch 1074 Time:  20:03:26
+Mean absolute error at 1074 is: 1.01
+Epoch 1075 Time:  20:04:41
+Mean absolute error at 1075 is: 1.01
+Epoch 1076 Time:  20:05:58
+Mean absolute error at 1076 is: 1.02
+Epoch 1077 Time:  20:07:14
+Mean absolute error at 1077 is: 1.00
+Epoch 1078 Time:  20:08:30
+Mean absolute error at 1078 is: 0.99
+Epoch 1079 Time:  20:09:46
+Mean absolute error at 1079 is: 1.01
+Epoch 1080 Time:  20:11:02
+Mean absolute error at 1080 is: 1.02
+Epoch 1081 Time:  20:12:18
+Mean absolute error at 1081 is: 0.99
+Epoch 1082 Time:  20:13:33
+Mean absolute error at 1082 is: 1.00
+Epoch 1083 Time:  20:14:49
+Mean absolute error at 1083 is: 1.01
+Epoch 1084 Time:  20:16:05
+Mean absolute error at 1084 is: 1.00
+Epoch 1085 Time:  20:17:22
+Mean absolute error at 1085 is: 0.99
+Epoch 1086 Time:  20:18:38
+Mean absolute error at 1086 is: 1.00
+Epoch 1087 Time:  20:19:55
+Mean absolute error at 1087 is: 1.00
+Epoch 1088 Time:  20:21:11
+Mean absolute error at 1088 is: 1.01
+Epoch 1089 Time:  20:22:27
+Mean absolute error at 1089 is: 1.02
+Epoch 1090 Time:  20:23:43
+Mean absolute error at 1090 is: 0.99
+Epoch 1091 Time:  20:24:59
+Mean absolute error at 1091 is: 1.00
+Epoch 1092 Time:  20:26:16
+Mean absolute error at 1092 is: 1.00
+Epoch 1093 Time:  20:27:32
+Mean absolute error at 1093 is: 1.01
+Epoch 1094 Time:  20:28:49
+Mean absolute error at 1094 is: 1.01
+Epoch 1095 Time:  20:30:05
+Mean absolute error at 1095 is: 1.01
+Epoch 1096 Time:  20:31:21
+Mean absolute error at 1096 is: 1.00
+Epoch 1097 Time:  20:32:37
+Mean absolute error at 1097 is: 1.00
+Epoch 1098 Time:  20:33:53
+Mean absolute error at 1098 is: 1.01
+Epoch 1099 Time:  20:35:09
+Mean absolute error at 1099 is: 1.00
+Epoch 1100 Time:  20:36:25
+Mean absolute error at 1100 is: 0.97
+Epoch 1101 Time:  20:37:41
+Mean absolute error at 1101 is: 0.97
+Epoch 1102 Time:  20:38:57
+Mean absolute error at 1102 is: 0.97
+Epoch 1103 Time:  20:40:14
+Mean absolute error at 1103 is: 0.97
+Epoch 1104 Time:  20:41:30
+Mean absolute error at 1104 is: 0.97
+Epoch 1105 Time:  20:42:45
+Mean absolute error at 1105 is: 0.97
+Epoch 1106 Time:  20:44:01
+Mean absolute error at 1106 is: 0.97
+Epoch 1107 Time:  20:45:17
+Mean absolute error at 1107 is: 0.97
+Epoch 1108 Time:  20:46:33
+Mean absolute error at 1108 is: 0.97
+Epoch 1109 Time:  20:47:49
+Mean absolute error at 1109 is: 0.97
+Epoch 1110 Time:  20:49:05
+Mean absolute error at 1110 is: 0.97
+Epoch 1111 Time:  20:50:22
+Mean absolute error at 1111 is: 0.97
+Epoch 1112 Time:  20:51:38
+Mean absolute error at 1112 is: 0.97
+Epoch 1113 Time:  20:52:55
+Mean absolute error at 1113 is: 0.97
+Epoch 1114 Time:  20:54:11
+Mean absolute error at 1114 is: 0.97
+Epoch 1115 Time:  20:55:28
+Mean absolute error at 1115 is: 0.97
+Epoch 1116 Time:  20:56:44
+Mean absolute error at 1116 is: 0.97
+Epoch 1117 Time:  20:58:00
+Mean absolute error at 1117 is: 0.97
+Epoch 1118 Time:  20:59:17
+Mean absolute error at 1118 is: 0.97
+Epoch 1119 Time:  21:00:34
+Mean absolute error at 1119 is: 0.97
+Epoch 1120 Time:  21:01:51
+Mean absolute error at 1120 is: 0.97
+Epoch 1121 Time:  21:03:07
+Mean absolute error at 1121 is: 0.97
+Epoch 1122 Time:  21:04:24
+Mean absolute error at 1122 is: 0.97
+Epoch 1123 Time:  21:05:41
+Mean absolute error at 1123 is: 0.97
+Epoch 1124 Time:  21:06:57
+Mean absolute error at 1124 is: 0.98
+Epoch 1125 Time:  21:08:13
+Mean absolute error at 1125 is: 0.97
+Epoch 1126 Time:  21:09:29
+Mean absolute error at 1126 is: 0.97
+Epoch 1127 Time:  21:10:45
+Mean absolute error at 1127 is: 0.97
+Epoch 1128 Time:  21:12:01
+Mean absolute error at 1128 is: 0.97
+Epoch 1129 Time:  21:13:18
+Mean absolute error at 1129 is: 0.97
