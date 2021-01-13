@@ -1,0 +1,22 @@
+Getting Code to work with Campus Cluster
+_________________________________________
+
+
+Use WinSCP to SSH into Campus Cluster: 
+1) Transfer data into /home/$USER/scratch
+
+
+Interactive Run:
+1)make sure that Xming is installed and running on your computer
+2)use putty.exe to ssh into cc-login.campuscluster.illinois.edu
+3>srun --x11 --export=All --time=00:30:00 --nodes=1 --ntasks=1 --cpus-per-task=24 --partition=csl --pty /bin/bash
+4>Module load anaconda/2020-Jul/3
+5>Python Part2NNet_thetaz_v36.py > output.txt
+
+Run Batch Code:
+1)use putty.exe to ssh into cc-login.campuscluster.illinois.edu
+2>sbatch v36cnn.sbatch
+
+Useful Commands:
+>sinfo -a
+>squeue -u $USER
