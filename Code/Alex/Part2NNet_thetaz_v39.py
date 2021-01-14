@@ -1,9 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[1]:
-
-
 import numpy as np
 import matplotlib.pyplot as plt
 import math
@@ -11,13 +5,13 @@ import pandas as pd
 from scipy import signal
 import pickle
 from sklearn.linear_model import LinearRegression
-from sklearn.preprocessing import StandardScaler,MaxAbsScaler
+from sklearn.preprocessing import StandardScaler,MaxAbsScaler, LabelBinarizer, OneHotEncoder
 from sklearn.svm import SVR
 import random
-import tensorflow as tf
 import cv2
 from scipy import stats
 import os
+import tensorflow as tf
 
 
 # In[2]:
@@ -146,22 +140,23 @@ def show_frame(read_frames, frame_range):
 # n_resize = 1
 # x_train = read_depth_camera(train_dcamera_path, show_video, nw_resize=2, nh_resize=3)
 
-n_test = (24, 30, 31, 32, 33, 35, 57, 58, 59, 60)
+n_test = (24,30,31,32,33,57)
 nw_resize = 2
 nh_resize = 2
 xtemp = {}
 show_video = 0
 
-subj = ['leo', 'leo', 'leo', 'leo', 'leo', 'leo', 'leo', 'leo', 'leo', 'leo']
-
+subj = ['leo','leo','leo','leo','leo','leo']
+        
 for i in range(len(n_test)):
     test_str = 'test' + str(n_test[i])
-    data_dir = os.path.join('/home/asilador/scratch/Preliminary Data V5', 'Test_Subject_' + subj[i], test_str)
-    #    data_dir = os.path.join(r'C:\Users\Alex\Box\CS598 - Final Project\Preliminary Data V5','Test_Subject_'+subj[i],test_str)
-    #     train_dcamera_path = data_dir + '/depth_processed_leo_test'+str(n_test[i])+'.avi'
-    train_dcamera_path = os.path.join(data_dir, 'depth_processed_' + subj[i] + '_test' + str(n_test[i]) + '.avi')
-    xtemp[i] = read_depth_camera(train_dcamera_path, show_video, nw_resize=nw_resize, nh_resize=nh_resize).astype(
-        'uint8')
+    data_dir = os.path.join('/home/asilador/scratch/Preliminary Data V5','Test_Subject_'+subj[i],test_str)
+#    data_dir = os.path.join(r'C:\Users\Alex\Box\CS598 - Final Project\Preliminary Data V5','Test_Subject_'+subj[i],test_str)
+#     train_dcamera_path = data_dir + '/depth_processed_leo_test'+str(n_test[i])+'.avi'
+    train_dcamera_path = os.path.join(data_dir , 'depth_processed_'+subj[i]+'_test'+str(n_test[i])+'.avi')
+    xtemp[i] = read_depth_camera(train_dcamera_path, show_video, nw_resize=nw_resize, nh_resize=nh_resize).astype('uint8')
+    
+
 
 # In[8]:
 
@@ -192,11 +187,11 @@ del xtemp
 
 
 
-n_test = (24,30,31,32,33)
-date = ('11_15_2020','11_24_2020','11_24_2020','11_25_2020','11_25_2020')
-subj = ['leo','leo','leo','leo','leo']
-subjwgt = [67, 67, 67, 67, 67]
-subjht = [174, 174, 174, 174, 174]
+n_test = (24,30,31,32,33,35,57,58,59,60)
+date = ('11_15_2020','11_24_2020','11_24_2020','11_25_2020','11_25_2020','11_25_2020','01_10_2021','01_11_2021','01_11_2021','01_11_2021')
+subj = ['leo','leo','leo','leo','leo','leo','leo','leo','leo','leo']
+subjwgt = [67, 67, 67, 67, 67, 67, 67, 67, 67, 67]
+subjht = [174, 174, 174, 174, 174, 174, 174, 174, 174, 174]
 xfcss_gt = {}
 yrun = 0
 for i in range(len(n_test)):
@@ -222,9 +217,9 @@ del xfcss_gt
 
 
 
-n_test = (24,30,31,32,33)
-date = ('11_15_2020','11_24_2020','11_24_2020','11_25_2020','11_25_2020')
-subj = ['leo','leo','leo','leo','leo']
+n_test = (24,30,31,32,33,35,57,58,59,60)
+date = ('11_15_2020','11_24_2020','11_24_2020','11_25_2020','11_25_2020','11_25_2020','01_10_2021','01_11_2021','01_11_2021','01_11_2021')
+subj = ['leo','leo','leo','leo','leo','leo','leo','leo','leo','leo']
 y_gt = {}
 yrun = 0
 theta_interest = 'z'
@@ -263,20 +258,39 @@ def saturate(theta, min_val, max_val):
             theta[i] = max_val
             continue
     return theta
-            
-min_val = -50
-max_val = 50
-    
-y_train = saturate(y_train, min_val, max_val)
 
+
+def round_of_rating(number):
+    """Round a number to the closest half integer.
+    >>> round_of_rating(1.3)
+    1.5
+    >>> round_of_rating(2.6)
+    2.5
+    >>> round_of_rating(3.0)
+    3.0
+    >>> round_of_rating(4.1)
+    4.0"""
+
+    return np.round(number * 2) / 2
+
+
+min_val = -40
+max_val = 40
+
+y_train = round_of_rating(saturate(y_train, min_val, max_val))
+
+r_int = 0.5
+slist = np.arange(min_val,max_val+r_int,r_int)*2 #multiply by 2 to allow labelbinarizer to work
+lb = LabelBinarizer()
+lb.fit(slist)
+ylabels = lb.transform(y_train*2)
 
 # In[17]:
 
 
 print(x_train.shape)
 print(xfcss_train.shape)
-print(y_train.shape)
-
+print(ylabels.shape)
 
 # In[18]:
 
@@ -302,7 +316,6 @@ Testset2 = xfcss_train.values[test_set,:]
 Trainy= y_train[rannums,:]
 Testy = y_train[test_set,:]
 
-
 # In[20]:
 
 
@@ -310,44 +323,57 @@ Testy = y_train[test_set,:]
 # sc_y = StandardScaler()
 
 sc_X2 = MaxAbsScaler()
-sc_y = MaxAbsScaler()
+#sc_y = MaxAbsScaler()
 
 
 # In[21]:
 
 
+#make validation data available to model.fit
 Xtrainz = Trainset
 Xtrainz2 = Trainset2
 ytrainz = Trainy
 X = Xtrainz
 X2 = sc_X2.fit_transform(Xtrainz2)
-y = sc_y.fit_transform(ytrainz)
+y = lb.transform(ytrainz*2) #scale output by 2 to allow intervals of 0.5
 
 
 # In[22]:
-
 
 #make validation data available to model.fit
 Xvalid = Testset
 Xvalid2 = sc_X2.transform(Testset2)
 y_valid = Testy
-y_valid = sc_y.transform(y_valid)
+y_valid = lb.transform(y_valid*2) #scale output by 2 to allow intervals of 0.5
+
 
 
 # In[23]:
 
 
 # clear up some used variables
+del Xtrainz
+del Xtrainz2
 del Trainset
 del Trainset2
 del Testset
 del Testset2
 
+#
+from tensorflow.keras import layers
+with tf.device('/device:CPU:0'):
+    data_augmentation = tf.keras.Sequential([
+        layers.experimental.preprocessing.RandomRotation(0.05),
+        # randomzoom not available in Campuscluster (tf 2.2.0)
+        #layers.experimental.preprocessing.RandomZoom(height_factor = (-0.2,0.2),
+                                               #width_factor = (-0.2,0.2),
+                                               #fill_mode = 'constant'),
+        ],
+        name='data_augmentation')
 
 # # Regress using Neural Network
 
 # In[25]:
-
 
 # Create Neural Netowrk
 
@@ -355,7 +381,7 @@ from tensorflow.keras.layers import Bidirectional, Conv2D, MaxPooling2D, Input, 
 from tensorflow.keras.layers import BatchNormalization
 from tensorflow.keras.layers import Dense, Activation, Dropout, Reshape, Permute, Flatten
 from tensorflow.keras.models import Model
-# dropout_rate = 0.2
+dropout_rate = 0.2
 
 model_start = Input(shape=(x_train.shape[1],x_train.shape[2],x_train.shape[3]))
 model_start2 = Input(shape=(xfcss_train.shape[1],))
@@ -370,8 +396,9 @@ model_cnn = BatchNormalization()(model_cnn)
 model_cnn = Activation('relu')(model_cnn)
 model_cnn = AveragePooling2D(pool_size=(2, 2))(model_cnn)
 
-model_perc = Dense(100)(model_perc)
-model_perc = Activation('relu')(model_perc)
+#model_perc = Dense(50)(model_perc)
+#model_perc = BatchNormalization()(model_perc)
+#model_perc = Activation('relu')(model_perc)
 
 model_cnn = Conv2D(filters=16, kernel_size=(3, 3),padding='same',use_bias=False)(model_cnn)
 model_cnn = BatchNormalization()(model_cnn)
@@ -381,8 +408,10 @@ model_cnn = BatchNormalization()(model_cnn)
 model_cnn = Activation('relu')(model_cnn)
 model_cnn = AveragePooling2D(pool_size=(2, 2))(model_cnn)
 
-model_perc = Dense(100)(model_perc)
+model_perc = Dense(50)(model_perc)
+model_perc = BatchNormalization()(model_perc)
 model_perc = Activation('relu')(model_perc)
+model_perc = Dropout(dropout_rate)(model_perc)
 
 model_cnn = Conv2D(filters=32, kernel_size=(3, 3),padding='same',use_bias=False)(model_cnn)
 model_cnn = BatchNormalization()(model_cnn)
@@ -404,23 +433,24 @@ model_cnn = Flatten()(model_cnn)
 # model_perc = Flatten()(model_perc)
 # model_cnn = Activation('relu')(model_cnn)
 
-model_cnn = Dense(100)(model_cnn)
-model_cnn = Activation('relu')(model_cnn)
-# model_cnn = Dropout(dropout_rate)(model_cnn)
+#model_cnn = Dense(50)(model_cnn)
+#model_cnn = BatchNormalization()(model_cnn)
+#model_cnn = Activation('relu')(model_cnn)
+
 
 model_comb = concatenate([model_cnn,model_perc],axis=-1)
 
-model_comb = Dense(128)(model_comb)
-# model_comb = BatchNormalization()(model_comb)
-model_comb = Activation('relu')(model_comb)
-# model_comb = Dropout(dropout_rate)(model_comb)
+#model_comb = Dense(50)(model_comb)
+#model_comb = BatchNormalization()(model_comb)
+#model_comb = Activation('relu')(model_comb)
+#model_comb = Dropout(dropout_rate)(model_comb)
 
-output = Dense(1)(model_comb)
-output = Activation('linear', name='thetaz_out')(output)
+output = Dense(y.shape[1])(model_comb)
+output = Activation('softmax', name='thetaz_out')(output)
 model = Model(inputs=[model_start,model_start2],outputs=output)
 model.compile(optimizer='adam',
-              loss='mae',
-              metrics=['mse','mae'])
+              loss=tf.keras.losses.CategoricalCrossentropy(label_smoothing=0.2),
+              metrics=['categorical_accuracy'])
 
 
 # callback = tf.keras.callbacks.EarlyStopping(monitor='val_loss', patience=50,restore_best_weights=True) #Moving to 1000 patience. 
@@ -447,99 +477,78 @@ tf.config.list_physical_devices('GPU')
 
 # In[29]:
 
-
-from tensorflow.keras import layers
-with tf.device('/device:CPU:0'):
-    data_augmentation = tf.keras.Sequential([
-        layers.experimental.preprocessing.RandomRotation(0.05),
-        # randomzoom not available in Campuscluster (tf 2.2.0)
-        #layers.experimental.preprocessing.RandomZoom(height_factor = (-0.2,0.2),
-                                               #width_factor = (-0.2,0.2), 
-                                               #fill_mode = 'constant'),
-        ], 
-        name='data_augmentation')
-
-# create data generator
-def get_generator_cyclic(features1, features2, labels, batch_size=256):
-    while True:
-        for n in range(int(len(features1)/batch_size)):
-            X = features1[n*batch_size: (n+1)*batch_size]
-            with tf.device('/device:CPU:0'): #to prevent hogging limited gpu space
-                augmented_images = data_augmentation(X)
-                Xnew =  tf.cast(augmented_images,tf.float64)/255
-            yield [Xnew, features2[n*batch_size: (n+1)*batch_size], labels[n*batch_size: (n+1)*batch_size]]
-        permuted = np.random.permutation(len(features1))
-        features1 = features1[permuted]
-        features2 = features2[permuted]
-        labels = labels[permuted]
+#
+# from tensorflow.keras import layers
+# with tf.device('/device:CPU:0'):
+#     data_augmentation = tf.keras.Sequential([
+#         layers.experimental.preprocessing.RandomRotation(0.05),
+#         # randomzoom not available in Campuscluster (tf 2.2.0)
+#         #layers.experimental.preprocessing.RandomZoom(height_factor = (-0.2,0.2),
+#                                                #width_factor = (-0.2,0.2),
+#                                                #fill_mode = 'constant'),
+#         ],
+#         name='data_augmentation')
+#
+# # create data generator
+# def get_generator_cyclic(features1, features2, labels, batch_size=256):
+#     while True:
+#         for n in range(int(len(features1)/batch_size)):
+#             X = features1[n*batch_size: (n+1)*batch_size]
+#             with tf.device('/device:CPU:0'): #to prevent hogging limited gpu space
+#                 augmented_images = data_augmentation(X)
+#                 Xnew =  tf.cast(augmented_images,tf.float64)/255
+#             yield [Xnew, features2[n*batch_size: (n+1)*batch_size], labels[n*batch_size: (n+1)*batch_size]]
+#         permuted = np.random.permutation(len(features1))
+#         features1 = features1[permuted]
+#         features2 = features2[permuted]
+#         labels = labels[permuted]
 
 
 # In[30]:
 
 
 def scheduler(epoch, lr):
-    if e%300 < 200: #very hacky
-        return 0.001
+    if e < 50: #very hacky
+        return 0.01
     else:
-        if e%25==0 & batches==0:
-            return lr * 0.99
+        if e%10==0:
+            return lr * 0.90
         else:
             return lr
-callback = tf.keras.callbacks.LearningRateScheduler(scheduler)
+callback1 = tf.keras.callbacks.LearningRateScheduler(scheduler)
+callback2 = tf.keras.callbacks.EarlyStopping(monitor='loss', patience=50,restore_best_weights=True)
 
+save_notebookparams = 1
+if save_notebookparams:
+    pkl_filename = "depthforcemodelparam_cnn3v39_pb.pkl"
+    randata = {}
+    randata['nsamps'] = nsamps
+    randata['n80p'] = n80p
+    randata['rannums'] = rannums
+    randata['test_set'] = test_set
+    #     modelhistory = history.history
 
+    with open(pkl_filename, 'wb') as file:
+        #         pickle.dump([randata,sc_y,sc_X2,modelhistory], file)
+        pickle.dump([randata, lb, sc_X2, slist], file)
+
+#     !mkdir -p saved_model
+#     model.save('saved_model/cnn3v22')
 # In[31]:
 
+#from datetime import datetime
 
-from datetime import datetime
-batch_size = 128
-batch_mult = 4
-readin = int(batch_size*batch_mult)
-epochs = int(1130)
-#epochs = int(2)
-mae_best = 10000
-training_generator = get_generator_cyclic(X,X2,y,readin)
-# test_generator = get_generator_cyclic(Xvalid,Xvalid2,y_valid,readin)
+batch_size = 64
+#batch_mult = 8
+#readin = int(batch_size * batch_mult)
+epochs = int(60)
+acc_best = 0
 for e in range(epochs):
-    now = datetime.now()
-    current_time = now.strftime("%H:%M:%S")
-    print('Epoch', e,'Time: ', current_time)
-    batches = 0
-    while batches< len(X)/readin:
-        Xtrain_1, Xtrain_2, ytrain_1 = next(training_generator)
-#         Xtest_1, Xtest_2, ytest_1 =next(test_generator)
-#         model.fit([Xtrain_1, Xtrain_2], ytrain_1, callbacks = [callback],validation_data = ([Xtest_1,Xtest_2], ytest_1),batch_size=batch_size,verbose = 0)
-        model.fit([Xtrain_1, Xtrain_2], ytrain_1, callbacks = [callback],batch_size=batch_size,verbose = 0)
-        batches += 1
-    
-    #calculates and prints the running validation once per epoch
-    losssc, msesc, maesc = model.evaluate([Xvalid/255.,Xvalid2],y_valid,verbose=0)
-    mae = sc_y.inverse_transform(np.array(maesc).reshape(1,-1))[0][0]
-    if mae<mae_best:
-        modelbest = model
-        mae_best = mae
-    print('Mean absolute error at {:4.0f} is: {:4.2f}'.format(e,mae))
-modelbest.save('cnn3v30')    
-
+    Xaug = tf.cast(data_augmentation(X),tf.float64)/255
+    model.fit([Xaug, X2], y, epochs=1, callbacks=[callback1, callback2], validation_data = ([Xvalid/255.,Xvalid2], y_valid),batch_size=batch_size, verbose=1)
+    model.save('cnn3v39')
 
 # In[32]:
 
 
-save_notebookparams = 1
-if save_notebookparams:
-    pkl_filename = "depthforcemodelparam_cnn3v30_pb.pkl"
-    randata = {}
-    randata['nsamps']=nsamps
-    randata['n80p']=n80p
-    randata['rannums']=rannums
-    randata['test_set']=test_set
-#     modelhistory = history.history
-    
-    
-    with open(pkl_filename, 'wb') as file:
-#         pickle.dump([randata,sc_y,sc_X2,modelhistory], file)
-          pickle.dump([randata,sc_y,sc_X2], file)
-        
-#     !mkdir -p saved_model
-#     model.save('saved_model/cnn3v22')
 

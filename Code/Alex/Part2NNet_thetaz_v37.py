@@ -146,22 +146,23 @@ def show_frame(read_frames, frame_range):
 # n_resize = 1
 # x_train = read_depth_camera(train_dcamera_path, show_video, nw_resize=2, nh_resize=3)
 
-n_test = (24, 30, 31, 32, 33, 35, 57, 58, 59, 60)
+n_test = (24,30,31,32,33,35,57,58,59,60)
 nw_resize = 2
 nh_resize = 2
 xtemp = {}
 show_video = 0
 
-subj = ['leo', 'leo', 'leo', 'leo', 'leo', 'leo', 'leo', 'leo', 'leo', 'leo']
-
+subj = ['leo','leo','leo','leo','leo','leo','leo','leo','leo','leo']
+        
 for i in range(len(n_test)):
     test_str = 'test' + str(n_test[i])
-    data_dir = os.path.join('/home/asilador/scratch/Preliminary Data V5', 'Test_Subject_' + subj[i], test_str)
-    #    data_dir = os.path.join(r'C:\Users\Alex\Box\CS598 - Final Project\Preliminary Data V5','Test_Subject_'+subj[i],test_str)
-    #     train_dcamera_path = data_dir + '/depth_processed_leo_test'+str(n_test[i])+'.avi'
-    train_dcamera_path = os.path.join(data_dir, 'depth_processed_' + subj[i] + '_test' + str(n_test[i]) + '.avi')
-    xtemp[i] = read_depth_camera(train_dcamera_path, show_video, nw_resize=nw_resize, nh_resize=nh_resize).astype(
-        'uint8')
+    data_dir = os.path.join('/home/asilador/scratch/Preliminary Data V5','Test_Subject_'+subj[i],test_str)
+#    data_dir = os.path.join(r'C:\Users\Alex\Box\CS598 - Final Project\Preliminary Data V5','Test_Subject_'+subj[i],test_str)
+#     train_dcamera_path = data_dir + '/depth_processed_leo_test'+str(n_test[i])+'.avi'
+    train_dcamera_path = os.path.join(data_dir , 'depth_processed_'+subj[i]+'_test'+str(n_test[i])+'.avi')
+    xtemp[i] = read_depth_camera(train_dcamera_path, show_video, nw_resize=nw_resize, nh_resize=nh_resize).astype('uint8')
+    
+
 
 # In[8]:
 
@@ -192,11 +193,11 @@ del xtemp
 
 
 
-n_test = (24,30,31,32,33)
-date = ('11_15_2020','11_24_2020','11_24_2020','11_25_2020','11_25_2020')
-subj = ['leo','leo','leo','leo','leo']
-subjwgt = [67, 67, 67, 67, 67]
-subjht = [174, 174, 174, 174, 174]
+n_test = (24,30,31,32,33,35,57,58,59,60)
+date = ('11_15_2020','11_24_2020','11_24_2020','11_25_2020','11_25_2020','11_25_2020','01_10_2021','01_11_2021','01_11_2021','01_11_2021')
+subj = ['leo','leo','leo','leo','leo','leo','leo','leo','leo','leo']
+subjwgt = [67, 67, 67, 67, 67, 67, 67, 67, 67, 67]
+subjht = [174, 174, 174, 174, 174, 174, 174, 174, 174, 174]
 xfcss_gt = {}
 yrun = 0
 for i in range(len(n_test)):
@@ -222,9 +223,9 @@ del xfcss_gt
 
 
 
-n_test = (24,30,31,32,33)
-date = ('11_15_2020','11_24_2020','11_24_2020','11_25_2020','11_25_2020')
-subj = ['leo','leo','leo','leo','leo']
+n_test = (24,30,31,32,33,35,57,58,59,60)
+date = ('11_15_2020','11_24_2020','11_24_2020','11_25_2020','11_25_2020','11_25_2020','01_10_2021','01_11_2021','01_11_2021','01_11_2021')
+subj = ['leo','leo','leo','leo','leo','leo','leo','leo','leo','leo']
 y_gt = {}
 yrun = 0
 theta_interest = 'z'
@@ -495,7 +496,7 @@ from datetime import datetime
 batch_size = 128
 batch_mult = 4
 readin = int(batch_size*batch_mult)
-epochs = int(1130)
+epochs = int(1000)
 #epochs = int(2)
 mae_best = 10000
 training_generator = get_generator_cyclic(X,X2,y,readin)
@@ -519,7 +520,7 @@ for e in range(epochs):
         modelbest = model
         mae_best = mae
     print('Mean absolute error at {:4.0f} is: {:4.2f}'.format(e,mae))
-modelbest.save('cnn3v30')    
+modelbest.save('cnn3v37')    
 
 
 # In[32]:
@@ -527,7 +528,7 @@ modelbest.save('cnn3v30')
 
 save_notebookparams = 1
 if save_notebookparams:
-    pkl_filename = "depthforcemodelparam_cnn3v30_pb.pkl"
+    pkl_filename = "depthforcemodelparam_cnn3v37_pb.pkl"
     randata = {}
     randata['nsamps']=nsamps
     randata['n80p']=n80p

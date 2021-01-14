@@ -1,0 +1,223 @@
+2021-01-14 10:57:48.267330: W tensorflow/stream_executor/platform/default/dso_loader.cc:55] Could not load dynamic library 'libcuda.so.1'; dlerror: libcuda.so.1: cannot open shared object file: No such file or directory; LD_LIBRARY_PATH: /usr/local/src/gnutls/3.5.19/lib:/usr/local/src/nettle/3.4/lib64:/usr/local/slurm/20.02.3/lib:/usr/local/src/emacs/26.1/lib64
+2021-01-14 10:57:48.267631: E tensorflow/stream_executor/cuda/cuda_driver.cc:313] failed call to cuInit: UNKNOWN ERROR (303)
+2021-01-14 10:57:48.267703: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (ccc0113.campuscluster.illinois.edu): /proc/driver/nvidia/version does not exist
+2021-01-14 10:57:48.268074: I tensorflow/core/platform/cpu_feature_guard.cc:143] Your CPU supports instructions that this TensorFlow binary was not compiled to use: SSE4.1 SSE4.2 AVX AVX2 FMA
+2021-01-14 10:57:48.282226: I tensorflow/core/platform/profile_utils/cpu_utils.cc:102] CPU Frequency: 2593845000 Hz
+2021-01-14 10:57:48.284190: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x55fa98f38440 initialized for platform Host (this does not guarantee that XLA will be used). Devices:
+2021-01-14 10:57:48.284250: I tensorflow/compiler/xla/service/service.cc:176]   StreamExecutor device (0): Host, Default Version
+(115095, 60, 80, 3)
+(115095, 60, 80, 3)
+(115095, 6)
+(115095, 1)
+Model: "model"
+__________________________________________________________________________________________________
+Layer (type)                    Output Shape         Param #     Connected to                     
+==================================================================================================
+input_1 (InputLayer)            [(None, 60, 80, 3)]  0                                            
+__________________________________________________________________________________________________
+conv2d (Conv2D)                 (None, 60, 80, 8)    216         input_1[0][0]                    
+__________________________________________________________________________________________________
+batch_normalization (BatchNorma (None, 60, 80, 8)    32          conv2d[0][0]                     
+__________________________________________________________________________________________________
+activation (Activation)         (None, 60, 80, 8)    0           batch_normalization[0][0]        
+__________________________________________________________________________________________________
+conv2d_1 (Conv2D)               (None, 60, 80, 8)    576         activation[0][0]                 
+__________________________________________________________________________________________________
+batch_normalization_1 (BatchNor (None, 60, 80, 8)    32          conv2d_1[0][0]                   
+__________________________________________________________________________________________________
+activation_1 (Activation)       (None, 60, 80, 8)    0           batch_normalization_1[0][0]      
+__________________________________________________________________________________________________
+average_pooling2d (AveragePooli (None, 30, 40, 8)    0           activation_1[0][0]               
+__________________________________________________________________________________________________
+conv2d_2 (Conv2D)               (None, 30, 40, 16)   1152        average_pooling2d[0][0]          
+__________________________________________________________________________________________________
+batch_normalization_2 (BatchNor (None, 30, 40, 16)   64          conv2d_2[0][0]                   
+__________________________________________________________________________________________________
+activation_3 (Activation)       (None, 30, 40, 16)   0           batch_normalization_2[0][0]      
+__________________________________________________________________________________________________
+conv2d_3 (Conv2D)               (None, 30, 40, 16)   2304        activation_3[0][0]               
+__________________________________________________________________________________________________
+batch_normalization_3 (BatchNor (None, 30, 40, 16)   64          conv2d_3[0][0]                   
+__________________________________________________________________________________________________
+activation_4 (Activation)       (None, 30, 40, 16)   0           batch_normalization_3[0][0]      
+__________________________________________________________________________________________________
+average_pooling2d_1 (AveragePoo (None, 15, 20, 16)   0           activation_4[0][0]               
+__________________________________________________________________________________________________
+conv2d_4 (Conv2D)               (None, 15, 20, 32)   4608        average_pooling2d_1[0][0]        
+__________________________________________________________________________________________________
+batch_normalization_4 (BatchNor (None, 15, 20, 32)   128         conv2d_4[0][0]                   
+__________________________________________________________________________________________________
+activation_6 (Activation)       (None, 15, 20, 32)   0           batch_normalization_4[0][0]      
+__________________________________________________________________________________________________
+conv2d_5 (Conv2D)               (None, 15, 20, 32)   9216        activation_6[0][0]               
+__________________________________________________________________________________________________
+batch_normalization_5 (BatchNor (None, 15, 20, 32)   128         conv2d_5[0][0]                   
+__________________________________________________________________________________________________
+activation_7 (Activation)       (None, 15, 20, 32)   0           batch_normalization_5[0][0]      
+__________________________________________________________________________________________________
+average_pooling2d_2 (AveragePoo (None, 7, 10, 32)    0           activation_7[0][0]               
+__________________________________________________________________________________________________
+conv2d_6 (Conv2D)               (None, 7, 10, 64)    18432       average_pooling2d_2[0][0]        
+__________________________________________________________________________________________________
+batch_normalization_6 (BatchNor (None, 7, 10, 64)    256         conv2d_6[0][0]                   
+__________________________________________________________________________________________________
+activation_8 (Activation)       (None, 7, 10, 64)    0           batch_normalization_6[0][0]      
+__________________________________________________________________________________________________
+conv2d_7 (Conv2D)               (None, 7, 10, 64)    36864       activation_8[0][0]               
+__________________________________________________________________________________________________
+batch_normalization_7 (BatchNor (None, 7, 10, 64)    256         conv2d_7[0][0]                   
+__________________________________________________________________________________________________
+activation_9 (Activation)       (None, 7, 10, 64)    0           batch_normalization_7[0][0]      
+__________________________________________________________________________________________________
+input_2 (InputLayer)            [(None, 6)]          0                                            
+__________________________________________________________________________________________________
+average_pooling2d_3 (AveragePoo (None, 3, 5, 64)     0           activation_9[0][0]               
+__________________________________________________________________________________________________
+dense (Dense)                   (None, 100)          700         input_2[0][0]                    
+__________________________________________________________________________________________________
+flatten (Flatten)               (None, 960)          0           average_pooling2d_3[0][0]        
+__________________________________________________________________________________________________
+activation_2 (Activation)       (None, 100)          0           dense[0][0]                      
+__________________________________________________________________________________________________
+dense_2 (Dense)                 (None, 100)          96100       flatten[0][0]                    
+__________________________________________________________________________________________________
+dense_1 (Dense)                 (None, 100)          10100       activation_2[0][0]               
+__________________________________________________________________________________________________
+activation_10 (Activation)      (None, 100)          0           dense_2[0][0]                    
+__________________________________________________________________________________________________
+activation_5 (Activation)       (None, 100)          0           dense_1[0][0]                    
+__________________________________________________________________________________________________
+concatenate (Concatenate)       (None, 200)          0           activation_10[0][0]              
+                                                                 activation_5[0][0]               
+__________________________________________________________________________________________________
+dense_3 (Dense)                 (None, 128)          25728       concatenate[0][0]                
+__________________________________________________________________________________________________
+activation_11 (Activation)      (None, 128)          0           dense_3[0][0]                    
+__________________________________________________________________________________________________
+dense_4 (Dense)                 (None, 1)            129         activation_11[0][0]              
+__________________________________________________________________________________________________
+thetaz_out (Activation)         (None, 1)            0           dense_4[0][0]                    
+==================================================================================================
+Total params: 207,085
+Trainable params: 206,605
+Non-trainable params: 480
+__________________________________________________________________________________________________
+2.2.0
+Epoch 1/1000
+1439/1439 - 104s - loss: 0.1183 - mse: 0.0297 - mae: 0.1183 - val_loss: 0.1441 - val_mse: 0.0357 - val_mae: 0.1441 - lr: 0.0010
+Epoch 2/1000
+1439/1439 - 103s - loss: 0.0864 - mse: 0.0152 - mae: 0.0864 - val_loss: 0.1384 - val_mse: 0.0343 - val_mae: 0.1384 - lr: 0.0010
+Epoch 3/1000
+1439/1439 - 103s - loss: 0.0749 - mse: 0.0117 - mae: 0.0749 - val_loss: 0.0891 - val_mse: 0.0153 - val_mae: 0.0891 - lr: 0.0010
+Epoch 4/1000
+1439/1439 - 103s - loss: 0.0683 - mse: 0.0100 - mae: 0.0683 - val_loss: 0.0770 - val_mse: 0.0125 - val_mae: 0.0770 - lr: 0.0010
+Epoch 5/1000
+1439/1439 - 103s - loss: 0.0643 - mse: 0.0090 - mae: 0.0643 - val_loss: 0.0715 - val_mse: 0.0105 - val_mae: 0.0715 - lr: 0.0010
+Epoch 6/1000
+1439/1439 - 103s - loss: 0.0612 - mse: 0.0083 - mae: 0.0612 - val_loss: 0.0670 - val_mse: 0.0099 - val_mae: 0.0670 - lr: 0.0010
+Epoch 7/1000
+1439/1439 - 103s - loss: 0.0584 - mse: 0.0077 - mae: 0.0584 - val_loss: 0.0575 - val_mse: 0.0075 - val_mae: 0.0575 - lr: 0.0010
+Epoch 8/1000
+1439/1439 - 103s - loss: 0.0561 - mse: 0.0071 - mae: 0.0561 - val_loss: 0.0639 - val_mse: 0.0084 - val_mae: 0.0639 - lr: 0.0010
+Epoch 9/1000
+1439/1439 - 103s - loss: 0.0541 - mse: 0.0066 - mae: 0.0541 - val_loss: 0.0636 - val_mse: 0.0084 - val_mae: 0.0636 - lr: 0.0010
+Epoch 10/1000
+1439/1439 - 103s - loss: 0.0521 - mse: 0.0062 - mae: 0.0521 - val_loss: 0.0644 - val_mse: 0.0088 - val_mae: 0.0644 - lr: 0.0010
+Epoch 11/1000
+1439/1439 - 103s - loss: 0.0504 - mse: 0.0058 - mae: 0.0504 - val_loss: 0.0567 - val_mse: 0.0068 - val_mae: 0.0567 - lr: 0.0010
+Epoch 12/1000
+1439/1439 - 103s - loss: 0.0488 - mse: 0.0055 - mae: 0.0488 - val_loss: 0.0583 - val_mse: 0.0075 - val_mae: 0.0583 - lr: 0.0010
+Epoch 13/1000
+1439/1439 - 103s - loss: 0.0471 - mse: 0.0052 - mae: 0.0471 - val_loss: 0.0504 - val_mse: 0.0059 - val_mae: 0.0504 - lr: 0.0010
+Epoch 14/1000
+1439/1439 - 104s - loss: 0.0460 - mse: 0.0049 - mae: 0.0460 - val_loss: 0.0557 - val_mse: 0.0068 - val_mae: 0.0557 - lr: 0.0010
+Epoch 15/1000
+1439/1439 - 103s - loss: 0.0448 - mse: 0.0047 - mae: 0.0448 - val_loss: 0.0541 - val_mse: 0.0063 - val_mae: 0.0541 - lr: 0.0010
+Epoch 16/1000
+1439/1439 - 104s - loss: 0.0436 - mse: 0.0045 - mae: 0.0436 - val_loss: 0.0501 - val_mse: 0.0058 - val_mae: 0.0501 - lr: 0.0010
+Epoch 17/1000
+1439/1439 - 103s - loss: 0.0429 - mse: 0.0043 - mae: 0.0429 - val_loss: 0.0501 - val_mse: 0.0057 - val_mae: 0.0501 - lr: 0.0010
+Epoch 18/1000
+1439/1439 - 103s - loss: 0.0419 - mse: 0.0041 - mae: 0.0419 - val_loss: 0.0471 - val_mse: 0.0052 - val_mae: 0.0471 - lr: 0.0010
+Epoch 19/1000
+1439/1439 - 104s - loss: 0.0409 - mse: 0.0040 - mae: 0.0409 - val_loss: 0.0507 - val_mse: 0.0057 - val_mae: 0.0507 - lr: 0.0010
+Epoch 20/1000
+1439/1439 - 104s - loss: 0.0401 - mse: 0.0038 - mae: 0.0401 - val_loss: 0.0491 - val_mse: 0.0054 - val_mae: 0.0491 - lr: 0.0010
+Epoch 21/1000
+1439/1439 - 104s - loss: 0.0393 - mse: 0.0037 - mae: 0.0393 - val_loss: 0.0449 - val_mse: 0.0048 - val_mae: 0.0449 - lr: 0.0010
+Epoch 22/1000
+1439/1439 - 103s - loss: 0.0387 - mse: 0.0035 - mae: 0.0387 - val_loss: 0.0498 - val_mse: 0.0054 - val_mae: 0.0498 - lr: 0.0010
+Epoch 23/1000
+1439/1439 - 103s - loss: 0.0377 - mse: 0.0034 - mae: 0.0377 - val_loss: 0.0459 - val_mse: 0.0049 - val_mae: 0.0459 - lr: 0.0010
+Epoch 24/1000
+1439/1439 - 103s - loss: 0.0373 - mse: 0.0033 - mae: 0.0373 - val_loss: 0.0459 - val_mse: 0.0049 - val_mae: 0.0459 - lr: 0.0010
+Epoch 25/1000
+1439/1439 - 103s - loss: 0.0368 - mse: 0.0032 - mae: 0.0368 - val_loss: 0.0500 - val_mse: 0.0055 - val_mae: 0.0500 - lr: 0.0010
+Epoch 26/1000
+1439/1439 - 103s - loss: 0.0362 - mse: 0.0031 - mae: 0.0362 - val_loss: 0.0492 - val_mse: 0.0050 - val_mae: 0.0492 - lr: 0.0010
+Epoch 27/1000
+1439/1439 - 103s - loss: 0.0357 - mse: 0.0030 - mae: 0.0357 - val_loss: 0.0454 - val_mse: 0.0048 - val_mae: 0.0454 - lr: 0.0010
+Epoch 28/1000
+1439/1439 - 103s - loss: 0.0353 - mse: 0.0029 - mae: 0.0353 - val_loss: 0.0503 - val_mse: 0.0053 - val_mae: 0.0503 - lr: 0.0010
+Epoch 29/1000
+1439/1439 - 103s - loss: 0.0346 - mse: 0.0028 - mae: 0.0346 - val_loss: 0.0437 - val_mse: 0.0043 - val_mae: 0.0437 - lr: 0.0010
+Epoch 30/1000
+1439/1439 - 103s - loss: 0.0340 - mse: 0.0027 - mae: 0.0340 - val_loss: 0.0562 - val_mse: 0.0060 - val_mae: 0.0562 - lr: 0.0010
+Epoch 31/1000
+1439/1439 - 103s - loss: 0.0337 - mse: 0.0027 - mae: 0.0337 - val_loss: 0.0427 - val_mse: 0.0042 - val_mae: 0.0427 - lr: 0.0010
+Epoch 32/1000
+1439/1439 - 103s - loss: 0.0330 - mse: 0.0026 - mae: 0.0330 - val_loss: 0.0411 - val_mse: 0.0041 - val_mae: 0.0411 - lr: 0.0010
+Epoch 33/1000
+1439/1439 - 103s - loss: 0.0328 - mse: 0.0026 - mae: 0.0328 - val_loss: 0.0431 - val_mse: 0.0043 - val_mae: 0.0431 - lr: 0.0010
+Epoch 34/1000
+1439/1439 - 103s - loss: 0.0325 - mse: 0.0025 - mae: 0.0325 - val_loss: 0.0545 - val_mse: 0.0056 - val_mae: 0.0545 - lr: 0.0010
+Epoch 35/1000
+1439/1439 - 103s - loss: 0.0320 - mse: 0.0024 - mae: 0.0320 - val_loss: 0.0420 - val_mse: 0.0041 - val_mae: 0.0420 - lr: 0.0010
+Epoch 36/1000
+1439/1439 - 104s - loss: 0.0316 - mse: 0.0024 - mae: 0.0316 - val_loss: 0.0406 - val_mse: 0.0040 - val_mae: 0.0406 - lr: 0.0010
+Epoch 37/1000
+1439/1439 - 104s - loss: 0.0312 - mse: 0.0023 - mae: 0.0312 - val_loss: 0.0406 - val_mse: 0.0039 - val_mae: 0.0406 - lr: 0.0010
+Epoch 38/1000
+1439/1439 - 103s - loss: 0.0309 - mse: 0.0022 - mae: 0.0309 - val_loss: 0.0486 - val_mse: 0.0048 - val_mae: 0.0486 - lr: 0.0010
+Epoch 39/1000
+1439/1439 - 103s - loss: 0.0306 - mse: 0.0022 - mae: 0.0306 - val_loss: 0.0407 - val_mse: 0.0039 - val_mae: 0.0407 - lr: 0.0010
+Epoch 40/1000
+1439/1439 - 103s - loss: 0.0302 - mse: 0.0021 - mae: 0.0302 - val_loss: 0.0421 - val_mse: 0.0040 - val_mae: 0.0421 - lr: 0.0010
+Epoch 41/1000
+1439/1439 - 103s - loss: 0.0300 - mse: 0.0021 - mae: 0.0300 - val_loss: 0.0421 - val_mse: 0.0041 - val_mae: 0.0421 - lr: 0.0010
+Epoch 42/1000
+1439/1439 - 103s - loss: 0.0295 - mse: 0.0021 - mae: 0.0295 - val_loss: 0.0401 - val_mse: 0.0037 - val_mae: 0.0401 - lr: 0.0010
+Epoch 43/1000
+1439/1439 - 103s - loss: 0.0292 - mse: 0.0020 - mae: 0.0292 - val_loss: 0.0489 - val_mse: 0.0050 - val_mae: 0.0489 - lr: 0.0010
+Epoch 44/1000
+1439/1439 - 103s - loss: 0.0291 - mse: 0.0020 - mae: 0.0291 - val_loss: 0.0463 - val_mse: 0.0046 - val_mae: 0.0463 - lr: 0.0010
+Epoch 45/1000
+1439/1439 - 103s - loss: 0.0288 - mse: 0.0019 - mae: 0.0288 - val_loss: 0.0432 - val_mse: 0.0043 - val_mae: 0.0432 - lr: 0.0010
+Epoch 46/1000
+1439/1439 - 103s - loss: 0.0285 - mse: 0.0019 - mae: 0.0285 - val_loss: 0.0420 - val_mse: 0.0039 - val_mae: 0.0420 - lr: 0.0010
+Epoch 47/1000
+1439/1439 - 104s - loss: 0.0283 - mse: 0.0019 - mae: 0.0283 - val_loss: 0.0376 - val_mse: 0.0035 - val_mae: 0.0376 - lr: 0.0010
+Epoch 48/1000
+1439/1439 - 103s - loss: 0.0279 - mse: 0.0018 - mae: 0.0279 - val_loss: 0.0477 - val_mse: 0.0046 - val_mae: 0.0477 - lr: 0.0010
+Epoch 49/1000
+1439/1439 - 103s - loss: 0.0278 - mse: 0.0018 - mae: 0.0278 - val_loss: 0.0383 - val_mse: 0.0036 - val_mae: 0.0383 - lr: 0.0010
+Epoch 50/1000
+1439/1439 - 103s - loss: 0.0276 - mse: 0.0018 - mae: 0.0276 - val_loss: 0.0386 - val_mse: 0.0035 - val_mae: 0.0386 - lr: 0.0010
+Epoch 51/1000
+1439/1439 - 103s - loss: 0.0274 - mse: 0.0018 - mae: 0.0274 - val_loss: 0.0433 - val_mse: 0.0041 - val_mae: 0.0433 - lr: 0.0010
+Epoch 52/1000
+1439/1439 - 103s - loss: 0.0271 - mse: 0.0017 - mae: 0.0271 - val_loss: 0.0393 - val_mse: 0.0037 - val_mae: 0.0393 - lr: 0.0010
+Epoch 53/1000
+1439/1439 - 104s - loss: 0.0267 - mse: 0.0017 - mae: 0.0267 - val_loss: 0.0396 - val_mse: 0.0036 - val_mae: 0.0396 - lr: 0.0010
+Epoch 54/1000
+1439/1439 - 103s - loss: 0.0269 - mse: 0.0017 - mae: 0.0269 - val_loss: 0.0386 - val_mse: 0.0036 - val_mae: 0.0386 - lr: 0.0010
+Epoch 55/1000
+1439/1439 - 103s - loss: 0.0263 - mse: 0.0016 - mae: 0.0263 - val_loss: 0.0441 - val_mse: 0.0043 - val_mae: 0.0441 - lr: 0.0010
+Epoch 56/1000
+1439/1439 - 103s - loss: 0.0263 - mse: 0.0016 - mae: 0.0263 - val_loss: 0.0442 - val_mse: 0.0043 - val_mae: 0.0442 - lr: 0.0010
+Epoch 57/1000
+1439/1439 - 103s - loss: 0.0260 - mse: 0.0016 - mae: 0.0260 - val_loss: 0.0472 - val_mse: 0.0046 - val_mae: 0.0472 - lr: 0.0010
+2021-01-14 12:37:12.075790: W tensorflow/python/util/util.cc:329] Sets are not currently considered sequences, but this may change in the future, so consider avoiding using them.
+WARNING:tensorflow:From /usr/local/anaconda/2020.07/3/lib/python3.8/site-packages/tensorflow/python/ops/resource_variable_ops.py:1813: calling BaseResourceVariable.__init__ (from tensorflow.python.ops.resource_variable_ops) with constraint is deprecated and will be removed in a future version.
+Instructions for updating:
+If using Keras pass *_constraint arguments to layers.
