@@ -20,3 +20,13 @@ Run Batch Code:
 Useful Commands:
 >sinfo -a
 >squeue -u $USER
+
+**tips**
+1. Setting --cpus-per-task to 12 (i.e --cpus-per-task=12) will make the queue wait time much faster
+2. Although >module load anaconda/2020-Jul/3 might work for some computing tasks, it is much better practice use create an python environment for your project. That way, you can fully customize python
+  1. To create a new python environment, first use >>module load anaconda/2020-Jul/3 on your workspace.
+  2. Next, enter the following command in bash >python3 -m venv ProjectPure-env
+  3. The new virtual environment should now show up on your workspace as a folder called "ProjectPure-env"
+  4. Now, you can activate the python environment with the following command (assuming that you're in your user workspace)
+   >source ProjectPure-env/bin/activate (note that you will need to add this command on your batch script before calling your python program)
+  5. You can modify the installed packages using pip
